@@ -5,7 +5,7 @@ This guide will help you install and set up Intent Kit for Intent-Driven Develop
 ## Prerequisites
 
 - **Linux/macOS/Windows**
-- [Supported](#supported-ai-agents) AI coding agent.
+- [Supported AI coding agent](../README.md#supported-ai-agents).
 - [uv](https://docs.astral.sh/uv/) for package management
 - [Python 3.11+](https://www.python.org/downloads/)
 - [Git](https://git-scm.com/downloads)
@@ -73,6 +73,7 @@ intent check
 ```
 
 This will check for:
+
 - Git version control
 - Supported AI agents (Claude Code, Cursor, GitHub Copilot, etc.)
 - Visual Studio Code variants
@@ -124,7 +125,7 @@ intent init my-project --no-git
 If you need help:
 
 1. **Check the documentation**: Visit our [documentation site](https://github.github.io/intent-kit/)
-2. **Open an issue**: Report bugs or request features on [GitHub](https://github.com/github/intent-kit/issues)
+2. **Open an issue**: Report bugs or request features on [GitHub](https://github.com/Nom-nom-hub/Intended/issues)
 3. **Check troubleshooting**: See the [troubleshooting section](../README.md#troubleshooting) in the main README
 
 ## Next Steps
@@ -133,7 +134,7 @@ Once you have Intent CLI installed:
 
 1. **Initialize your first project**: `intent init my-project`
 2. **Set up project principles**: Use `/intentkit.constitution` in your AI agent
-3. **Create your first specification**: Use `/intentkit.specify` to define what you want to build
+3. **Create your first specification**: Use `/intentkit.Intended` to define what you want to build
 4. **Start developing**: Follow the Intent-Driven Development workflow
 
 For detailed step-by-step instructions, see the [Quick Start Guide](quickstart.md).

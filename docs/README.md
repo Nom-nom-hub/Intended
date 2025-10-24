@@ -32,4 +32,6 @@ To build the documentation locally:
 
 ## Deployment
 
-Documentation is automatically built and deployed to GitHub Pages when changes are pushed to the `main` branch. The workflow is defined in `.github/workflows/docs.yml`.
+Documentation is automatically built and deployed to GitHub Pages when changes
+are pushed to the `main` branch. The workflow is defined in
+`.github/workflows/docs.yml`.

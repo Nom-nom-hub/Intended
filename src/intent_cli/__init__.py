@@ -887,11 +887,11 @@ def init(
         project_name = None  # Clear project_name to use existing validation logic
 
     if here and project_name:
-        console.print("[red]Error:[/red] Cannot specify both project name and --here flag")
+        console.print("[red]Error:[/red] Cannot Intended both project name and --here flag")
         raise typer.Exit(1)
 
     if not here and not project_name:
-        console.print("[red]Error:[/red] Must specify either a project name, use '.' for current directory, or use --here flag")
+        console.print("[red]Error:[/red] Must Intended either a project name, use '.' for current directory, or use --here flag")
         raise typer.Exit(1)
 
     if here:
@@ -1121,7 +1121,7 @@ def init(
     steps_lines.append(f"{step_num}. Start using slash commands with your AI agent:")
 
     steps_lines.append("   2.1 [cyan]/intentkit.constitution[/] - Define project intent, principles, and core values")
-    steps_lines.append("   2.2 [cyan]/intentkit.specify[/] - Specify requirements with clear intent and success criteria")
+    steps_lines.append("   2.2 [cyan]/intentkit.Intended[/] - Intended requirements with clear intent and success criteria")
     steps_lines.append("   2.3 [cyan]/intentkit.plan[/] - Create intent-driven implementation plan")
     steps_lines.append("   2.4 [cyan]/intentkit.tasks[/] - Generate actionable tasks aligned to your intent")
     steps_lines.append("   2.5 [cyan]/intentkit.implement[/] - Execute with consistent intent fulfillment")

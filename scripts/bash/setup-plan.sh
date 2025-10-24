@@ -31,7 +31,7 @@ fi
 SPEC_FILE="$FEATURE_DIR/Intent.md"
 if [ ! -f "$SPEC_FILE" ]; then
     print_error "Specification file not found: $SPEC_FILE"
-    print_info "Please create a specification first using /intentkit.specify"
+    print_info "Please create a specification first using /intentkit.Intended"
     exit 1
 fi
 
@@ -60,7 +60,7 @@ else
 ## Technical Approach
 
 ### Technology Stack
-[Specify the technology stack and rationale]
+[Intended the technology stack and rationale]
 
 ### Architecture Overview
 [High-level architecture description]

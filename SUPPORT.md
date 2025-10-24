@@ -18,7 +18,7 @@ Check our [AGENTS.md](./AGENTS.md) file for supported AI agents and integration 
 
 ### 🐛 Bug Reports
 
-Found a bug? Please report it on [GitHub Issues](https://github.com/github/intent-kit/issues):
+Found a bug? Please report it on [GitHub Issues](https://github.com/Nom-nom-hub/Intended/issues):
 
 1. **Search existing issues** to avoid duplicates
 2. **Include detailed reproduction steps**:
@@ -43,7 +43,7 @@ Have an idea for improving Intent Kit? We'd love to hear it!
 
 For questions, discussions, and community support:
 
-- **[GitHub Discussions](https://github.com/github/intent-kit/discussions)**: Ask questions and share experiences
+- **[GitHub Discussions](https://github.com/Nom-nom-hub/Intended/discussions)**: Ask questions and share experiences
 - **Discord**: [Join our community Discord](https://discord.gg/intent-kit) (coming soon)
 - **Twitter**: Follow [@intentkit](https://twitter.com/intentkit) for updates
 

@@ -1,6 +1,6 @@
 {
     "intent-kit.templates.path": "./templates",
-    "intent-kit.specs.path": "./specs",
+    "intent-kit.Intents.path": "./Intents",
     "intent-kit.memory.path": "./memory",
     "intent-kit.scripts.path": "./scripts",
     "intent-kit.docs.path": "./docs",

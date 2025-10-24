@@ -8,7 +8,8 @@ description: "Task list template for intent-driven feature implementation"
 **Input**: Design documents from `/intents/[###-feature-name]/`
 **Prerequisites**: plan.md (required), intent.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature intent.
+**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the
+feature intent.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -174,7 +175,8 @@ Examples of foundational tasks (adjust based on your project):
 
 - **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
 - **User Story 2 (P2)**: Can start after Foundational (Phase 2) - May integrate with US1 but should be independently testable
-- **User Story 3 (P3)**: Can start after Foundational (Phase 2) - May integrate with US1/US2 but should be independently testable
+- **User Story 3 (P3)**: Can start after Foundational (Phase 2) - May integrate with US1/US2 but should be independently
+testable
 
 ### Within Each User Story
 

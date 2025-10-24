@@ -30,6 +30,7 @@ intent init .
 ```
 
 The CLI will:
+
 1. Check your system for required tools
 2. Let you choose your AI assistant
 3. Download the appropriate template
@@ -39,24 +40,29 @@ The CLI will:
 ## Step 3: Set Up Your AI Agent
 
 1. **Navigate to your project**:
+
    ```bash
    cd my-first-project
    ```
 
 2. **Launch your AI agent** (e.g., Claude Code):
+
    ```bash
    claude
    ```
 
 3. **Verify slash commands are available**:
-   You should see `/intentkit.constitution`, `/intentkit.specify`, `/intentkit.plan`, `/intentkit.tasks`, and `/intentkit.implement` commands available.
+   You should see `/intentkit.constitution`, `/intentkit.Intended`, `/intentkit.plan`, `/intentkit.tasks`, and
+   `/intentkit.implement` commands available.
 
 ## Step 4: Establish Project Principles
 
 Start with the constitution to set your project's foundational guidelines:
 
 ```bash
-/intentkit.constitution Create principles focused on code quality, testing standards, user experience consistency, and performance requirements. Include governance for how these principles should guide technical decisions and implementation choices.
+/intentkit.constitution Create principles focused on code quality, testing standards \\
+  user experience consistency, and performance requirements. Include governance \\
+  for how these principles should guide technical decisions and implementation choices.
 ```
 
 This creates `.intent/memory/constitution.md` with your project's governing principles.
@@ -66,17 +72,23 @@ This creates `.intent/memory/constitution.md` with your project's governing prin
 Define what you want to build:
 
 ```bash
-/intentkit.specify Build a task management application where users can create projects, add team members, assign tasks, and track progress in a Kanban-style interface. Users should be able to drag and drop tasks between columns like "To Do," "In Progress," and "Done."
+/intentkit.Intended Build a task management application where users can create \\
+  projects, add team members, assign tasks, and track progress in a Kanban-style \\
+  interface. Users should be able to drag and drop tasks between columns like \\
+  "To Do," "In Progress," and "Done."
 ```
 
 This creates a new branch (e.g., `001-task-management`) and generates a detailed specification in `intents/001-task-management/Intent.md`.
 
 ## Step 6: Create Implementation Plan
 
-Specify your technical approach:
+Intended your technical approach:
 
 ```bash
-/intentkit.plan Use React with TypeScript for the frontend, Node.js with Express for the backend, and PostgreSQL for data storage. Implement drag-and-drop functionality with react-beautiful-dnd. Include user authentication and real-time updates.
+/intentkit.plan Use React with TypeScript for the frontend, Node.js with Express \\
+  for the backend, and PostgreSQL for data storage. Implement drag-and-drop \\
+  functionality with react-beautiful-dnd. Include user authentication and \\
+  real-time updates.
 ```
 
 This generates implementation details in the `intents/001-task-management/` directory.
@@ -124,7 +136,7 @@ Each new feature gets its own branch and directory:
 
 ```bash
 # Create another feature
-/intentkit.specify Add user authentication with email/password and social login options
+/intentkit.Intended Add user authentication with email/password and social login options
 
 # The system automatically creates branch 002-user-authentication
 ```
@@ -133,31 +145,35 @@ Each new feature gets its own branch and directory:
 
 1. **Start with clear intent**: Be specific about what you want to build and why
 2. **Focus on user value**: Prioritize features that deliver real user benefits
-3. **Use the workflow**: Follow the constitution → specify → plan → tasks → implement sequence
+3. **Use the workflow**: Follow the constitution → Intended → plan → tasks → implement sequence
 4. **Iterate**: Use clarification and analysis commands to improve quality
 5. **Test independently**: Each user story should be independently testable
 
 ## Getting Help
 
 - **Documentation**: Visit [github.github.io/intent-kit](https://github.github.io/intent-kit)
-- **Issues**: Report problems on [GitHub](https://github.com/github/intent-kit/issues)
-- **Discussions**: Ask questions in [GitHub Discussions](https://github.com/github/intent-kit/discussions)
+- **Issues**: Report problems on [GitHub](https://github.com/Nom-nom-hub/Intended/issues)
+- **Discussions**: Ask questions in [GitHub Discussions](https://github.com/Nom-nom-hub/Intended/discussions)
 
 ## Troubleshooting
 
 ### Common Issues
 
-**"No AI agent detected"**
+#### "No AI agent detected"
+
 - Make sure your AI agent is installed and in PATH
 - Use `--ignore-agent-tools` flag if you want to skip validation
 
-**"Git repository issues"**
+#### "Git repository issues"
+
 - Ensure Git is installed
 - Use `--no-git` flag to skip Git initialization
 
-**"Template download failed"**
+#### "Template download failed"
+
 - Check your internet connection
 - Try using `--skip-tls` flag if you have SSL issues
+
 - Use `--debug` flag for detailed error information
 
 For more detailed troubleshooting, see the [Installation Guide](installation.md).

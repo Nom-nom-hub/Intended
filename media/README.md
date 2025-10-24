@@ -5,15 +5,18 @@ This directory contains media assets for Intent Kit documentation and marketing 
 ## Assets
 
 ### Logos
+
 - `logo_large.webp` - Large logo for documentation headers
 - `logo_small.webp` - Small logo for navigation and social media
 
 ### Screenshots and Demos
+
 - `intent_cli.gif` - Animated demo of the Intent CLI in action
 - `intent-kit-video-header.jpg` - Header image for video content
 - `bootstrap-claude-code.gif` - Demo of setting up Claude Code integration
 
 ### Documentation Images
+
 - `images/` - Screenshots and diagrams for documentation
 
 ## Usage Guidelines

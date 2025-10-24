@@ -30,7 +30,7 @@ Every feature begins with a clear, unambiguous statement of intent. Intent speci
 AI agents are powerful collaborators, not autonomous systems. Human oversight, judgment, and decision-making remain essential throughout the development process. AI suggestions are validated, refined, and approved by human developers.
 
 ### III. Quality Through Structure
-Quality emerges from structured processes, not from individual brilliance. Every project follows the Intent-Driven Development methodology: Constitution → Specify → Plan → Tasks → Implement, with clarification and analysis as needed.
+Quality emerges from structured processes, not from individual brilliance. Every project follows the Intent-Driven Development methodology: Constitution → Intended → Plan → Tasks → Implement, with clarification and analysis as needed.
 
 ### IV. Testability as Foundation
 Every requirement must be independently testable. User stories are prioritized by business value and can be developed, tested, and deployed independently. Success criteria are measurable and technology-agnostic.
@@ -123,7 +123,7 @@ if (-not (Test-Path $templatesDir)) {
 ## Technical Approach
 
 ### Technology Stack
-[Specify the technology stack and rationale]
+[Intended the technology stack and rationale]
 
 ### Architecture Overview
 [High-level architecture description]
@@ -176,8 +176,8 @@ if (-not (Test-Path $commandsDir)) {
     Write-Warning "Command templates not found: $commandsDir"
     Write-Info "Creating command templates..."
 
-    # Create specify command template
-    $specifyTemplate = Join-Path $commandsDir "specify.md"
+    # Create Intended command template
+    $specifyTemplate = Join-Path $commandsDir "Intended.md"
     $specifyContent = @'
 ---
 description: Create or update the feature specification from a natural language feature description.
@@ -229,7 +229,7 @@ Write-Success "Agent context updated successfully!"
 Write-Host ""
 Write-Info "Available commands:"
 Write-Host "• /intentkit.constitution - Establish project principles" -ForegroundColor DarkGray
-Write-Host "• /intentkit.specify - Create feature specifications" -ForegroundColor DarkGray
+Write-Host "• /intentkit.Intended - Create feature specifications" -ForegroundColor DarkGray
 Write-Host "• /intentkit.plan - Create implementation plans" -ForegroundColor DarkGray
 Write-Host "• /intentkit.tasks - Generate task breakdowns" -ForegroundColor DarkGray
 Write-Host "• /intentkit.implement - Execute implementation" -ForegroundColor DarkGray

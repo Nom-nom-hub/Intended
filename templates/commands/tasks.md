@@ -5,7 +5,7 @@ scripts:
   ps: scripts/powershell/check-prerequisites.ps1 -Json
 ---
 
-## User Input
+# User Input
 
 ```text
 $ARGUMENTS
@@ -15,7 +15,8 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 ## Outline
 
-1. **Setup**: Run `{SCRIPT}` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
+1. **Setup**: Run `{SCRIPT}` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute.
+For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
 
 2. **Load design documents**: Read from FEATURE_DIR:
     - **Required**: plan.md (tech stack, libraries, structure), intent.md (user stories with priorities)
@@ -33,7 +34,7 @@ You **MUST** consider the user input before proceeding (if not empty).
     - Create parallel execution examples per user story
     - Validate task completeness (each user story has all needed tasks, independently testable)
 
-4. **Generate tasks.md**: Use `.specify/templates/tasks-template.md` as structure, fill with:
+4. **Generate tasks.md**: Use `.Intended/templates/tasks-template.md` as structure, fill with:
     - Correct feature name from plan.md
     - Phase 1: Setup tasks (project initialization)
     - Phase 2: Foundational tasks (blocking prerequisites for all user stories)
@@ -56,13 +57,15 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 Context for task generation: {ARGS}
 
-The tasks.md should be immediately executable - each task must be specific enough that an LLM can complete it without additional context.
+The tasks.md should be immediately executable - each task must be specific enough that an LLM can complete it without
+additional context.
 
 ## Task Generation Rules
 
 **CRITICAL**: Tasks MUST be organized by user story to enable independent implementation and testing.
 
-**Tests are OPTIONAL**: Only generate test tasks if explicitly requested in the feature specification or if user requests TDD approach.
+**Tests are OPTIONAL**: Only generate test tasks if explicitly requested in the feature specification or if user requests
+TDD approach.
 
 ### Checklist Format (REQUIRED)
 
@@ -126,6 +129,6 @@ Every task MUST strictly follow this format:
 - **Phase 1**: Setup (project initialization)
 - **Phase 2**: Foundational (blocking prerequisites - MUST complete before user stories)
 - **Phase 3+**: User Stories in priority order (P1, P2, P3...)
-   - Within each story: Tests (if requested) → Models → Services → Endpoints → Integration
-   - Each phase should be a complete, independently testable increment
+- Within each story: Tests (if requested) → Models → Services → Endpoints → Integration
+- Each phase should be a complete, independently testable increment
 - **Final Phase**: Polish & Cross-Cutting Concerns

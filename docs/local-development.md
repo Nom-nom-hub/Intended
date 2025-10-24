@@ -45,7 +45,7 @@ dotnet tool install -g docfx
 
 ## Project Structure
 
-```
+```text
 intent-kit/
 ├── src/intent_cli/          # Main CLI source code
 ├── docs/                    # Documentation source
@@ -117,6 +117,7 @@ uv run pytest tests/test_cli.py
 ### Writing Tests
 
 Tests should cover:
+
 - CLI command functionality
 - Template generation
 - Script execution
@@ -175,6 +176,7 @@ uv publish
 ### Making Changes
 
 1. **Create a feature branch**:
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -182,6 +184,7 @@ uv publish
 2. **Make your changes** following the project conventions
 
 3. **Test your changes**:
+
    ```bash
    uv run pytest
    ```
@@ -200,7 +203,7 @@ uv publish
 
 ### Commit Message Format
 
-```
+```text
 type(scope): description
 
 - Bullet points for additional details
@@ -235,6 +238,6 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for detailed contribution guidelines.
 
 ## Getting Help
 
-- **Issues**: [GitHub Issues](https://github.com/github/intent-kit/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/github/intent-kit/discussions)
+- **Issues**: [GitHub Issues](https://github.com/Nom-nom-hub/Intended/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Nom-nom-hub/Intended/discussions)
 - **Documentation**: [Local docs](http://localhost:8080) (after running `docfx --serve`)

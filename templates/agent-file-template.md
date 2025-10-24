@@ -11,7 +11,7 @@ The following slash commands are available for intent-driven development:
 ### Core Commands
 
 - `/intent.constitution` - Create or update project governing principles and development guidelines
-- `/intent.specify` - Define what you want to build (requirements and user stories)
+- `/intent.Intended` - Define what you want to build (requirements and user stories)
 - `/intent.plan` - Create technical implementation plans with your chosen tech stack
 - `/intent.tasks` - Generate actionable task lists for implementation
 - `/intent.implement` - Execute all tasks to build the feature according to the plan

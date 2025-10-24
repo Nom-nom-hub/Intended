@@ -5,7 +5,7 @@ scripts:
   ps: scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks
 ---
 
-## User Input
+# User Input
 
 ```text
 $ARGUMENTS
@@ -15,7 +15,8 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 ## Goal
 
-Execute the complete implementation plan by working through all tasks in the correct order, respecting dependencies and parallel execution opportunities. This command transforms the detailed task breakdown into working code.
+Execute the complete implementation plan by working through all tasks in the correct order, respecting dependencies and
+parallel execution opportunities. This command transforms the detailed task breakdown into working code.
 
 ## Operating Constraints
 
@@ -38,11 +39,13 @@ Run `{SCRIPT}` from repo root and parse JSON for FEATURE_DIR and AVAILABLE_DOCS.
 - TASKS = FEATURE_DIR/tasks.md
 - CONSTITUTION = /memory/constitution.md
 
-Validate all required files exist and are complete. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
+Validate all required files exist and are complete. For single quotes in args like "I'm Groot", use escape syntax: e.g
+'I'\''m Groot' (or double-quote if possible: "I'm Groot").
 
 ### 2. Load and Parse Task Structure
 
 Parse tasks.md to build:
+
 - **Task dependency graph**: Which tasks depend on which others
 - **Parallel execution groups**: Tasks marked [P] that can run simultaneously
 - **Phase structure**: Setup → Foundational → User Stories → Polish
@@ -51,6 +54,7 @@ Parse tasks.md to build:
 ### 3. Validate Prerequisites
 
 Before starting implementation:
+
 - ✅ All required artifacts present (Intent, plan, tasks)
 - ✅ Constitution loaded and understood
 - ✅ Required tools and dependencies available
@@ -60,13 +64,17 @@ Before starting implementation:
 ### 4. Execute Implementation Phases
 
 #### Phase 1: Setup Tasks
+
 Execute project initialization and basic structure tasks:
+
 - Create project structure per plan.md
 - Initialize dependencies and configuration
 - Set up development tools and linting
 
 #### Phase 2: Foundational Tasks
+
 Execute core infrastructure that blocks all user stories:
+
 - Database schema and migrations
 - Authentication/authorization framework
 - API routing and middleware
@@ -75,9 +83,11 @@ Execute core infrastructure that blocks all user stories:
 **CRITICAL**: No user story work begins until foundational phase completes successfully.
 
 #### Phase 3: User Story Implementation
+
 Execute user stories in priority order (P1 → P2 → P3...):
 
 For each user story:
+
 1. **Pre-implementation**: Verify story can be implemented independently
 2. **Test-first**: If tests requested, write and verify tests fail before implementation
 3. **Implementation**: Execute all tasks for this story
@@ -86,7 +96,9 @@ For each user story:
 6. **Checkpoint**: Verify story delivers expected value
 
 #### Phase 4: Polish & Cross-Cutting Concerns
+
 Execute final improvements:
+
 - Documentation updates
 - Code cleanup and refactoring
 - Performance optimization
@@ -96,6 +108,7 @@ Execute final improvements:
 ### 5. Handle Parallel Execution
 
 For tasks marked [P] (parallel):
+
 - Execute simultaneously when dependencies allow
 - Coordinate file creation to avoid conflicts
 - Merge results appropriately
@@ -103,16 +116,19 @@ For tasks marked [P] (parallel):
 ### 6. Error Handling and Recovery
 
 **Task-level errors**:
+
 - Stop execution of dependent tasks
 - Provide clear error messages with resolution steps
 - Allow user to fix issues and resume
 
 **File conflicts**:
+
 - Detect when multiple tasks try to modify same file
 - Suggest resolution strategies
 - Allow manual intervention if needed
 
 **Environment issues**:
+
 - Detect missing tools or dependencies
 - Provide installation/setup instructions
 - Validate environment before retrying
@@ -120,6 +136,7 @@ For tasks marked [P] (parallel):
 ### 7. Progress Reporting
 
 Throughout implementation:
+
 - Show current phase and task
 - Display progress percentage
 - Report successful completions
@@ -128,6 +145,7 @@ Throughout implementation:
 ### 8. Final Validation
 
 After all tasks complete:
+
 - Run comprehensive validation
 - Execute any automated tests
 - Verify constitution compliance
@@ -136,18 +154,21 @@ After all tasks complete:
 ## Task Execution Guidelines
 
 ### Code Quality Standards
+
 - **Follow constitution guidelines**: All code must comply with project standards
 - **Test-driven**: Write tests before implementation when specified
 - **Documentation**: Add appropriate comments and documentation
 - **Error handling**: Implement proper error handling and validation
 
 ### File Management
+
 - **Atomic operations**: Complete entire files when possible
 - **Backup existing**: Preserve existing files before modification
 - **Clear naming**: Use descriptive names that match task descriptions
 - **Consistent structure**: Follow project conventions for file organization
 
 ### Integration Points
+
 - **API consistency**: Ensure new endpoints follow established patterns
 - **Data compatibility**: Maintain backward compatibility when possible
 - **UI consistency**: Follow design system and UX guidelines
@@ -156,12 +177,14 @@ After all tasks complete:
 ## Implementation Strategy
 
 ### MVP-First Approach
+
 1. Complete Setup and Foundational phases
 2. Implement User Story 1 (P1) completely
 3. **STOP and VALIDATE**: Test US1 independently
 4. Deploy/demo if ready before continuing
 
 ### Incremental Delivery
+
 1. Complete foundation → Ready for user stories
 2. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
 3. Add User Story 2 → Test independently → Deploy/Demo
@@ -169,7 +192,9 @@ After all tasks complete:
 5. Each story adds value without breaking previous work
 
 ### Parallel Team Strategy
+
 With multiple developers:
+
 1. Team completes Setup + Foundational together
 2. Once foundation complete:
    - Developer A: User Story 1
@@ -180,12 +205,14 @@ With multiple developers:
 ## Quality Gates
 
 ### During Implementation
+
 - **Code review standards**: Follow project code review guidelines
 - **Testing requirements**: Execute tests as specified in tasks
 - **Performance validation**: Verify performance meets requirements
 - **Security scanning**: Run security checks if specified
 
 ### Post-Implementation
+
 - **Integration testing**: Verify all components work together
 - **User acceptance**: Validate against original requirements
 - **Documentation**: Update all relevant documentation
@@ -196,21 +223,25 @@ With multiple developers:
 ### Common Issues and Solutions
 
 **Missing Dependencies**:
+
 - Install required packages/tools
 - Update environment configuration
 - Retry failed tasks
 
 **File Conflicts**:
+
 - Coordinate with team members
 - Use feature branches for parallel work
 - Merge changes carefully
 
 **Test Failures**:
+
 - Debug failing tests
 - Fix implementation issues
 - Re-run test suite
 
 **Performance Issues**:
+
 - Profile and optimize slow code
 - Review architecture decisions
 - Consider alternative implementations
@@ -218,6 +249,7 @@ With multiple developers:
 ## Success Criteria
 
 Implementation is complete when:
+
 - ✅ All tasks in tasks.md are completed
 - ✅ All user stories are independently functional
 - ✅ Code passes all quality gates
@@ -228,12 +260,14 @@ Implementation is complete when:
 ## Operating Principles
 
 ### Execution Discipline
+
 - **Order matters**: Execute tasks in specified dependency order
 - **Quality first**: Never sacrifice quality for speed
 - **Transparency**: Keep user informed of progress and issues
 - **Recovery ready**: Always have a path to fix problems
 
 ### Team Coordination
+
 - **Clear communication**: Report progress and issues clearly
 - **Dependency awareness**: Understand and respect task dependencies
 - **Parallel efficiency**: Maximize parallel execution when safe

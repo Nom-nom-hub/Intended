@@ -3,7 +3,8 @@
 **Branch**: `[###-feature-name]` | **Date**: [DATE] | **Intent**: [link]
 **Input**: Feature intent from `/intents/[###-feature-name]/intent.md`
 
-**Note**: This template is filled in by the `/intent.plan` command. See `.intent/templates/commands/plan.md` for the execution workflow.
+**Note**: This template is filled in by the `/intent.plan` command. See `.intent/templates/commands/plan.md` for the
+execution workflow.
 
 ## Summary
 

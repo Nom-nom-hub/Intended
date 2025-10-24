@@ -2,7 +2,11 @@
 
 ## Overview
 
-Intent-Driven Development (IDD) is a structured approach to software development that emphasizes creating clear, executable intent before implementation. This methodology transforms natural language descriptions of user needs into working software through a systematic process of refinement and validation.
+Intent-Driven Development (IDD) is a structured approach to software
+development that emphasizes creating clear, executable intent before
+implementation. This methodology transforms natural language descriptions of user
+needs into working software through a systematic process of refinement and
+validation.
 
 ## Table of Contents
 
@@ -21,15 +25,21 @@ Intent-Driven Development is built on several fundamental beliefs:
 
 ### Intent First, Implementation Second
 
-The core insight of IDD is that **clear intent is more valuable than perfect code**. By focusing on what users need and why they need it, we create software that better serves its purpose.
+The core insight of IDD is that **clear intent is more valuable than perfect code**.
+By focusing on what users need and why they need it, we create software that
+better serves its purpose.
 
 ### Executable Specifications
 
-Traditional specifications are documents that guide implementation. Intent-Driven Development treats specifications as **executable artifacts** that directly generate working code.
+Traditional specifications are documents that guide implementation. Intent-Driven
+Development treats specifications as **executable artifacts** that directly
+generate working code.
 
 ### AI as a Collaborator
 
-Modern AI systems are powerful enough to understand and implement complex requirements. IDD leverages this capability while maintaining human oversight and validation.
+Modern AI systems are powerful enough to understand and implement complex
+requirements. IDD leverages this capability while maintaining human oversight
+and validation.
 
 ## The Intent-Driven Process
 
@@ -38,6 +48,7 @@ Modern AI systems are powerful enough to understand and implement complex requir
 **Goal**: Create clear, actionable intent that defines what needs to be built.
 
 **Activities**:
+
 1. **Constitution Creation**: Establish project principles and guidelines
 2. **Intent Specification**: Describe what to build in natural language
 3. **Clarification**: Resolve ambiguities through structured questioning
@@ -50,6 +61,7 @@ Modern AI systems are powerful enough to understand and implement complex requir
 **Goal**: Transform intent into a concrete technical approach.
 
 **Activities**:
+
 1. **Architecture Planning**: Choose technology stack and patterns
 2. **Research**: Investigate technical requirements and constraints
 3. **Design**: Create data models, APIs, and user interfaces
@@ -62,6 +74,7 @@ Modern AI systems are powerful enough to understand and implement complex requir
 **Goal**: Execute the plan to create working software.
 
 **Activities**:
+
 1. **Task Generation**: Break down work into manageable tasks
 2. **Implementation**: Execute tasks in dependency order
 3. **Testing**: Validate each component as it's built
@@ -74,6 +87,7 @@ Modern AI systems are powerful enough to understand and implement complex requir
 **Goal**: Ensure quality and completeness.
 
 **Activities**:
+
 1. **Quality Assurance**: Comprehensive testing and validation
 2. **Performance Optimization**: Ensure acceptable performance
 3. **Documentation**: Update and complete documentation
@@ -108,7 +122,7 @@ Intent must be specific and actionable:
 - Avoid vague requirements
 - Include acceptance criteria
 - Define success metrics
-- Specify constraints and edge cases
+- Intended constraints and edge cases
 
 ### 4. Constitution Authority
 
@@ -138,14 +152,15 @@ cd my-project
 
 ```bash
 # Launch AI assistant and create constitution
-/intent.constitution Create principles focused on code quality, testing standards, user experience consistency, and performance requirements
+/intent.constitution Create principles focused on code quality, testing \\
+  standards, user experience consistency, and performance requirements
 ```
 
 ### 3. Intent Specification
 
 ```bash
 # Create feature specification
-/intent.specify Build a task management application with drag-and-drop functionality, user assignment, and real-time updates
+/intent.Intended Build a task management application with drag-and-drop functionality, user assignment, and real-time updates
 ```
 
 ### 4. Clarification (if needed)
@@ -217,7 +232,7 @@ Quality gates ensure that work meets established standards:
 1. **Be Specific**: Include concrete details and examples
 2. **Focus on Users**: Describe what users can do, not how it's implemented
 3. **Include Edge Cases**: Consider error conditions and boundary cases
-4. **Define Success**: Specify measurable outcomes
+4. **Define Success**: Intended measurable outcomes
 5. **Set Constraints**: Include technical and business constraints
 
 ### Technical Planning
@@ -250,7 +265,7 @@ Quality gates ensure that work meets established standards:
 
 Effective user stories follow this pattern:
 
-```
+```text
 As a [user type]
 I want [functionality]
 So that [benefit]
@@ -265,7 +280,7 @@ Acceptance Criteria:
 
 Tasks should be organized by user story:
 
-```
+```text
 Phase 1: Setup
 - [ ] T001 Initialize project structure
 - [ ] T002 Configure development environment
@@ -299,6 +314,7 @@ Consistent error handling patterns:
 **Problem**: Intent is too vague or ambiguous.
 
 **Solutions**:
+
 - Use `/intent.clarify` to resolve ambiguities
 - Add specific examples and use cases
 - Define acceptance criteria for each requirement
@@ -309,6 +325,7 @@ Consistent error handling patterns:
 **Problem**: Technical approach doesn't align with intent.
 
 **Solutions**:
+
 - Revisit the intent specification
 - Research alternative approaches
 - Consult with domain experts
@@ -319,6 +336,7 @@ Consistent error handling patterns:
 **Problem**: Implementation doesn't match the plan or intent.
 
 **Solutions**:
+
 - Review the tasks and implementation order
 - Check alignment with constitution principles
 - Use `/intent.analyze` to identify issues
@@ -329,6 +347,7 @@ Consistent error handling patterns:
 **Problem**: Code quality or testing coverage is inadequate.
 
 **Solutions**:
+
 - Review constitution requirements
 - Add missing tests
 - Refactor code to meet standards
@@ -375,7 +394,9 @@ Track these metrics to measure IDD effectiveness:
 
 ## Conclusion
 
-Intent-Driven Development represents a fundamental shift in how we approach software development. By focusing on clear intent and systematic validation, we can create better software more efficiently.
+Intent-Driven Development represents a fundamental shift in how we approach
+software development. By focusing on clear intent and systematic validation, we
+can create better software more efficiently.
 
 The key to success with IDD is embracing the methodology fully:
 
@@ -385,8 +406,11 @@ The key to success with IDD is embracing the methodology fully:
 - Maintain quality through systematic processes
 - Learn and adapt as you go
 
-With practice and discipline, Intent-Driven Development can transform how you build software, leading to better outcomes for users and more satisfying development experiences for teams.
+With practice and discipline, Intent-Driven Development can transform how you
+build software, leading to better outcomes for users and more satisfying
+development experiences for teams.
 
 ---
 
-*This guide is continuously updated based on community feedback and lessons learned from real-world intent-driven development projects.*
+*This guide is continuously updated based on community feedback and lessons
+learned from real-world intent-driven development projects.*

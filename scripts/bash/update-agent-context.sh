@@ -32,7 +32,7 @@ Every feature begins with a clear, unambiguous statement of intent. Intent speci
 AI agents are powerful collaborators, not autonomous systems. Human oversight, judgment, and decision-making remain essential throughout the development process. AI suggestions are validated, refined, and approved by human developers.
 
 ### III. Quality Through Structure
-Quality emerges from structured processes, not from individual brilliance. Every project follows the Intent-Driven Development methodology: Constitution → Specify → Plan → Tasks → Implement, with clarification and analysis as needed.
+Quality emerges from structured processes, not from individual brilliance. Every project follows the Intent-Driven Development methodology: Constitution → Intended → Plan → Tasks → Implement, with clarification and analysis as needed.
 
 ### IV. Testability as Foundation
 Every requirement must be independently testable. User stories are prioritized by business value and can be developed, tested, and deployed independently. Success criteria are measurable and technology-agnostic.
@@ -164,7 +164,7 @@ EOF
 ## Technical Approach
 
 ### Technology Stack
-[Specify the technology stack and rationale]
+[Intended the technology stack and rationale]
 
 ### Architecture Overview
 [High-level architecture description]
@@ -222,8 +222,8 @@ if [ ! -d "$COMMANDS_DIR" ]; then
     print_warning "Command templates not found: $COMMANDS_DIR"
     print_info "Creating command templates..."
 
-    # Create specify command template
-    cat > "$COMMANDS_DIR/specify.md" << 'EOF'
+    # Create Intended command template
+    cat > "$COMMANDS_DIR/Intended.md" << 'EOF'
 ---
 description: Create or update the feature specification from a natural language feature description.
 scripts:
@@ -274,7 +274,7 @@ print_success "Agent context updated successfully!"
 echo ""
 print_info "Available commands:"
 echo "• /intentkit.constitution - Establish project principles"
-echo "• /intentkit.specify - Create feature specifications"
+echo "• /intentkit.Intended - Create feature specifications"
 echo "• /intentkit.plan - Create implementation plans"
 echo "• /intentkit.tasks - Generate task breakdowns"
 echo "• /intentkit.implement - Execute implementation"

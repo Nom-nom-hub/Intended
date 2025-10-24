@@ -14,7 +14,7 @@ Send security reports to: [security@intent-kit.dev]
 
 If you have a GitHub account, you can also report security issues through GitHub's private vulnerability reporting feature:
 
-1. Go to the [Intent Kit repository](https://github.com/github/intent-kit)
+1. Go to the [Intent Kit repository](ç)
 2. Click on the "Security" tab
 3. Click "Report a vulnerability"
 4. Fill out the form with details about the vulnerability
@@ -80,16 +80,19 @@ We believe in responsible disclosure. We will:
 Intent Kit includes several security-focused features:
 
 ### Input Validation
+
 - All CLI inputs are validated and sanitized
 - Template injection prevention in generated files
 - Safe path handling to prevent directory traversal
 
 ### Dependency Management
+
 - Minimal dependencies to reduce attack surface
 - Regular dependency updates and security audits
 - Use of trusted package repositories only
 
 ### Agent Integration Security
+
 - Secure handling of API keys and tokens
 - No storage of sensitive credentials in generated files
 - Validation of agent responses and outputs

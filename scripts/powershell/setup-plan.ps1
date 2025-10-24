@@ -28,7 +28,7 @@ if (-not (Test-Path $featureDir)) {
 $specFile = Join-Path $featureDir "Intent.md"
 if (-not (Test-Path $specFile)) {
     Write-Error "Specification file not found: $specFile"
-    Write-Info "Please create a specification first using /intentkit.specify"
+    Write-Info "Please create a specification first using /intentkit.Intended"
     exit 1
 }
 
@@ -59,7 +59,7 @@ else {
 ## Technical Approach
 
 ### Technology Stack
-[Specify the technology stack and rationale]
+[Intended the technology stack and rationale]
 
 ### Architecture Overview
 [High-level architecture description]

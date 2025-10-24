@@ -62,7 +62,7 @@
 		"git.autofetch": true,
 		"chat.promptFilesRecommendations": {
 			"intent.constitution": true,
-			"intent.specify": true,
+			"intent.Intended": true,
 			"intent.plan": true,
 			"intent.tasks": true,
 			"intent.implement": true

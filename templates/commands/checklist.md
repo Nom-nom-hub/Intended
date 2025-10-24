@@ -5,9 +5,10 @@ scripts:
   ps: scripts/powershell/check-prerequisites.ps1 -Json
 ---
 
-## Checklist Purpose: "Unit Tests for English"
+# Checklist Purpose: "Unit Tests for English"
 
-**CRITICAL CONCEPT**: Checklists are **UNIT TESTS FOR REQUIREMENTS WRITING** - they validate the quality, clarity, and completeness of requirements in a given domain.
+**CRITICAL CONCEPT**: Checklists are **UNIT TESTS FOR REQUIREMENTS WRITING** - they validate the quality, clarity, and
+completeness of requirements in a given domain.
 
 **NOT for verification/testing**:
 
@@ -24,7 +25,8 @@ scripts:
 - ✅ "Are accessibility requirements defined for keyboard navigation?" (coverage)
 - ✅ "Does the Intent define what happens when logo image fails to load?" (edge cases)
 
-**Metaphor**: If your Intent is code written in English, the checklist is its unit test suite. You're testing whether the requirements are well-written, complete, unambiguous, and ready for implementation - NOT whether the implementation works.
+**Metaphor**: If your Intent is code written in English, the checklist is its unit test suite. You're testing whether
+the requirements are well-written, complete, unambiguous, and ready for implementation - NOT whether the implementation works.
 
 ## User Input
 
@@ -38,21 +40,26 @@ You **MUST** consider the user input before proceeding (if not empty).
 
 1. **Setup**: Run `{SCRIPT}` from repo root and parse JSON for FEATURE_DIR and AVAILABLE_DOCS list.
     - All file paths must be absolute.
-    - For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
+    - For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible:
+    "I'm Groot").
 
-2. **Clarify intent (dynamic)**: Derive up to THREE initial contextual clarifying questions (no pre-baked catalog). They MUST:
+2. **Clarify intent (dynamic)**: Derive up to THREE initial contextual clarifying questions (no pre-baked catalog).
+They MUST:
     - Be generated from the user's phrasing + extracted signals from Intent/plan/tasks
     - Only ask about information that materially changes checklist content
     - Be skipped individually if already unambiguous in `$ARGUMENTS`
     - Prefer precision over breadth
 
     Generation algorithm:
-    1. Extract signals: feature domain keywords (e.g., auth, latency, UX, API), risk indicators ("critical", "must", "compliance"), stakeholder hints ("QA", "review", "security team"), and explicit deliverables ("a11y", "rollback", "contracts").
+    1. Extract signals: feature domain keywords (e.g., auth, latency, UX, API), risk indicators ("critical", "must",
+    "compliance"), stakeholder hints ("QA", "review", "security team"), and explicit deliverables ("a11y", "rollback", "contracts").
     2. Cluster signals into candidate focus areas (max 4) ranked by relevance.
     3. Identify probable audience & timing (author, reviewer, QA, release) if not explicit.
-    4. Detect missing dimensions: scope breadth, depth/rigor, risk emphasis, exclusion boundaries, measurable acceptance criteria.
+    4. Detect missing dimensions: scope breadth, depth/rigor, risk emphasis, exclusion boundaries, measurable acceptance
+    criteria.
     5. Formulate questions chosen from these archetypes:
-       - Scope refinement (e.g., "Should this include integration touchpoints with X and Y or stay limited to local module correctness?")
+       - Scope refinement (e.g., "Should this include integration touchpoints with X and Y or stay limited to local module
+       correctness?")
        - Risk prioritization (e.g., "Which of these potential risk areas should receive mandatory gating checks?")
        - Depth calibration (e.g., "Is this a lightweight pre-commit sanity list or a formal release gate?")
        - Audience framing (e.g., "Will this be used by the author only or peers during PR review?")
@@ -70,7 +77,10 @@ You **MUST** consider the user input before proceeding (if not empty).
     - Audience: Reviewer (PR) if code-related; Author otherwise
     - Focus: Top 2 relevance clusters
 
-    Output the questions (label Q1/Q2/Q3). After answers: if ≥2 scenario classes (Alternate / Exception / Recovery / Non-Functional domain) remain unclear, you MAY ask up to TWO more targeted follow‑ups (Q4/Q5) with a one-line justification each (e.g., "Unresolved recovery path risk"). Do not exceed five total questions. Skip escalation if user explicitly declines more.
+    Output the questions (label Q1/Q2/Q3). After answers: if ≥2 scenario classes (Alternate / Exception / Recovery /
+    Non-Functional domain) remain unclear, you MAY ask up to TWO more targeted follow‑ups (Q4/Q5) with a one-line
+    justification each (e.g., "Unresolved recovery path risk"). Do not exceed five total questions. Skip escalation if
+    user explicitly declines more.
 
 3. **Understand user request**: Combine `$ARGUMENTS` + clarifying answers:
     - Derive checklist theme (e.g., security, review, deploy, ux)
@@ -170,7 +180,8 @@ You **MUST** consider the user input before proceeding (if not empty).
     - Check if requirements exist for: Primary, Alternate, Exception/Error, Recovery, Non-Functional scenarios
     - For each scenario class, ask: "Are [scenario type] requirements complete, clear, and consistent?"
     - If scenario class missing: "Are [scenario type] requirements intentionally excluded or missing? [Gap]"
-    - Include resilience/rollback when state mutation occurs: "Are rollback requirements defined for migration failures? [Gap]"
+    - Include resilience/rollback when state mutation occurs: "Are rollback requirements defined for migration failures?
+    [Gap]"
 
     **Traceability Requirements**:
     - MINIMUM: ≥80% of items MUST include at least one traceability reference
@@ -206,7 +217,10 @@ You **MUST** consider the user input before proceeding (if not empty).
     - ✅ "Are [edge cases/scenarios] addressed in requirements?"
     - ✅ "Does the Intent define [missing aspect]?"
 
-6. **Structure Reference**: Generate the checklist following the canonical template in `templates/checklist-template.md` for title, meta section, category headings, and ID formatting. If template is unavailable, use: H1 title, purpose/created meta lines, `##` category sections containing `- [ ] CHK### <requirement item>` lines with globally incrementing IDs starting at CHK001.
+6. **Structure Reference**: Generate the checklist following the canonical template in `templates/checklist-template.md`
+for title, meta section, category headings, and ID formatting. If template is unavailable, use: H1 title, purpose/created
+meta lines, `##` category sections containing `- [ ] CHK### <requirement item>` lines with globally incrementing IDs
+starting at CHK001.
 
 7. **Report**: Output full path to created checklist, item count, and remind user that each run creates a new file. Summarize:
     - Focus areas selected
@@ -214,7 +228,8 @@ You **MUST** consider the user input before proceeding (if not empty).
     - Actor/timing
     - Any explicit user-specified must-have items incorporated
 
-**Important**: Each `/intent.checklist` command invocation creates a checklist file using short, descriptive names unless file already exists. This allows:
+**Important**: Each `/intent.checklist` command invocation creates a checklist file using short, descriptive names unless
+file already exists. This allows:
 
 - Multiple checklists of different types (e.g., `ux.md`, `api.md`, `security.md`)
 - Simple, memorable filenames that indicate checklist purpose

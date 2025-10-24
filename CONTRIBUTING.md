@@ -1,6 +1,8 @@
 # Contributing to Intent Kit
 
-Thank you for your interest in contributing to Intent Kit! We welcome contributions from the community to help improve the intent-driven development experience.
+Thank you for your interest in contributing to Intent Kit! We welcome
+contributions from the community to help improve the intent-driven
+development experience.
 
 ## Table of Contents
 
@@ -8,7 +10,7 @@ Thank you for your interest in contributing to Intent Kit! We welcome contributi
 - [Development Setup](#development-setup)
 - [Contributing Guidelines](#contributing-guidelines)
 - [Adding New Agent Support](#adding-new-agent-support)
-- [Testing](#testing)
+- [Testing](#testing-requirements)
 - [Documentation](#documentation)
 - [Release Process](#release-process)
 - [Community](#community)
@@ -17,15 +19,19 @@ Thank you for your interest in contributing to Intent Kit! We welcome contributi
 
 1. **Fork the repository** on GitHub
 2. **Clone your fork** locally:
+
    ```bash
    git clone https://github.com/your-username/intent-kit.git
    cd intent-kit
    ```
+
 3. **Set up the development environment** (see [Development Setup](#development-setup))
 4. **Create a feature branch**:
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
+
 5. **Make your changes** and ensure tests pass
 6. **Submit a pull request** with a clear description of your changes
 
@@ -41,21 +47,25 @@ Thank you for your interest in contributing to Intent Kit! We welcome contributi
 ### Environment Setup
 
 1. **Install dependencies**:
+
    ```bash
    uv sync
    ```
 
 2. **Install Intent CLI in development mode**:
+
    ```bash
    uv tool install -e .
    ```
 
 3. **Set up pre-commit hooks**:
+
    ```bash
    uv run pre-commit install
    ```
 
 4. **Verify installation**:
+
    ```bash
    intent --version
    intent check
@@ -90,15 +100,19 @@ Thank you for your interest in contributing to Intent Kit! We welcome contributi
 1. **Update documentation** if you're changing functionality
 2. **Add tests** for new features or bug fixes
 3. **Ensure all tests pass**:
+
    ```bash
    uv run pytest
    ```
+
 4. **Run linting and formatting**:
+
    ```bash
    uv run black .
    uv run isort .
    uv run flake8
    ```
+
 5. **Update CHANGELOG.md** for significant changes
 6. **Submit your PR** with a clear description
 

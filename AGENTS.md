@@ -2,25 +2,38 @@
 
 ## About Intent Kit and Intent CLI
 
-**GitHub Intent Kit** is a comprehensive toolkit for implementing Intent-Driven Development (IDD) - a methodology that emphasizes creating clear intent and specifications before implementation. The toolkit includes templates, scripts, and workflows that guide development teams through a structured approach to building software.
+**GitHub Intent Kit** is a comprehensive toolkit for implementing
+Intent-Driven Development (IDD) - a methodology that emphasizes creating
+clear intent and specifications before implementation. The toolkit includes
+templates, scripts, and workflows that guide development teams through a
+structured approach to building software.
 
-**Intent CLI** is the command-line interface that bootstraps projects with the Intent Kit framework. It sets up the necessary directory structures, templates, and AI agent integrations to support the Intent-Driven Development workflow.
+**Intent CLI** is the command-line interface that bootstraps projects with
+the Intent Kit framework. It sets up the necessary directory structures,
+templates, and AI agent integrations to support the Intent-Driven
+Development workflow.
 
-The toolkit supports multiple AI coding assistants, allowing teams to use their preferred tools while maintaining consistent project structure and development practices.
+The toolkit supports multiple AI coding assistants, allowing teams to use their preferred tools while maintaining
+a consistent project structure and development practices.
 
 ---
 
 ## General practices
 
-- Any changes to `__init__.py` for the Intent CLI require a version rev in `pyproject.toml` and addition of entries to `CHANGELOG.md`.
+- Any changes to `__init__.py` for the Intent CLI require a version rev in
+  `pyproject.toml` and addition of entries to `CHANGELOG.md`.
 
 ## Adding New Agent Support
 
-This section explains how to add support for new AI agents/assistants to the Intent CLI. Use this guide as a reference when integrating new AI tools into the Intent-Driven Development workflow.
+This section explains how to add support for new AI agents/assistants to the
+Intent CLI. Use this guide as a reference when integrating new AI tools into
+the Intent-Driven Development workflow.
 
 ### Overview
 
-Intent supports multiple AI agents by generating agent-specific command files and directory structures when initializing projects. Each agent has its own conventions for:
+Intent supports multiple AI agents by generating agent-specific command files
+and directory structures when initializing projects. Each agent has its own
+conventions for:
 
 - **Command file formats** (Markdown, TOML, etc.)
 - **Directory structures** (`.claude/commands/`, `.windsurf/workflows/`, etc.)
@@ -54,7 +67,8 @@ Follow these steps to add a new agent (using a hypothetical new agent as an exam
 
 **IMPORTANT**: Use the actual CLI tool name as the key, not a shortened version.
 
-Add the new agent to the `AGENT_CONFIG` dictionary in `src/intent_cli/__init__.py`. This is the **single source of truth** for all agent metadata:
+Add the new agent to the `AGENT_CONFIG` dictionary in `src/intent_cli/__init__.py`.
+This is the **single source of truth** for all agent metadata:
 
 ```python
 AGENT_CONFIG = {
@@ -87,7 +101,9 @@ This eliminates the need for special-case mappings throughout the codebase.
 Update the `--ai` parameter help text in the `init()` command to include the new agent:
 
 ```python
-ai_assistant: str = typer.Option(None, "--ai", help="AI assistant to use: claude, gemini, copilot, cursor-agent, qwen, opencode, codex, windsurf, kilocode, auggie, codebuddy, new-agent-cli, or q"),
+ai_assistant: str = typer.Option(None, "--ai",
+    help="AI assistant to use: claude, gemini, copilot, cursor-agent, qwen, opencode,
+    codex, windsurf, kilocode, auggie, codebuddy, new-agent-cli, or q"),
 ```
 
 Also update any function docstrings, examples, and error messages that list available agents.
@@ -200,13 +216,17 @@ elif selected_ai == "windsurf":
         agent_tool_missing = True
 ```
 
-**Note**: CLI tool checks are now handled automatically based on the `requires_cli` field in AGENT_CONFIG. No additional code changes needed in the `check()` or `init()` commands - they automatically loop through AGENT_CONFIG and check tools as needed.
+**Note**: CLI tool checks are now handled automatically based on the `requires_cli`
+field in AGENT_CONFIG. No additional code changes needed in the `check()` or
+`init()` commands - they automatically loop through AGENT_CONFIG and check
+tools as needed.
 
 ## Important Design Decisions
 
 ### Using Actual CLI Tool Names as Keys
 
-**CRITICAL**: When adding a new agent to AGENT_CONFIG, always use the **actual executable name** as the dictionary key, not a shortened or convenient version.
+**CRITICAL**: When adding a new agent to AGENT_CONFIG, always use the **actual executable name** as the dictionary key,
+not a shortened or convenient version.
 
 **Why this matters:**
 
@@ -373,10 +393,13 @@ Different agents use different argument placeholders:
 
 ## Common Pitfalls
 
-1. **Using shorthand keys instead of actual CLI tool names**: Always use the actual executable name as the AGENT_CONFIG key (e.g., `"cursor-agent"` not `"cursor"`). This prevents the need for special-case mappings throughout the codebase.
+1. **Using shorthand keys instead of actual CLI tool names**: Always use the actual executable name as the AGENT_CONFIG
+key (e.g., `"cursor-agent"` not `"cursor"`). This prevents the need for special-case mappings throughout the codebase.
 2. **Forgetting update scripts**: Both bash and PowerShell scripts must be updated when adding new agents.
-3. **Incorrect `requires_cli` value**: Set to `True` only for agents that actually have CLI tools to check; set to `False` for IDE-based agents.
-4. **Wrong argument format**: Use correct placeholder format for each agent type (`$ARGUMENTS` for Markdown, `{{args}}` for TOML).
+3. **Incorrect `requires_cli` value**: Set to `True` only for agents that actually have CLI tools to check; set to
+`False` for IDE-based agents.
+4. **Wrong argument format**: Use correct placeholder format for each agent type (`$ARGUMENTS` for Markdown, `{{args}}`
+for TOML).
 5. **Directory naming**: Follow agent-specific conventions exactly (check existing agents for patterns).
 6. **Help text inconsistency**: Update all user-facing text consistently (help strings, docstrings, README, error messages).
 

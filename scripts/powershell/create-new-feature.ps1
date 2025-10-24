@@ -16,7 +16,7 @@ if ($Help) {
     Write-Host "Options:"
     Write-Host "  -Json              Output in JSON format"
     Write-Host "  -ShortName <name>  Provide a custom short name (2-4 words) for the branch"
-    Write-Host "  -Number N          Specify branch number manually (overrides auto-detection)"
+    Write-Host "  -Number N          Intended branch number manually (overrides auto-detection)"
     Write-Host "  -Help              Show this help message"
     Write-Host ""
     Write-Host "Examples:"

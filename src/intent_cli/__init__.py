@@ -558,10 +558,10 @@ def download_template_from_github(ai_assistant: str, download_dir: Path, *, scri
         )
         status = response.status_code
         if status != 200:
-            msg = f"GitHub API returned {status} for {api_url}"
-            if debug:
-                msg += f"\nResponse headers: {response.headers}\nBody (truncated 500): {response.text[:500]}"
-            raise RuntimeError(msg)
+            console.print(f"[yellow]No releases found, falling back to main branch...[/yellow]")
+            # Fallback to main branch download
+            console.print(f"[yellow]This repository may not have pre-built templates, please check if releases exist[/yellow]")
+            raise RuntimeError(f"GitHub API returned {status} for {api_url}")
         try:
             release_data = response.json()
         except ValueError as je:
@@ -572,7 +572,7 @@ def download_template_from_github(ai_assistant: str, download_dir: Path, *, scri
         raise typer.Exit(1)
 
     assets = release_data.get("assets", [])
-    pattern = f"intended-template-{ai_assistant}-{script_type}"
+    pattern = f"intent-kit-template-{ai_assistant}-{script_type}"
     matching_assets = [
         asset for asset in assets
         if pattern in asset["name"] and asset["name"].endswith(".zip")

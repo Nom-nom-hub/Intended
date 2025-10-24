@@ -1,0 +1,10 @@
+- name: Intent Kit Documentation
+  href: index.md
+- name: Installation
+  href: installation.md
+- name: Quick Start
+  href: quickstart.md
+- name: Local Development
+  href: local-development.md
+- name: Intent-Driven Development
+  href: intent-driven.md

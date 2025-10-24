@@ -1,0 +1,16 @@
+{
+  "config": {
+    "default": true,
+    "MD013": {
+      "line_length": 120
+    },
+    "MD033": {
+      "allowed_elements": ["img", "br", "details", "summary", "a", "p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6", "strong", "em", "code", "pre", "blockquote", "ul", "ol", "li", "table", "thead", "tbody", "tr", "th", "td"]
+    }
+  },
+  "ignores": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "docs/_site/**/*"
+  ]
+}

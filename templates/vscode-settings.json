@@ -1,0 +1,66 @@
+{
+    "intent-kit.templates.path": "./templates",
+    "intent-kit.specs.path": "./specs",
+    "intent-kit.memory.path": "./memory",
+    "intent-kit.scripts.path": "./scripts",
+    "intent-kit.docs.path": "./docs",
+
+    "files.associations": {
+        "*.md": "markdown",
+        "Intent.md": "markdown",
+        "plan.md": "markdown",
+        "tasks.md": "markdown",
+        "research.md": "markdown",
+        "data-model.md": "markdown",
+        "quickstart.md": "markdown"
+    },
+
+    "markdown.preview.breaks": true,
+    "markdown.preview.typographer": true,
+
+    "editor.quickSuggestions": {
+        "markdown": true
+    },
+
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 100,
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/.pytest_cache": true,
+        "**/__pycache__": true
+    },
+
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/.pytest_cache": true,
+        "**/__pycache__": true
+    },
+
+    "git.confirmSync": false,
+    "git.autofetch": true,
+
+    "python.defaultInterpreterPath": "python3",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+
+    "intent-kit.features": {
+        "autoComplete": true,
+        "syntaxHighlighting": true,
+        "liveValidation": true,
+        "templateSuggestions": true
+    }
+}

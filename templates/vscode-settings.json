@@ -1,9 +1,9 @@
 {
-    "intent-kit.templates.path": "./templates",
-    "intent-kit.Intents.path": "./Intents",
-    "intent-kit.memory.path": "./memory",
-    "intent-kit.scripts.path": "./scripts",
-    "intent-kit.docs.path": "./docs",
+    "intended.templates.path": "./templates",
+    "intended.Intents.path": "./Intents",
+    "intended.memory.path": "./memory",
+    "intended.scripts.path": "./scripts",
+    "intended.docs.path": "./docs",
 
     "files.associations": {
         "*.md": "markdown",
@@ -57,7 +57,7 @@
         "source.organizeImports": true
     },
 
-    "intent-kit.features": {
+    "intended.features": {
         "autoComplete": true,
         "syntaxHighlighting": true,
         "liveValidation": true,

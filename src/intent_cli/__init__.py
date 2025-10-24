@@ -540,8 +540,8 @@ def merge_json_files(existing_path: Path, new_content: dict, verbose: bool = Fal
     return merged
 
 def download_template_from_github(ai_assistant: str, download_dir: Path, *, script_type: str = "sh", verbose: bool = True, show_progress: bool = True, client: Optional[httpx.Client] = None, debug: bool = False, github_token: Optional[str] = None) -> Tuple[Path, dict]:
-    repo_owner = "github"
-    repo_name = "intent-kit"
+    repo_owner = "Nom-nom-hub"
+    repo_name = "Intended"
     if client is None:
         client = httpx.Client(verify=ssl_context)
 
@@ -572,7 +572,7 @@ def download_template_from_github(ai_assistant: str, download_dir: Path, *, scri
         raise typer.Exit(1)
 
     assets = release_data.get("assets", [])
-    pattern = f"intent-kit-template-{ai_assistant}-{script_type}"
+    pattern = f"intended-template-{ai_assistant}-{script_type}"
     matching_assets = [
         asset for asset in assets
         if pattern in asset["name"] and asset["name"].endswith(".zip")

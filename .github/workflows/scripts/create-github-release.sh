@@ -24,7 +24,7 @@ fi
 gh release create "$VERSION" \
   --title "$VERSION" \
   --notes-file release_notes.md \
-  .genreleases/intent-kit-template-*-"${VERSION}".zip
+  .genreleases/intended-template-*-"${VERSION}".zip
 
 echo "Created release $VERSION successfully"
 

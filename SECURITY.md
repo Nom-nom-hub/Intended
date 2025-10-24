@@ -8,7 +8,7 @@ We take security seriously at Intent Kit. If you discover a security vulnerabili
 
 ### Report via Email
 
-Send security reports to: [security@intent-kit.dev]
+Send security reports to: [security@intended.dev]
 
 ### Report via GitHub
 
@@ -110,8 +110,8 @@ Intent Kit undergoes regular security audits:
 
 For security-related questions or concerns:
 
-- **Security reports**: [security@intent-kit.dev]
-- **General security questions**: [security@intent-kit.dev]
+- **Security reports**: [security@intended.dev]
+- **General security questions**: [security@intended.dev]
 - **GitHub Issues**: Use the "Security" tab for private vulnerability reports
 
 ---

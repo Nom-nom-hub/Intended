@@ -124,7 +124,7 @@ intent init my-project --no-git
 
 If you need help:
 
-1. **Check the documentation**: Visit our [documentation site](https://github.github.io/intent-kit/)
+1. **Check the documentation**: Visit our [documentation site](https://github.github.io/intended/)
 2. **Open an issue**: Report bugs or request features on [GitHub](https://github.com/Nom-nom-hub/Intended/issues)
 3. **Check troubleshooting**: See the [troubleshooting section](../README.md#troubleshooting) in the main README
 

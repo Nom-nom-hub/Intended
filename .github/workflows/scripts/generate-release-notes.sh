@@ -42,7 +42,7 @@ fi
   echo ""
   echo "### Documentation"
   echo ""
-  echo "For detailed documentation, see: https://github.github.io/intent-kit/"
+  echo "For detailed documentation, see: https://github.github.io/intended/"
 } > release_notes.md
 
 echo "Generated release notes:"

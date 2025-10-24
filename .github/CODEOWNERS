@@ -2,27 +2,27 @@
 # When a pull request is opened, the users listed here will be automatically requested for review
 
 # Global Owners
-* @github/intent-kit-maintainers
+* @github/intended-maintainers
 
 # Documentation
-/docs/ @github/intent-kit-maintainers @github/docs-team
-README.md @github/intent-kit-maintainers @github/docs-team
-AGENTS.md @github/intent-kit-maintainers @github/docs-team
-CHANGELOG.md @github/intent-kit-maintainers
-CONTRIBUTING.md @github/intent-kit-maintainers @github/docs-team
+/docs/ @github/intended-maintainers @github/docs-team
+README.md @github/intended-maintainers @github/docs-team
+AGENTS.md @github/intended-maintainers @github/docs-team
+CHANGELOG.md @github/intended-maintainers
+CONTRIBUTING.md @github/intended-maintainers @github/docs-team
 
 # Source Code
-/src/ @github/intent-kit-maintainers
-pyproject.toml @github/intent-kit-maintainers
+/src/ @github/intended-maintainers
+pyproject.toml @github/intended-maintainers
 
 # Templates
-/templates/ @github/intent-kit-maintainers
+/templates/ @github/intended-maintainers
 
 # Scripts
-/scripts/ @github/intent-kit-maintainers
+/scripts/ @github/intended-maintainers
 
 # GitHub Workflows
-/.github/ @github/intent-kit-maintainers
+/.github/ @github/intended-maintainers
 
 # Security and Legal
 LICENSE @github/legal-team
@@ -30,4 +30,4 @@ SECURITY.md @github/security-team
 CODE_OF_CONDUCT.md @github/community-team
 
 # Memory and Constitution
-/memory/ @github/intent-kit-maintainers
+/memory/ @github/intended-maintainers

@@ -1,6 +1,6 @@
 # Intent-Driven Development Agent Context
 
-**Project**: Intent-Kit
+**Project**: intended
 **Purpose**: Agent-specific configuration and context for intent-driven development
 **Updated**: [DATE]
 

@@ -145,8 +145,8 @@ Modify `.github/workflows/scripts/create-github-release.sh` to include the new a
 ```bash
 gh release create "$VERSION" \
   # ... existing packages ...
-  .genreleases/intent-kit-template-windsurf-sh-"$VERSION".zip \
-  .genreleases/intent-kit-template-windsurf-ps-"$VERSION".zip \
+  .genreleases/intended-template-windsurf-sh-"$VERSION".zip \
+  .genreleases/intended-template-windsurf-ps-"$VERSION".zip \
   # Add new agent packages here
 ```
 

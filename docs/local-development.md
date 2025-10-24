@@ -16,7 +16,7 @@ This guide covers setting up a local development environment for Intent Kit.
 
 ```bash
 git clone https://github.com/Nom-nom-hub/Intended.git
-cd intent-kit
+cd intended
 ```
 
 ### 2. Set Up Python Environment
@@ -46,7 +46,7 @@ dotnet tool install -g docfx
 ## Project Structure
 
 ```text
-intent-kit/
+intended/
 ├── src/intent_cli/          # Main CLI source code
 ├── docs/                    # Documentation source
 ├── scripts/                 # Build and utility scripts

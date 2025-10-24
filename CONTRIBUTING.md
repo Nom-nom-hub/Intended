@@ -21,8 +21,8 @@ development experience.
 2. **Clone your fork** locally:
 
    ```bash
-   git clone https://github.com/your-username/intent-kit.git
-   cd intent-kit
+   git clone https://github.com/your-username/intended.git
+   cd intended
    ```
 
 3. **Set up the development environment** (see [Development Setup](#development-setup))

@@ -187,8 +187,8 @@ build_variant() {
       mkdir -p "$base_dir/.amazonq/prompts"
       generate_commands q md "\$ARGUMENTS" "$base_dir/.amazonq/prompts" "$script" ;;
   esac
-  ( cd "$base_dir" && zip -r "../intent-kit-template-${agent}-${script}-${NEW_VERSION}.zip" . )
-  echo "Created $GENRELEASES_DIR/intent-kit-template-${agent}-${script}-${NEW_VERSION}.zip"
+  ( cd "$base_dir" && zip -r "../intended-template-${agent}-${script}-${NEW_VERSION}.zip" . )
+  echo "Created $GENRELEASES_DIR/intended-template-${agent}-${script}-${NEW_VERSION}.zip"
 }
 
 # Determine agent list
@@ -238,4 +238,4 @@ for agent in "${AGENT_LIST[@]}"; do
 done
 
 echo "Archives in $GENRELEASES_DIR:"
-ls -1 "$GENRELEASES_DIR"/intent-kit-template-*-"${NEW_VERSION}".zip
+ls -1 "$GENRELEASES_DIR"/intended-template-*-"${NEW_VERSION}".zip

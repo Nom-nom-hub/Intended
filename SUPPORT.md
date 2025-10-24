@@ -44,7 +44,7 @@ Have an idea for improving Intent Kit? We'd love to hear it!
 For questions, discussions, and community support:
 
 - **[GitHub Discussions](https://github.com/Nom-nom-hub/Intended/discussions)**: Ask questions and share experiences
-- **Discord**: [Join our community Discord](https://discord.gg/intent-kit) (coming soon)
+- **Discord**: [Join our community Discord](https://discord.gg/intended) (coming soon)
 - **Twitter**: Follow [@intentkit](https://twitter.com/intentkit) for updates
 
 ## Community Guidelines
@@ -61,7 +61,7 @@ When seeking help:
 
 For organizations that need professional support, training, or custom development:
 
-- **Enterprise Support**: Contact [enterprise@intent-kit.dev]
+- **Enterprise Support**: Contact [enterprise@intended.dev]
 - **Training**: Custom training sessions for teams adopting intent-driven development
 - **Consulting**: Help with large-scale intent-driven development implementations
 - **Custom Templates**: Development of organization-specific templates and workflows

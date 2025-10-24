@@ -28,7 +28,7 @@
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [
-	8080 // for Intent-Kit documentation site
+	8080 // for intended documentation site
   ],
   "containerUser": "devcontainer",
   "updateRemoteUserUID": true,

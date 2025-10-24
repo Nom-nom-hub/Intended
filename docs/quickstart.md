@@ -151,7 +151,7 @@ Each new feature gets its own branch and directory:
 
 ## Getting Help
 
-- **Documentation**: Visit [github.github.io/intent-kit](https://github.github.io/intent-kit)
+- **Documentation**: Visit [github.github.io/intended](https://github.github.io/intended)
 - **Issues**: Report problems on [GitHub](https://github.com/Nom-nom-hub/Intended/issues)
 - **Discussions**: Ask questions in [GitHub Discussions](https://github.com/Nom-nom-hub/Intended/discussions)
 

@@ -1,6 +1,6 @@
 <div align="center">
     <img src="./media/logo_small.webp" alt="Intent Kit Logo"/>
-    <h1>🌱 Intent Kit</h1>
+    <h1> Intended</h1>
     <h3><em>Build high-quality software faster with intent-driven development.</em></h3>
 </div>
 
@@ -10,13 +10,13 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/nom-nom-hub/intent-kit/actions/workflows/release.yml">
-    <img src="https://github.com/nom-nom-hub/intent-kit/actions/workflows/release.yml/badge.svg" alt="Release"/></a>
-    <a href="https://github.com/github/intent-kit/stargazers">
-    <img src="https://img.shields.io/github/stars/github/intent-kit?style=social" alt="GitHub stars"/></a>
-    <a href="https://github.com/github/intent-kit/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/github/intent-kit" alt="License"/></a>
-    <a href="https://github.github.io/intent-kit/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
+    <a href="https://github.com/nom-nom-hub/intended/actions/workflows/release.yml">
+    <img src="https://github.com/nom-nom-hub/intended/actions/workflows/release.yml/badge.svg" alt="Release"/></a>
+    <a href="https://github.com/Nom-nom-hub/Intended/stargazers">
+    <img src="https://img.shields.io/github/stars/nom-nom-hub/intended?style=social" alt="GitHub stars"/></a>
+    <a href="https://github.com/Nom-nom-hub/Intended/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/nom-nom-hub/intended" alt="License"/></a>
+    <a href="https://github.github.io/intended/"><img src="https://img.shields.io/badge/docs-GitHub_Pages-blue" alt="Documentation"/></a>
 </p>
 
 ---
@@ -102,11 +102,11 @@ will guide all subsequent development.
 
 ### 3. Create the intent
 
-Use the **`/intent.specify`** command to describe what you want to build. Focus on the **what** and **why**, not the tech
+Use the **`/intent.intend`** command to describe what you want to build. Focus on the **what** and **why**, not the tech
 stack.
 
 ```bash
-/intent.specify Build an application that can help me organize my photos in separate photo albums. Albums are grouped by date and can be re-organized by dragging and dropping on the main page. Albums are never in other nested albums. Within each album, photos are previewed in a tile-like interface.
+/intent.intend Build an application that can help me organize my photos in separate photo albums. Albums are grouped by date and can be re-organized by dragging and dropping on the main page. Albums are never in other nested albums. Within each album, photos are previewed in a tile-like interface.
 ```
 
 ### 4. Create a technical implementation plan
@@ -139,7 +139,7 @@ For detailed step-by-step instructions, see our [comprehensive guide](./intent-d
 
 Want to see Intent Kit in action? Watch our [video overview](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)!
 
-[![Intent Kit video header](/media/intent-kit-video-header.jpg)](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)
+[![Intent Kit video header](/media/intended-video-header.jpg)](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)
 
 ## 🤖 Supported AI Agents
 
@@ -241,7 +241,7 @@ Essential commands for the Intent-Driven Development workflow:
 | Command                  | Description                                                           |
 |--------------------------|-----------------------------------------------------------------------|
 | `/intent.constitution`  | Create or update project governing principles and development guidelines |
-| `/intent.specify`       | Define what you want to build (requirements and user stories)        |
+| `/intent.intend`       | Define what you want to build (requirements and user stories)        |
 | `/intent.plan`          | Create technical implementation plans with your chosen tech stack     |
 | `/intent.tasks`         | Generate actionable task lists for implementation                     |
 | `/intent.implement`     | Execute all tasks to build the feature according to the plan         |
@@ -346,9 +346,7 @@ intent init . --force
 intent init --here --force
 ```
 
-![Intent CLI bootstrapping a new project in the terminal](./media/intent_cli.gif)
-
-You will be prompted to select the AI agent you are using. You can also proactively specify it directly in the terminal:
+You will be prompted to select the AI agent you are using. You can also proactively intend it directly in the terminal:
 
 ```bash
 intent init <project_name> --ai claude
@@ -385,7 +383,7 @@ Go to the project folder and run your AI agent. In our example, we're using `cla
 ![Bootstrapping Claude Code environment](./media/bootstrap-claude-code.gif)
 
 You will know that things are configured correctly if you see the
-`/intent.constitution`, `/intent.specify`, `/intent.plan`, `/intent.tasks`, and `/intent.implement` commands available.
+`/intent.constitution`, `/intent.intend`, `/intent.plan`, `/intent.tasks`, and `/intent.implement` commands available.
 
 The first step should be establishing your project's governing principles using the
 `/intent.constitution` command. This helps ensure consistent decision-making throughout all subsequent development phases:
@@ -401,7 +399,7 @@ intent creation, planning, and implementation phases.
 ### **STEP 2:** Create project intent
 
 With your project principles established, you can now create the functional intent specifications. Use the
-`/intent.specify` command and then provide the concrete requirements for the project you want to develop.
+`/intent.intend` command and then provide the concrete requirements for the project you want to develop.
 
 >[!IMPORTANT]
 >Be as explicit as possible about *what* you are trying to build and *why*. **Do not focus on the tech stack at this point**.
@@ -668,12 +666,8 @@ rm gcm-linux_amd64.2.6.1.deb
 
 ## 💬 Support
 
-For support, please open a [GitHub issue](https://github.com/github/intent-kit/issues/new). We welcome bug reports,
+For support, please open a [GitHub issue](https://github.com/github/intend/issues/new). We welcome bug reports,
 feature requests, and questions about using Intent-Driven Development.
-
-## 🙏 Acknowledgements
-
-This project is heavily influenced by and based on the work and research of [John Lam](https://github.com/jflam).
 
 ## 📄 License
 

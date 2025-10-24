@@ -12,7 +12,7 @@ This directory contains media assets for Intent Kit documentation and marketing 
 ### Screenshots and Demos
 
 - `intent_cli.gif` - Animated demo of the Intent CLI in action
-- `intent-kit-video-header.jpg` - Header image for video content
+- `intended-video-header.jpg` - Header image for video content
 - `bootstrap-claude-code.gif` - Demo of setting up Claude Code integration
 
 ### Documentation Images

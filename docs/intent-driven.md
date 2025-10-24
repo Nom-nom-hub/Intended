@@ -125,7 +125,7 @@ Project principles (constitution) are non-negotiable:
 
 ```bash
 # Install Intent CLI
-uv tool install intent-cli --from git+https://github.com/github/intent-kit.git
+uv tool install intent-cli --from git+https://github.com/Nom-nom-hub/Intended.git
 
 # Initialize project
 intent init my-project --ai claude

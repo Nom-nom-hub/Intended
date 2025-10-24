@@ -255,7 +255,7 @@ Write-Host ""
 Write-Host "Prerequisites check complete!" -ForegroundColor Green
 Write-Host ""
 Write-Host "To install Intent CLI:" -ForegroundColor Cyan
-Write-Host "  uv tool install intent-cli --from git+https://github.com/github/intent-kit.git" -ForegroundColor White
+Write-Host "  uv tool install intent-cli --from git+https://github.com/Nom-nom-hub/Intended.git" -ForegroundColor White
 Write-Host ""
 Write-Host "To initialize a new project:" -ForegroundColor Cyan
 Write-Host "  intent init my-project" -ForegroundColor White

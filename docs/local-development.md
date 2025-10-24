@@ -15,7 +15,7 @@ This guide covers setting up a local development environment for Intent Kit.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/github/intent-kit.git
+git clone https://github.com/Nom-nom-hub/Intended.git
 cd intent-kit
 ```
 

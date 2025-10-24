@@ -19,7 +19,7 @@ If you encounter issues with an agent, please open an issue so we can refine the
 Install once and use everywhere:
 
 ```bash
-uv tool install intent-cli --from git+https://github.com/github/intent-kit.git
+uv tool install intent-cli --from git+https://github.com/Nom-nom-hub/Intended.git
 ```
 
 Then use the tool directly:
@@ -32,7 +32,7 @@ intent check
 To upgrade intent run:
 
 ```bash
-uv tool install intent-cli --force --from git+https://github.com/github/intent-kit.git
+uv tool install intent-cli --force --from git+https://github.com/Nom-nom-hub/Intended.git
 ```
 
 **Benefits of persistent installation:**
@@ -47,7 +47,7 @@ uv tool install intent-cli --force --from git+https://github.com/github/intent-k
 Run directly without installing:
 
 ```bash
-uvx --from git+https://github.com/github/intent-kit.git intent init <PROJECT_NAME>
+uvx --from git+https://github.com/Nom-nom-hub/Intended.git intent init <PROJECT_NAME>
 ```
 
 ## Verifying Installation

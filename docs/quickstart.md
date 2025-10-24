@@ -13,7 +13,7 @@ This guide will get you up and running with Intent Kit in minutes.
 
 ```bash
 # Install Intent CLI globally
-uv tool install intent-cli --from git+https://github.com/github/intent-kit.git
+uv tool install intent-cli --from git+https://github.com/Nom-nom-hub/Intended.git
 
 # Verify installation
 intent --help

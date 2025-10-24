@@ -16,7 +16,9 @@ LATEST_TAG="$2"
 echo "Generating release notes for $NEW_VERSION since $LATEST_TAG"
 
 # Generate release notes using git log
-RELEASE_NOTES=$(git log --pretty=format:"- %s (%h)" --no-merges "${LATEST_TAG}..HEAD" | grep -E "^- (feat|fix|docs|style|refactor|test|chore)" | head -20)
+# Use subshell to avoid issues with grep returning exit code 1 when no matches
+RELEASE_NOTES=$( (git log --pretty=format:"- %s (%h)" --no-merges "${LATEST_TAG}..HEAD" 2>/dev/null || true) | grep -E "^- (feat|fix|docs|style|refactor|test|chore)" || true)
+RELEASE_NOTES=$(echo "$RELEASE_NOTES" | head -20)
 
 if [[ -z "$RELEASE_NOTES" ]]; then
   RELEASE_NOTES="- No significant changes since last release"
@@ -35,7 +37,7 @@ fi
   echo "Update Intent Kit to the latest version:"
   echo ""
   echo '```bash'
-  echo "uv tool install intent-cli --force --from git+https://github.com/github/intent-kit.git"
+  echo "uv tool install intent-cli --force --from git+https://github.com/Nom-nom-hub/Intended.git"
   echo '```'
   echo ""
   echo "### Documentation"
@@ -46,4 +48,7 @@ fi
 echo "Generated release notes:"
 cat release_notes.md
 
-echo "release_notes_file=release_notes.md" >> $GITHUB_OUTPUT
+# Only write to GITHUB_OUTPUT if running in GitHub Actions
+if [ ! -z "${GITHUB_OUTPUT:-}" ]; then
+  echo "release_notes_file=release_notes.md" >> $GITHUB_OUTPUT
+fi

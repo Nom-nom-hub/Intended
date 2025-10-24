@@ -51,7 +51,7 @@ Choose your preferred installation method:
 Install once and use everywhere:
 
 ```bash
-uv tool install intent-cli --from git+https://github.com/github/intent-kit.git
+uv tool install intent-cli --from git+https://github.com/Nom-nom-hub/Intended.git
 ```
 
 Then use the tool directly:
@@ -64,7 +64,7 @@ intent check
 To upgrade intent run:
 
 ```bash
-uv tool install intent-cli --force --from git+https://github.com/github/intent-kit.git
+uv tool install intent-cli --force --from git+https://github.com/Nom-nom-hub/Intended.git
 ```
 
 #### Option 2: One-time Usage
@@ -72,7 +72,7 @@ uv tool install intent-cli --force --from git+https://github.com/github/intent-k
 Run directly without installing:
 
 ```bash
-uvx --from git+https://github.com/github/intent-kit.git intent init <PROJECT_NAME>
+uvx --from git+https://github.com/Nom-nom-hub/Intended.gitintent init <PROJECT_NAME>
 ```
 
 **Benefits of persistent installation:**

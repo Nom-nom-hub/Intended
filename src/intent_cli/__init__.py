@@ -558,10 +558,10 @@ def download_template_from_github(ai_assistant: str, download_dir: Path, *, scri
         )
         status = response.status_code
         if status != 200:
-            console.print(f"[yellow]No releases found, falling back to main branch...[/yellow]")
-            # Fallback to main branch download
-            console.print(f"[yellow]This repository may not have pre-built templates, please check if releases exist[/yellow]")
-            raise RuntimeError(f"GitHub API returned {status} for {api_url}")
+            msg = f"GitHub API returned {status} for {api_url}"
+            if debug:
+                msg += f"\nResponse headers: {response.headers}\nBody (truncated 500): {response.text[:500]}"
+            raise RuntimeError(msg)
         try:
             release_data = response.json()
         except ValueError as je:

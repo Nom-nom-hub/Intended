@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./media/intent-kit-logo.svg" alt="Intent Kit Logo" width="400" height="120"/>
+    <img src="./media/intent-logo.png" alt="Intent Kit Logo" width="200px" height="auto"/>
     <h1> Intended</h1>
     <h3><em>Build high-quality software faster with intent-driven development.</em></h3>
     <p><em>From concept to code with structured, AI-driven development</em></p>

@@ -92,11 +92,11 @@ generate_commands() {
     case $ext in
       toml)
         body=$(printf '%s\n' "$body" | sed 's/\\/\\\\/g')
-        { echo "description = \"$description\""; echo; echo "prompt = \"\"\""; echo "$body"; echo "\"\"\""; } > "$output_dir/intent.$name.$ext" ;;
+        { echo "description = \"$description\""; echo; echo "prompt = \"\"\""; echo "$body"; echo "\"\"\""; } > "$output_dir/intentkit.$name.$ext" ;;
       md)
-        echo "$body" > "$output_dir/intent.$name.$ext" ;;
+        echo "$body" > "$output_dir/intentkit.$name.$ext" ;;
       prompt.md)
-        echo "$body" > "$output_dir/intent.$name.$ext" ;;
+        echo "$body" > "$output_dir/intentkit.$name.$ext" ;;
     esac
   done
 }

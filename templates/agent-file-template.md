@@ -33,6 +33,10 @@ The following slash commands are available for intent-driven development:
 - **Intent**: `intents/[FEATURE]/intent.md`
 - **Implementation Plan**: `intents/[FEATURE]/plan.md`
 - **Tasks**: `intents/[FEATURE]/tasks.md`
+- **Research**: `intents/[FEATURE]/research.md`
+- **Data Model**: `intents/[FEATURE]/data-model.md`
+- **API Contracts**: `intents/[FEATURE]/contracts/`
+- **Quickstart Guide**: `intents/[FEATURE]/quickstart.md`
 - **Constitution**: `memory/constitution.md`
 
 ## Development Guidelines
@@ -41,6 +45,18 @@ The following slash commands are available for intent-driven development:
 2. **Independent Stories**: Each user story should be independently testable and deliverable
 3. **Quality Gates**: Use checklists to validate requirements quality before proceeding
 4. **Progressive Enhancement**: Build MVP first, then enhance incrementally
+5. **Architecture First**: Address architecture and design decisions early in planning
+6. **Security by Design**: Consider security implications from the beginning
+7. **Performance Conscious**: Think about performance requirements during planning
+8. **Test-Driven**: Consider tests when defining requirements and design
+
+## Best Practices
+
+- **User Stories**: Prioritize stories by business value and technical risk
+- **Requirements**: Make them testable, specific, and unambiguous
+- **Success Criteria**: Define measurable outcomes that align with business goals
+- **Dependencies**: Identify and plan for technical dependencies early
+- **Architecture**: Document key decisions with rationale in Architecture Decision Records (ADRs)
 
 ## Next Actions
 

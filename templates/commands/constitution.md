@@ -88,6 +88,10 @@ Create or update the constitution with the following sections:
 - **Architecture Patterns**: Design patterns and architectural principles
 - **Deployment Strategy**: Development, staging, and production requirements
 - **Monitoring**: Logging, metrics, and observability requirements
+- **Testing Framework**: Preferred testing libraries and methodologies
+- **Database Selection**: Preferred databases and ORM patterns
+- **API Design**: Standards for API development and documentation
+- **Code Generation**: Tools and patterns for code generation automation
 
 #### User Experience
 
@@ -154,6 +158,9 @@ Write the complete constitution to `/memory/constitution.md` using the following
 - [Testing requirements]
 - [Performance benchmarks]
 - [Security validation]
+- [Accessibility compliance checks]
+- [Documentation completeness]
+- [Architecture decision validation]
 
 ## User Experience
 

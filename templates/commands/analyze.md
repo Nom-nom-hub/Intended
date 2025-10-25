@@ -53,6 +53,7 @@ Load only the minimal necessary context from each artifact:
 - Non-Functional Requirements
 - User Stories
 - Edge Cases (if present)
+- Success Criteria and thresholds
 
 **From plan.md:**
 
@@ -60,6 +61,8 @@ Load only the minimal necessary context from each artifact:
 - Data Model references
 - Phases
 - Technical constraints
+- Architecture Decision Records
+- Risk assessment
 
 **From tasks.md:**
 
@@ -68,6 +71,25 @@ Load only the minimal necessary context from each artifact:
 - Phase grouping
 - Parallel markers [P]
 - Referenced file paths
+- Story mappings
+
+**From research.md:**
+
+- Key findings and decisions
+- Alternatives considered
+- Risk mitigation strategies
+
+**From data-model.md:**
+
+- Entity definitions
+- Relationships and constraints
+- Validation rules
+
+**From contracts/:**
+
+- API contract definitions
+- Endpoint specifications
+- Authentication requirements
 
 **From constitution:**
 
@@ -114,6 +136,10 @@ Focus on high-signal findings. Limit to 50 findings total; aggregate remainder i
 - Requirements with zero associated tasks
 - Tasks with no mapped requirement/story
 - Non-functional requirements not reflected in tasks (e.g., performance, security)
+- User stories without corresponding implementation tasks
+- API contracts from contracts/ not reflected in tasks
+- Data model entities from data-model.md not implemented in tasks
+- Success criteria not validated by any test tasks
 
 #### F. Inconsistency
 

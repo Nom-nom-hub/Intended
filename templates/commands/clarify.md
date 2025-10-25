@@ -90,7 +90,7 @@ Each question should:
 ```markdown
 ## Question 1: Authentication Method
 
-**Context**: Intent §FR-006 mentions user authentication but doesn't Intended the method.
+**Context**: Intent §FR-006 mentions user authentication but doesn't specify the method.
 
 **Current**: "System MUST authenticate users"
 
@@ -100,13 +100,24 @@ Each question should:
 
 | Method | Description | Implications |
 |--------|-------------|--------------|
-| A | Email/Password | Standard web authentication, requires password reset flow |
-| B | OAuth2/Social | Integration with Google, GitHub, etc., simpler for users |
-| C | Magic Links | Passwordless, email-based, better UX but requires email delivery |
-| D | Custom | [Describe your preferred approach] |
+| A | Email/Password | Standard web authentication, requires password reset flow, user manages credentials |
+| B | OAuth2/Social | Integration with Google, GitHub, etc., simpler for users, requires external service |
+| C | Magic Links | Passwordless, email-based, better UX but requires reliable email delivery |
+| D | Multi-Factor Auth | Enhanced security with multiple verification methods, more complex UX |
+| E | Custom | [Describe your preferred approach] |
 
-**Your choice**: [Wait for response]
+**Your choice**: _[Wait for user response: A, B, C, D, or E with custom details]_
 ```
+
+### 7. Documentation of Clarifications
+
+After user responds, create a clarifications log that records:
+
+- Original ambiguous requirement
+- Clarification question asked
+- User's answer
+- Impact on technical decisions or implementation approach
+- How the answer will be incorporated into plan.md and tasks.md
 
 ### 4. Present Questions and Collect Answers
 

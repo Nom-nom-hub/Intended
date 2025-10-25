@@ -28,6 +28,8 @@ parallel execution opportunities. This command transforms the detailed task brea
 
 **ERROR RECOVERY**: Handle errors gracefully and provide clear feedback for resolution.
 
+**QUALITY ASSURANCE**: Maintain high code quality and test coverage throughout the implementation process.
+
 ## Execution Steps
 
 ### 1. Initialize Implementation Context
@@ -55,11 +57,13 @@ Parse tasks.md to build:
 
 Before starting implementation:
 
-- ✅ All required artifacts present (Intent, plan, tasks)
+- ✅ All required artifacts present (Intent, plan, tasks, research, data-model)
 - ✅ Constitution loaded and understood
 - ✅ Required tools and dependencies available
 - ✅ Development environment properly configured
 - ✅ No blocking issues in analysis or clarification phases
+- ✅ All [NEEDS CLARIFICATION] items resolved in plan.md
+- ✅ API contracts defined in contracts/ directory
 
 ### 4. Execute Implementation Phases
 
@@ -142,14 +146,25 @@ Throughout implementation:
 - Report successful completions
 - Highlight any issues or delays
 
-### 8. Final Validation
+### 8. Quality Assurance Throughout
+
+Execute quality checks at each phase:
+
+- **Code quality**: Linting and formatting validation
+- **Security scanning**: Check for vulnerabilities in dependencies and code
+- **Test execution**: Run relevant test suites after each completed user story
+- **Performance validation**: Verify performance meets requirements defined in plan.md
+- **Architecture compliance**: Verify implementation matches architectural decisions
+
+### 9. Final Validation
 
 After all tasks complete:
 
-- Run comprehensive validation
-- Execute any automated tests
+- Run comprehensive validation suite
+- Execute all automated tests (unit, integration, contract, end-to-end)
 - Verify constitution compliance
-- Generate implementation summary
+- Generate implementation summary report
+- Validate feature against original intent.md requirements
 
 ## Task Execution Guidelines
 
@@ -159,6 +174,8 @@ After all tasks complete:
 - **Test-driven**: Write tests before implementation when specified
 - **Documentation**: Add appropriate comments and documentation
 - **Error handling**: Implement proper error handling and validation
+- **Security first**: Implement security measures from the start
+- **Performance conscious**: Consider performance implications during implementation
 
 ### File Management
 
@@ -166,6 +183,8 @@ After all tasks complete:
 - **Backup existing**: Preserve existing files before modification
 - **Clear naming**: Use descriptive names that match task descriptions
 - **Consistent structure**: Follow project conventions for file organization
+- **Version control**: Commit changes regularly with meaningful commit messages
+- **Conflict prevention**: Plan parallel work to minimize merge conflicts
 
 ### Integration Points
 
@@ -173,6 +192,7 @@ After all tasks complete:
 - **Data compatibility**: Maintain backward compatibility when possible
 - **UI consistency**: Follow design system and UX guidelines
 - **Security compliance**: Implement appropriate security measures
+- **Monitoring readiness**: Include observability from the start
 
 ## Implementation Strategy
 
@@ -210,6 +230,7 @@ With multiple developers:
 - **Testing requirements**: Execute tests as specified in tasks
 - **Performance validation**: Verify performance meets requirements
 - **Security scanning**: Run security checks if specified
+- **Architecture alignment**: Verify implementation matches planned architecture
 
 ### Post-Implementation
 
@@ -217,6 +238,7 @@ With multiple developers:
 - **User acceptance**: Validate against original requirements
 - **Documentation**: Update all relevant documentation
 - **Cleanup**: Remove temporary files and unused code
+- **Performance benchmarking**: Validate performance against defined goals
 
 ## Error Recovery
 
@@ -246,6 +268,12 @@ With multiple developers:
 - Review architecture decisions
 - Consider alternative implementations
 
+**Security Vulnerabilities**:
+
+- Run security scans regularly
+- Update vulnerable dependencies
+- Implement security best practices
+
 ## Success Criteria
 
 Implementation is complete when:
@@ -256,6 +284,10 @@ Implementation is complete when:
 - ✅ Implementation aligns with constitution
 - ✅ Feature delivers expected user value
 - ✅ Documentation is complete and accurate
+- ✅ All tests pass (unit, integration, contract, e2e)
+- ✅ Performance meets defined requirements
+- ✅ Security scans pass
+- ✅ Code review completed and approved
 
 ## Operating Principles
 
@@ -265,6 +297,7 @@ Implementation is complete when:
 - **Quality first**: Never sacrifice quality for speed
 - **Transparency**: Keep user informed of progress and issues
 - **Recovery ready**: Always have a path to fix problems
+- **Security conscious**: Implement security measures at every step
 
 ### Team Coordination
 

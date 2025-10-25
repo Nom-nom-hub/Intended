@@ -86,13 +86,19 @@ Given that feature description, do this:
       5. Generate Functional Requirements
          Each requirement must be testable
          Use reasonable defaults for unspecified details (document assumptions in Assumptions section)
-      6. Define Success Criteria
+      6. Generate Non-Functional Requirements (when applicable)
+         Consider performance, security, scalability, usability, and compliance needs
+      7. Define Success Criteria
          Create measurable, technology-agnostic outcomes
          Include both quantitative metrics (time, performance, volume) and qualitative measures (user satisfaction, task
          completion)
+         Include success thresholds: minimum viable, target, and stretch goals
          Each criterion must be verifiable without implementation details
-      7. Identify Key Entities (if data involved)
-      8. Return: SUCCESS (Intent ready for planning)
+      8. Identify Key Entities (if data involved)
+         Define core data structures without specifying implementation details
+      9. Consider Edge Cases and Error Scenarios
+         Think about boundary conditions, error handling, and failure modes
+      10. Return: SUCCESS (Intent ready for planning)
 
 5. Write the specification to SPEC_FILE using the template structure, replacing placeholders with concrete details
 derived from the feature description (arguments) while preserving section order and headings.
@@ -224,7 +230,9 @@ When creating this Intent from a user prompt:
      - Lack any reasonable default
 4. **Prioritize clarifications**: scope > security/privacy > user experience > technical details
 5. **Think like a tester**: Every vague requirement should fail the "testable and unambiguous" checklist item
-6. **Common areas needing clarification** (only if no reasonable default exists):
+6. **Consider non-functional requirements**: Include performance, security, scalability,
+and usability requirements when relevant
+7. **Common areas needing clarification** (only if no reasonable default exists):
      - Feature scope and boundaries (include/exclude specific use cases)
      - User types and permissions (if multiple conflicting interpretations possible)
      - Security/compliance requirements (when legally/financially significant)
@@ -243,8 +251,9 @@ Success criteria must be:
 
 1. **Measurable**: Include specific metrics (time, percentage, count, rate)
 2. **Technology-agnostic**: No mention of frameworks, languages, databases, or tools
-3. **User-focused**: Describe outcomes from user/business perspective, not system internals
-4. **Verifiable**: Can be tested/validated without knowing implementation details
+3. **Include success thresholds**: Define minimum viable, target, and stretch goals
+4. **User-focused**: Describe outcomes from user/business perspective, not system internals
+5. **Verifiable**: Can be tested/validated without knowing implementation details
 
 **Good examples**:
 
@@ -252,6 +261,50 @@ Success criteria must be:
 - "System supports 10,000 concurrent users"
 - "95% of searches return results in under 1 second"
 - "Task completion rate improves by 40%"
+
+## Examples by Project Type
+
+### Web Application Example
+
+**User Story**: "As a registered user, I want to reset my password so that I can regain access to my account if I
+forget my password."
+
+**Acceptance Criteria**:
+
+1. Given I'm on the login page, when I click "Forgot Password", then I see an email input field
+2. Given I enter my email and submit, when the system processes my request, then I receive an email with a reset link
+3. Given I click the reset link, when I enter a new password, then my password is updated and I'm logged in
+
+### API Service Example
+
+**User Story**: "As a mobile app, I want to retrieve user profile data so that I can display the user's information."
+
+**Acceptance Criteria**:
+
+1. Given a valid authentication token, when a GET request is made to /api/user/profile, then the system returns user
+profile data in JSON format
+2. Given an invalid authentication token, when a GET request is made to /api/user/profile, then the system returns a 401
+Unauthorized response
+
+### Mobile Application Example
+
+**User Story**: "As a user, I want to upload photos from my device so that I can share them with others."
+
+**Acceptance Criteria**:
+
+1. Given I'm on the main screen, when I tap the camera icon, then I can select photos from my gallery
+2. Given I've selected photos, when I tap "Upload", then the photos are uploaded with a progress indicator
+3. Given an upload fails due to network issues, when I'm notified, then I have an option to retry the upload
+
+### Data Processing System Example
+
+**User Story**: "As an admin, I want to generate daily activity reports so that I can monitor system usage."
+
+**Acceptance Criteria**:
+
+1. Given the system has collected daily data, when I request a report generation, then a comprehensive report is
+produced within 5 minutes
+2. Given I have the report, when I export it, then it's available in PDF and CSV formats
 
 **Bad examples** (implementation-focused):
 

@@ -1,12 +1,12 @@
 <div align="center">
-    <img src="./media/logo_small.webp" alt="Intent Kit Logo"/>
+    <img src="./media/intent-kit-logo.svg" alt="Intent Kit Logo" width="400" height="120"/>
     <h1> Intended</h1>
     <h3><em>Build high-quality software faster with intent-driven development.</em></h3>
+    <p><em>From concept to code with structured, AI-driven development</em></p>
 </div>
 
 <p align="center">
-    <strong>An open source toolkit that allows you to focus on product scenarios and predictable outcomes instead of vibe
-    coding every piece from scratch.</strong>
+    <strong>Transform your product vision into working software with structured AI assistance.</strong>
 </p>
 
 <p align="center">
@@ -25,7 +25,6 @@
 
 - [🤔 What is Intent-Driven Development?](#-what-is-intent-driven-development)
 - [⚡ Get Started](#-get-started)
-- [📽️ Video Overview](#️-video-overview)
 - [🤖 Supported AI Agents](#-supported-ai-agents)
 - [🔧 Intent CLI Reference](#-intent-cli-reference)
 - [📚 Core Philosophy](#-core-philosophy)
@@ -42,10 +41,20 @@
 
 ## 🤔 What is Intent-Driven Development?
 
-Intent-Driven Development **flips the script** on traditional software development. For decades, code has been king —
-specifications were just scaffolding we built and discarded once the "real work" of coding began. Intent-Driven
-Development changes this: **intent becomes executable**, directly generating working implementations rather than just
-guiding them.
+Intent-Driven Development **reverses the traditional software development paradigm**. Instead of starting with code and
+creating
+specifications as afterthoughts, Intent-Driven Development begins with clear, executable intent that directly generates
+working
+implementations. This approach treats your high-level requirements and business logic as first-class citizens, making
+them
+the primary driver of your codebase rather than just documentation that gets discarded during the "real work" of coding.
+
+**Key benefits:**
+
+- **Faster Development**: Go from concept to working software in fewer steps
+- **Higher Quality**: Clear intent reduces miscommunication and implementation errors  
+- **Maintainable Code**: Code directly reflects business requirements and stays aligned with them
+- **Technology Agnostic**: Focus on *what* you want to build, not just *how* to build it
 
 ## ⚡ Get Started
 
@@ -135,12 +144,6 @@ Use **`/intent.implement`** to execute all tasks and build your feature accordin
 
 For detailed step-by-step instructions, see our [comprehensive guide](./intent-driven.md).
 
-## 📽️ Video Overview
-
-Want to see Intent Kit in action? Watch our [video overview](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)!
-
-[![Intent Kit video header](/media/intended-video-header.jpg)](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)
-
 ## 🤖 Supported AI Agents
 
 | Agent                                                     | Support | Notes                                             |
@@ -157,7 +160,7 @@ Want to see Intent Kit in action? Watch our [video overview](https://www.youtube
 | [CodeBuddy CLI](https://www.codebuddy.ai/cli)             | ✅ |                                                   |
 | [Roo Code](https://roocode.com/)                          | ✅ |                                                   |
 | [Codex CLI](https://github.com/openai/codex)              | ✅ |                                                   |
-| [Amazon Q Developer CLI](https://aws.amazon.com/developer/learning/q-developer-cli/) | ⚠️ | Amazon Q Developer CLI [does not support](https://github.com/aws/amazon-q-developer-cli/issues/3064) custom arguments for slash commands. |
+| [Amazon Q Developer CLI](https://aws.amazon.com/developer/learning/q-developer-cli/) | ⚠️ | Amazon Q Developer CLI [does not support](https://github.com/aws/amazon-q-developer-cli/issues/3064) custom arguments for slash commands. I will check back later. |
 | [Amp](https://ampcode.com/) | ✅ | |
 
 ## 🔧 Intent CLI Reference

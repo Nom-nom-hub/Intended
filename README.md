@@ -37,7 +37,7 @@
 - [🔍 Troubleshooting](#-troubleshooting)
 - [👥 Maintainers](#-maintainers)
 - [💬 Support](#-support)
-- [🙏 Acknowledgements](#-acknowledgements)
+
 - [📄 License](#-license)
 
 ## 🤔 What is Intent-Driven Development?

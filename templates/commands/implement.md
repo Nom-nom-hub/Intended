@@ -197,9 +197,9 @@ With multiple developers:
 
 1. Team completes Setup + Foundational together
 2. Once foundation complete:
-   - Developer A: User Story 1
-   - Developer B: User Story 2
-   - Developer C: User Story 3
+    - Developer A: User Story 1
+    - Developer B: User Story 2
+    - Developer C: User Story 3
 3. Stories complete and integrate independently
 
 ## Quality Gates

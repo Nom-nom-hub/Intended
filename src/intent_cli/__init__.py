@@ -370,34 +370,34 @@ def select_with_arrows(options: dict, prompt_text: str = "Select an option", def
 
     def create_selection_panel():
         """Create the spectacular selection panel with enhanced styling and animations."""
-    # Create a more visually appealing table
-    table = Table(show_header=False, box=None, padding=(0, 1))
-    table.add_column("Indicator", width=4, justify="center")
-    table.add_column("Option", style="bold white")
-    table.add_column("Description", style="bright_black")
+        # Create a more visually appealing table
+        table = Table(show_header=False, box=None, padding=(0, 1))
+        table.add_column("Indicator", width=4, justify="center")
+        table.add_column("Option", style="bold white")
+        table.add_column("Description", style="bright_black")
 
-    # Add spectacular header
-    header_panel = Panel.fit(
-        f"[bold bright_magenta]🎯 {prompt_text} 🎯[/bold bright_magenta]\n[dim]Choose your destiny...[/dim]",
-        border_style="bright_magenta",
-        padding=(1, 2)
-        )
+        # Add spectacular header
+        header_panel = Panel.fit(
+            f"[bold bright_magenta]🎯 {prompt_text} 🎯[/bold bright_magenta]\n[dim]Choose your destiny...[/dim]",
+            border_style="bright_magenta",
+            padding=(1, 2)
+            )
 
-    # Add options with enhanced styling
-    for i, key in enumerate(option_keys):
-        if i == selected_index:
-            # Selected option with spectacular styling
-            indicator = "[bold bright_yellow]▶[/bold bright_yellow]"
-            option_style = f"[bold bright_cyan blink]{key}[/bold bright_cyan blink]"
-            desc_style = f"[bright_white]{options[key]}[/bright_white]"
-            # Add a subtle animation effect
-            table.add_row(f"{indicator} ✨", option_style, desc_style)
-        else:
-            # Unselected options
-            indicator = "[dim]○[/dim]"
-            option_style = f"[bright_black]{key}[/bright_black]"
-            desc_style = f"[dim]{options[key]}[/dim]"
-            table.add_row(indicator, option_style, desc_style)
+        # Add options with enhanced styling
+        for i, key in enumerate(option_keys):
+            if i == selected_index:
+                # Selected option with spectacular styling
+                indicator = "[bold bright_yellow]▶[/bold bright_yellow]"
+                option_style = f"[bold bright_cyan blink]{key}[/bold bright_cyan blink]"
+                desc_style = f"[bright_white]{options[key]}[/bright_white]"
+                # Add a subtle animation effect
+                table.add_row(f"{indicator} ✨", option_style, desc_style)
+            else:
+                # Unselected options
+                indicator = "[dim]○[/dim]"
+                option_style = f"[bright_black]{key}[/bright_black]"
+                desc_style = f"[dim]{options[key]}[/dim]"
+                table.add_row(indicator, option_style, desc_style)
         # Enhanced instructions with better styling
         instructions = "\n[bright_yellow]Navigation:[/bright_yellow] [cyan]↑/↓[/cyan] [bright_black]arrows[/bright_black] • [cyan]Enter[/cyan] [bright_black]select[/bright_black] • [cyan]Esc[/cyan] [bright_black]cancel[/bright_black]"
 

@@ -519,18 +519,130 @@ def init(
     all_enhanced: bool = typer.Option(False, "--all-enhanced", help="Enable all enhanced features"),
 ):
     """Initialize a new Intent-Driven Development project with AI agent integration."""
+    if project_name is None:
+        project_name = "."
+
+    # Interactive selection for AI assistant if not provided
+    if ai_assistant is None:
+        options = {k: v["name"] for k, v in AGENT_CONFIG.items()}
+        ai_assistant = select_with_arrows(options, "Select your AI assistant")
+
+    # Determine enhanced features
+    if all_enhanced:
+        enabled_features = list(ENHANCED_FEATURES.keys())
+    elif enhanced:
+        enabled_features = enhanced
+    else:
+        # Default to enabled by default features
+        enabled_features = [k for k, v in ENHANCED_FEATURES.items() if v.get("enabled_by_default", False)]
+
     console.print(f"Initializing project: {project_name}")
     console.print(f"AI Assistant: {ai_assistant}")
-    console.print(f"Enhanced features: {enhanced}")
-    console.print(f"All enhanced: {all_enhanced}")
-    # TODO: Implement full init logic
+    console.print(f"Enhanced features: {enabled_features}")
 
+    # Implement project creation
+    import shutil
+    from pathlib import Path
+
+    tracker = StepTracker("Project Initialization")
+
+    project_path = Path(project_name).resolve()
+    if project_name != ".":
+        project_path.mkdir(parents=True, exist_ok=True)
+        tracker.complete("Project directory", f"Created {project_path}")
+
+    # Create agent-specific directory
+    agent_config = AGENT_CONFIG[ai_assistant]
+    agent_dir = project_path / agent_config["folder"].lstrip(".")
+    agent_dir.mkdir(parents=True, exist_ok=True)
+    commands_dir = agent_dir / "commands"
+    commands_dir.mkdir(exist_ok=True)
+    tracker.complete("Agent directory", f"Created {agent_dir}")
+
+    # Determine format
+    if ai_assistant in ["gemini", "qwen"]:
+        format_ext = "toml"
+    else:
+        format_ext = "md"
+
+    # Copy command templates
+    templates_dir = Path(__file__).parent.parent / "templates" / "commands"
+    if templates_dir.exists():
+        copied = 0
+        for template_file in templates_dir.glob(f"*.{format_ext}"):
+            shutil.copy(template_file, commands_dir / template_file.name)
+            copied += 1
+        tracker.complete("Command templates", f"Copied {copied} templates")
+    else:
+        tracker.error("Command templates", "Templates directory not found")
+
+    # Create core artifacts
+    artifacts = ["Intent.md", "plan.md", "tasks.md"]
+    for artifact in artifacts:
+        (project_path / artifact).touch()
+    tracker.complete("Core artifacts", f"Created {', '.join(artifacts)}")
+
+    # Create additional directories
+    dirs = ["checklists", "contracts", "memory", "data-model", "research"]
+    for d in dirs:
+        (project_path / d).mkdir(exist_ok=True)
+    tracker.complete("Project structure", f"Created directories: {', '.join(dirs)}")
+
+    # Create constitution if memory exists
+    constitution_path = project_path / "memory" / "constitution.md"
+    if not constitution_path.exists():
+        constitution_path.write_text("# Project Constitution\n\nDefine your project principles here.\n")
+        tracker.complete("Constitution", "Created default constitution.md")
+
+    tracker.complete("Project initialization", f"Complete - ready for Intent-Driven Development with {agent_config['name']}")
+
+    console.print(f"\n[green]✅ Project '{project_name}' initialized successfully![/green]")
+    console.print(f"📁 Location: {project_path}")
+    console.print(f"🤖 AI Assistant: {agent_config['name']}")
+    console.print(f"📋 Next steps:")
+    console.print(f"  1. Edit Intent.md to define your feature requirements")
+    console.print(f"  2. Run 'intent plan' (when implemented) to create the technical plan")
+    console.print(f"  3. Start development with your chosen AI assistant!")
+
+
+def check_tool(tool_name: str) -> bool:
+    """Check if a tool is available in PATH."""
+    import shutil
+    return shutil.which(tool_name) is not None
 
 @app.command()
 def check():
     """Check system requirements and AI assistant availability."""
-    console.print("Checking system requirements...")
-    # TODO: Implement check logic
+    tracker = StepTracker("System Requirements Check")
+
+    # Check Python version
+    import sys
+    python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+    tracker.complete("Python", f"Version {python_version}")
+
+    # Check required packages
+    try:
+        import typer
+        tracker.complete("Typer", "Available")
+    except ImportError:
+        tracker.error("Typer", "Missing - install with pip install typer")
+
+    try:
+        import rich
+        tracker.complete("Rich", "Available")
+    except ImportError:
+        tracker.error("Rich", "Missing - install with pip install rich")
+
+    # Check AI assistant CLI tools
+    for agent_key, config in AGENT_CONFIG.items():
+        if config["requires_cli"]:
+            if check_tool(agent_key):
+                tracker.complete(f"{config['name']} CLI", "Available")
+            else:
+                install_url = config.get("install_url", "N/A")
+                tracker.error(f"{config['name']} CLI", f"Missing - install from {install_url}")
+
+    tracker.complete("System check", "Complete")
 
 
 def main():

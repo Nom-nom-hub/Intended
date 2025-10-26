@@ -553,11 +553,16 @@ def init(
 
     # Create agent-specific directory
     agent_config = AGENT_CONFIG[ai_assistant]
-    agent_dir = project_path / agent_config["folder"].lstrip(".")
+    agent_dir = project_path / agent_config["folder"]
     agent_dir.mkdir(parents=True, exist_ok=True)
     commands_dir = agent_dir / "commands"
     commands_dir.mkdir(exist_ok=True)
     tracker.complete("Agent directory", f"Created {agent_dir}")
+    
+    # Create .intent directory for intent-specific configurations
+    intent_dir = project_path / ".intent"
+    intent_dir.mkdir(parents=True, exist_ok=True)
+    tracker.complete("Intent directory", f"Created {intent_dir}")
 
     # Determine format
     if ai_assistant in ["gemini", "qwen"]:
@@ -576,20 +581,20 @@ def init(
     else:
         tracker.error("Command templates", "Templates directory not found")
 
-    # Create core artifacts
+    # Create core artifacts inside .intent directory
     artifacts = ["Intent.md", "plan.md", "tasks.md"]
     for artifact in artifacts:
-        (project_path / artifact).touch()
+        (intent_dir / artifact).touch()
     tracker.complete("Core artifacts", f"Created {', '.join(artifacts)}")
 
-    # Create additional directories
+    # Create additional directories inside .intent directory
     dirs = ["checklists", "contracts", "memory", "data-model", "research"]
     for d in dirs:
-        (project_path / d).mkdir(exist_ok=True)
+        (intent_dir / d).mkdir(exist_ok=True)
     tracker.complete("Project structure", f"Created directories: {', '.join(dirs)}")
 
     # Create constitution if memory exists
-    constitution_path = project_path / "memory" / "constitution.md"
+    constitution_path = intent_dir / "memory" / "constitution.md"
     if not constitution_path.exists():
         constitution_path.write_text("# Project Constitution\n\nDefine your project principles here.\n")
         tracker.complete("Constitution", "Created default constitution.md")

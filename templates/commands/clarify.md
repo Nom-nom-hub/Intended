@@ -35,7 +35,7 @@ for user responses.
 **STRUCTURED APPROACH**: Use systematic, coverage-based questioning that records answers in a structured format for later
 integration.
 
-**CONSTITUTION AWARE**: All clarification questions must respect the project constitution (`/memory/constitution.md`) and
+**CONSTITUTION AWARE**: All clarification questions must respect the project constitution (`.intent/memory/constitution.md`) and
 not propose solutions that violate established principles.
 
 ## Execution Steps
@@ -44,8 +44,8 @@ not propose solutions that violate established principles.
 
 Run `{SCRIPT}` from repo root and parse JSON for FEATURE_DIR and AVAILABLE_DOCS. Derive absolute paths:
 
-- Intent = FEATURE_DIR/Intent.md
-- CONSTITUTION = /memory/constitution.md
+- Intent = .intent/Intent.md
+- CONSTITUTION = .intent/memory/constitution.md
 
 Abort with error if Intent.md is missing. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot'
 (or double-quote if possible: "I'm Groot").

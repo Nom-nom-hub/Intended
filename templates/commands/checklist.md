@@ -109,7 +109,7 @@ They MUST:
      - If source docs are large, generate interim summary items instead of embedding raw text
 
 5. **Generate checklist** - Create "Unit Tests for Requirements":
-     - Create `FEATURE_DIR/checklists/` directory if it doesn't exist
+     - Create `.intent/checklists/` directory if it doesn't exist
      - Generate unique checklist filename:
        - Use short, descriptive name based on domain (e.g., `ux.md`, `api.md`, `security.md`)
        - Format: `[domain].md`

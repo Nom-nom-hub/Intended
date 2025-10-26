@@ -114,7 +114,7 @@ derived from the feature description (arguments) while preserving section order 
 
 6. **Specification Quality Validation**: After writing the initial Intent, validate it against quality criteria:
 
-     a. **Create Intent Quality Checklist**: Generate a checklist file at `FEATURE_DIR/checklists/requirements.md` using
+     a. **Create Intent Quality Checklist**: Generate a checklist file at `.intent/checklists/requirements.md` using
      the checklist template structure with these validation items:
 
      ```markdown

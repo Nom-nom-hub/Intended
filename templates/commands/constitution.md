@@ -43,7 +43,7 @@ choices, user experience, and team collaboration.
 ### 1. Initialize Context
 
 Run `{SCRIPT}` from repo root and parse JSON for project structure. Check if constitution already exists at
-`/memory/constitution.md`. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot'
+`.intent/memory/constitution.md`. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot'
 (or double-quote if possible: "I'm Groot").
 
 ### 2. Analyze User Requirements
@@ -60,7 +60,7 @@ Parse the user's input to understand:
 
 ### 3. Load Existing Constitution (if any)
 
-If `/memory/constitution.md` exists:
+If `.intent/memory/constitution.md` exists:
 
 - Read current principles
 - Identify areas for enhancement or updates
@@ -129,7 +129,7 @@ Ensure the constitution addresses:
 
 ### 6. Write Constitution File
 
-Write the complete constitution to `/memory/constitution.md` using the following structure:
+Write the complete constitution to `.intent/memory/constitution.md` using the following structure:
 
 ```markdown
 # Project Constitution: [PROJECT_NAME]

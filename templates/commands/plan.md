@@ -31,7 +31,7 @@ If enhanced features are enabled (`artifact_expansion`, `task_quality`, `depende
 1. **Setup**: Run `{SCRIPT}` from repo root and parse JSON for FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH. For single
 quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
 
-2. **Load context**: Read FEATURE_SPEC and `/memory/constitution.md`. Load IMPL_PLAN template (already copied).
+2. **Load context**: Read FEATURE_SPEC and `.intent/memory/constitution.md`. Load IMPL_PLAN template (already copied).
 
 3. **Execute plan workflow**: Follow the structure in IMPL_PLAN template to:
      - Fill Technical Context (mark unknowns as "NEEDS CLARIFICATION")
@@ -93,7 +93,7 @@ quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or doubl
      - For each data access → API endpoint
      - Use standard REST/GraphQL patterns
      - Include authentication and authorization requirements
-     - Output OpenAPI/GraphQL schema to `/contracts/`
+     - Output OpenAPI/GraphQL schema to `.intent/contracts/`
      - Include error response patterns
 
 3. **Create detailed project structure**:
@@ -115,7 +115,7 @@ quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or doubl
      - Key configuration settings
      - Common troubleshooting steps
 
-**Output**: data-model.md, /contracts/*, quickstart.md, agent-specific file
+**Output**: data-model.md, .intent/contracts/*, quickstart.md, agent-specific file
 
 ## Architecture Decision Guidelines
 

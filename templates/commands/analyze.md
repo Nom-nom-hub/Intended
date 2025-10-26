@@ -34,7 +34,7 @@ before implementation. This command MUST run only after `/intent.tasks` has succ
 **STRICTLY READ-ONLY**: Do **not** modify any files. Output a structured analysis report. Offer an optional remediation
 plan (user must explicitly approve before any follow-up editing commands would be invoked manually).
 
-**Constitution Authority**: The project constitution (`/memory/constitution.md`) is **non-negotiable** within this
+**Constitution Authority**: The project constitution (`.intent/memory/constitution.md`) is **non-negotiable** within this
 analysis scope. Constitution conflicts are automatically CRITICAL and require adjustment of the Intent, plan, or
 tasks—not dilution, reinterpretation, or silent ignoring of the principle. If a principle itself needs to change, that
 must occur in a separate, explicit constitution update outside `/intent.analyze`.
@@ -79,9 +79,9 @@ must occur in a separate, explicit constitution update outside `/intent.analyze`
 
 Run `{SCRIPT}` once from repo root and parse JSON for FEATURE_DIR and AVAILABLE_DOCS. Derive absolute paths:
 
-- Intent = FEATURE_DIR/Intent.md
-- PLAN = FEATURE_DIR/plan.md
-- TASKS = FEATURE_DIR/tasks.md
+- Intent = .intent/Intent.md
+- PLAN = .intent/plan.md
+- TASKS = .intent/tasks.md
 
 Abort with an error message if any required file is missing (instruct the user to run missing prerequisite command).
 For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
@@ -137,7 +137,7 @@ Load only the minimal necessary context from each artifact:
 
 **From constitution:**
 
-- Load `/memory/constitution.md` for principle validation
+- Load `.intent/memory/constitution.md` for principle validation
 
 ### 3. Build Semantic Models
 

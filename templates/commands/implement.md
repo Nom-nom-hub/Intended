@@ -35,7 +35,7 @@ parallel execution opportunities. This command transforms the detailed task brea
 
 **DEPENDENCY RESPECT**: Execute tasks in the order specified, respecting all dependencies and parallel execution markers.
 
-**CONSTITUTION COMPLIANCE**: All implementation must adhere to the project constitution (`/memory/constitution.md`).
+**CONSTITUTION COMPLIANCE**: All implementation must adhere to the project constitution (`.intent/memory/constitution.md`).
 
 **ERROR RECOVERY**: Handle errors gracefully and provide clear feedback for resolution.
 
@@ -81,10 +81,10 @@ parallel execution opportunities. This command transforms the detailed task brea
 
 Run `{SCRIPT}` from repo root and parse JSON for FEATURE_DIR and AVAILABLE_DOCS. Derive absolute paths:
 
-- Intent = FEATURE_DIR/Intent.md
-- PLAN = FEATURE_DIR/plan.md
-- TASKS = FEATURE_DIR/tasks.md
-- CONSTITUTION = /memory/constitution.md
+- Intent = .intent/Intent.md
+- PLAN = .intent/plan.md
+- TASKS = .intent/tasks.md
+- CONSTITUTION = .intent/memory/constitution.md
 
 Validate all required files exist and are complete. For single quotes in args like "I'm Groot", use escape syntax: e.g
 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
@@ -102,13 +102,13 @@ Parse tasks.md to build:
 
 Before starting implementation:
 
-- ✅ All required artifacts present (Intent, plan, tasks, research, data-model)
+- ✅ All required artifacts present (.intent/Intent.md, .intent/plan.md, .intent/tasks.md, .intent/research/, .intent/data-model/)
 - ✅ Constitution loaded and understood
 - ✅ Required tools and dependencies available
 - ✅ Development environment properly configured
 - ✅ No blocking issues in analysis or clarification phases
 - ✅ All [NEEDS CLARIFICATION] items resolved in plan.md
-- ✅ API contracts defined in contracts/ directory
+- ✅ API contracts defined in .intent/contracts/ directory
 
 ### 4. Execute Implementation Phases
 

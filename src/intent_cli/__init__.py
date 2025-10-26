@@ -180,12 +180,18 @@ AGENT_CONFIG = {
 SCRIPT_TYPE_CHOICES = {"sh": "POSIX Shell (bash/zsh)", "ps": "PowerShell"}
 
 BANNER = """
- ██╗███╗   ██╗████████╗███████╗███╗   ██╗████████╗
- ██║████╗  ██║╚══██╔══╝██╔════╝████╗  ██║╚══██╔══╝
- ██║██╔██╗ ██║   ██║   █████╗  ██╔██╗ ██║   ██║   
- ██║██║╚██╗██║   ██║   ██╔══╝  ██║╚██╗██║   ██║   
- ██║██║ ╚████║   ██║   ███████╗██║ ╚████║   ██║   
- ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝   ╚═╝ 
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║  ██╗███╗   ██╗████████╗███████╗███╗   ██╗████████╗              ║
+║  ██║████╗  ██║╚══██╔══╝██╔════╝████╗  ██║╚══██╔══╝  ║
+║  ██║██╔██╗ ██║   ██║   █████╗  ██╔██╗ ██║   ██║     ║
+║  ██║██║╚██╗██║   ██║   ██╔══╝  ██║╚██╗██║   ██║     ║
+║  ██║██║ ╚████║   ██║   ███████╗██║ ╚████║   ██║     ║
+║  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝   ╚═╝     ║
+║                                                                  ║
+║              🌟 Intent-Driven Development 🌟              ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
 """
 
 TAGLINE = "Intent Kit - Intent-Driven Development & AI Integration Framework"
@@ -240,40 +246,87 @@ class StepTracker:
                 pass
 
     def render(self):
-        tree = Tree(f"[cyan]{self.title}[/cyan]", guide_style="grey50")
+        # Create spectacular progress display with enhanced styling
+        from rich.table import Table
+        from rich.panel import Panel
+        from rich.progress import Progress, BarColumn, TextColumn, TimeElapsedColumn
+
+        # Create a table for the progress display
+        table = Table(show_header=False, box=None, padding=(0, 1))
+        table.add_column("Status", width=3, justify="center")
+        table.add_column("Step", style="white bold")
+        table.add_column("Details", style="bright_black")
+
+        # Add title with styling
+        title_panel = Panel.fit(
+            f"[bold bright_blue]⚡ {self.title} ⚡[/bold bright_blue]",
+            border_style="bright_blue",
+            padding=(0, 1)
+        )
+
+        # Build the steps display
+        completed_count = 0
+        total_count = len(self.steps)
+
         for step in self.steps:
             label = step["label"]
             detail_text = step["detail"].strip() if step["detail"] else ""
 
             status = step["status"]
             if status == "done":
-                symbol = "[green]●[/green]"
+                symbol = "[green]✓[/green]"
+                completed_count += 1
             elif status == "pending":
-                symbol = "[green dim]○[/green dim]"
+                symbol = "[dim]○[/dim]"
             elif status == "running":
-                symbol = "[cyan]○[/cyan]"
+                symbol = "[cyan]⟳[/cyan]"
             elif status == "error":
-                symbol = "[red]●[/red]"
+                symbol = "[red]✗[/red]"
             elif status == "skipped":
-                symbol = "[yellow]○[/yellow]"
+                symbol = "[yellow]⊘[/yellow]"
             else:
-                symbol = " "
+                symbol = "[dim]○[/dim]"
 
-            if status == "pending":
-                # Entire line light gray (pending)
-                if detail_text:
-                    line = f"{symbol} [bright_black]{label} ({detail_text})[/bright_black]"
-                else:
-                    line = f"{symbol} [bright_black]{label}[/bright_black]"
+            # Enhanced styling based on status
+            if status == "running":
+                step_style = "[bold cyan]" + label + "[/bold cyan]"
+            elif status == "done":
+                step_style = "[green]" + label + "[/green]"
+            elif status == "error":
+                step_style = "[bold red]" + label + "[/bold red]"
             else:
-                # Label white, detail (if any) light gray in parentheses
-                if detail_text:
-                    line = f"{symbol} [white]{label}[/white] [bright_black]({detail_text})[/bright_black]"
-                else:
-                    line = f"{symbol} [white]{label}[/white]"
+                step_style = "[bright_black]" + label + "[/bright_black]"
 
-            tree.add(line)
-        return tree
+            detail_style = f"[bright_black]{detail_text}[/bright_black]" if detail_text else ""
+
+            table.add_row(symbol, step_style, detail_style)
+
+        # Create progress bar
+        progress_bar = Progress(
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(complete_style="bright_blue", finished_style="bright_green"),
+            TextColumn("{task.completed}/{task.total}"),
+            TimeElapsedColumn(),
+        )
+
+        progress_task = progress_bar.add_task(
+            f"[cyan]Progress: {completed_count}/{total_count} steps completed",
+            total=total_count,
+            completed=completed_count
+        )
+
+        # Combine everything into a spectacular display
+        from rich.console import Group
+
+        layout = Group(
+            title_panel,
+            "",  # Spacer
+            table,
+            "",  # Spacer
+            progress_bar
+        )
+
+        return layout
 
 def get_key():
     """Get a single keypress in a cross-platform way using readchar."""
@@ -316,32 +369,63 @@ def select_with_arrows(options: dict, prompt_text: str = "Select an option", def
     selected_key = None
 
     def create_selection_panel():
-        """Create the selection panel with current selection highlighted."""
-        table = Table.grid(padding=(0, 2))
-        table.add_column(style="cyan", justify="left", width=3)
-        table.add_column(style="white", justify="left")
+        """Create the spectacular selection panel with enhanced styling and animations."""
+    # Create a more visually appealing table
+    table = Table(show_header=False, box=None, padding=(0, 1))
+    table.add_column("Indicator", width=4, justify="center")
+    table.add_column("Option", style="bold white")
+    table.add_column("Description", style="bright_black")
 
-        for i, key in enumerate(option_keys):
-            if i == selected_index:
-                table.add_row("▶", f"[cyan]{key}[/cyan] [dim]({options[key]})[/dim]")
-            else:
-                table.add_row(" ", f"[cyan]{key}[/cyan] [dim]({options[key]})[/dim]")
+    # Add spectacular header
+    header_panel = Panel.fit(
+        f"[bold bright_magenta]🎯 {prompt_text} 🎯[/bold bright_magenta]\n[dim]Choose your destiny...[/dim]",
+        border_style="bright_magenta",
+        padding=(1, 2)
+        )
 
-        table.add_row("", "")
-        table.add_row("", "[dim]Use ↑/↓ to navigate, Enter to select, Esc to cancel[/dim]")
+    # Add options with enhanced styling
+    for i, key in enumerate(option_keys):
+        if i == selected_index:
+            # Selected option with spectacular styling
+            indicator = "[bold bright_yellow]▶[/bold bright_yellow]"
+            option_style = f"[bold bright_cyan blink]{key}[/bold bright_cyan blink]"
+            desc_style = f"[bright_white]{options[key]}[/bright_white]"
+            # Add a subtle animation effect
+            table.add_row(f"{indicator} ✨", option_style, desc_style)
+        else:
+            # Unselected options
+            indicator = "[dim]○[/dim]"
+            option_style = f"[bright_black]{key}[/bright_black]"
+            desc_style = f"[dim]{options[key]}[/dim]"
+            table.add_row(indicator, option_style, desc_style)
+        # Enhanced instructions with better styling
+        instructions = "\n[bright_yellow]Navigation:[/bright_yellow] [cyan]↑/↓[/cyan] [bright_black]arrows[/bright_black] • [cyan]Enter[/cyan] [bright_black]select[/bright_black] • [cyan]Esc[/cyan] [bright_black]cancel[/bright_black]"
 
-        return Panel(
+        # Combine everything into a spectacular layout
+        from rich.console import Group
+        from rich.text import Text
+
+        layout = Group(
+            header_panel,
+            "",  # Spacer
             table,
-            title=f"[bold]{prompt_text}[/bold]",
-            border_style="cyan",
-            padding=(1, 2)
+            "",  # Spacer
+            Align.center(Text.from_markup(instructions))
+        )
+
+        return Panel(  # type: ignore
+        layout,
+        border_style="bright_blue",
+        padding=(1, 1),
+        title="[bold bright_white]Interactive Selection[/bold bright_white]",
+        title_align="center"
         )
 
     console.print()
 
     def run_selection_loop():
         nonlocal selected_key, selected_index
-        with Live(create_selection_panel(), console=console, transient=True, auto_refresh=False) as live:
+        with Live(create_selection_panel(), console=console, transient=True, auto_refresh=False) as live:  # type: ignore
             while True:
                 try:
                     key = get_key()
@@ -356,7 +440,7 @@ def select_with_arrows(options: dict, prompt_text: str = "Select an option", def
                         console.print("\n[yellow]Selection cancelled[/yellow]")
                         raise typer.Exit(1)
 
-                    live.update(create_selection_panel(), refresh=True)
+                    live.update(create_selection_panel(), refresh=True)  # type: ignore
 
                 except KeyboardInterrupt:
                     console.print("\n[yellow]Selection cancelled[/yellow]")
@@ -390,7 +474,7 @@ app = typer.Typer(
 )
 
 def show_banner():
-    """Display the ASCII art banner."""
+    """Display the spectacular ASCII art banner with animations and styling."""
     banner_lines = BANNER.strip().split('\n')
     colors = ["bright_blue", "blue", "cyan", "bright_cyan", "white", "bright_white"]
 
@@ -405,840 +489,23 @@ def show_banner():
 
 @app.callback()
 def callback(ctx: typer.Context):
-    """Show banner when no subcommand is provided."""
+    """Show spectacular banner and interactive menu when no subcommand is provided."""
     if ctx.invoked_subcommand is None and "--help" not in sys.argv and "-h" not in sys.argv:
         show_banner()
-        console.print(Align.center("[dim]Run 'intent --help' for usage information[/dim]"))
+
+        # Add interactive quick actions
         console.print()
-
-def run_command(cmd: list[str], check_return: bool = True, capture: bool = False, shell: bool = False) -> Optional[str]:
-    """Run a shell command and optionally capture output."""
-    try:
-        if capture:
-            result = subprocess.run(cmd, check=check_return, capture_output=True, text=True, shell=shell)
-            return result.stdout.strip()
-        else:
-            subprocess.run(cmd, check=check_return, shell=shell)
-            return None
-    except subprocess.CalledProcessError as e:
-        if check_return:
-            console.print(f"[red]Error running command:[/red] {' '.join(cmd)}")
-            console.print(f"[red]Exit code:[/red] {e.returncode}")
-            if hasattr(e, 'stderr') and e.stderr:
-                console.print(f"[red]Error output:[/red] {e.stderr}")
-            raise
-        return None
-
-def check_tool(tool: str, tracker: Optional[StepTracker] = None) -> bool:
-    """Check if a tool is installed. Optionally update tracker.
-
-    Args:
-        tool: Name of the tool to check
-        tracker: Optional StepTracker to update with results
-
-    Returns:
-        True if tool is found, False otherwise
-    """
-    found = shutil.which(tool) is not None
-
-    if tracker:
-        if found:
-            tracker.complete(tool, "available")
-        else:
-            tracker.error(tool, "not found")
-
-    return found
-
-def is_git_repo(path: Optional[Path] = None) -> bool:
-    """Check if the specified path is inside a git repository."""
-    if path is None:
-        path = Path.cwd()
-
-    if not path.is_dir():
-        return False
-
-    try:
-        # Use git command to check if inside a work tree
-        subprocess.run(
-            ["git", "rev-parse", "--is-inside-work-tree"],
-            check=True,
-            capture_output=True,
-            cwd=path,
-        )
-        return True
-    except (subprocess.CalledProcessError, FileNotFoundError):
-        return False
-
-def init_git_repo(project_path: Path, quiet: bool = False) -> Tuple[bool, Optional[str]]:
-    """Initialize a git repository in the specified path.
-
-    Args:
-        project_path: Path to initialize git repository in
-        quiet: if True suppress console output (tracker handles status)
-
-    Returns:
-        Tuple of (success: bool, error_message: Optional[str])
-    """
-    try:
-        original_cwd = Path.cwd()
-        os.chdir(project_path)
-        if not quiet:
-            console.print("[cyan]Initializing git repository...[/cyan]")
-        subprocess.run(["git", "init"], check=True, capture_output=True, text=True)
-        subprocess.run(["git", "add", "."], check=True, capture_output=True, text=True)
-        subprocess.run(["git", "commit", "-m", "Initial commit from Intent template"], check=True, capture_output=True, text=True)
-        if not quiet:
-            console.print("[green]✓[/green] Git repository initialized")
-        return True, None
-
-    except subprocess.CalledProcessError as e:
-        error_msg = f"Command: {' '.join(e.cmd)}\nExit code: {e.returncode}"
-        if e.stderr:
-            error_msg += f"\nError: {e.stderr.strip()}"
-        elif e.stdout:
-            error_msg += f"\nOutput: {e.stdout.strip()}"
-
-        if not quiet:
-            console.print(f"[red]Error initializing git repository:[/red] {e}")
-        return False, error_msg
-    finally:
-        os.chdir(original_cwd)
-
-def handle_vscode_settings(sub_item, dest_file, rel_path, verbose=False, tracker=None) -> None:
-    """Handle merging or copying of .vscode/settings.json files."""
-    def log(message, color="green"):
-        if verbose and not tracker:
-            console.print(f"[{color}]{message}[/] {rel_path}")
-
-    try:
-        with open(sub_item, 'r', encoding='utf-8') as f:
-            new_settings = json.load(f)
-
-        if dest_file.exists():
-            merged = merge_json_files(dest_file, new_settings, verbose=verbose and not tracker)
-            with open(dest_file, 'w', encoding='utf-8') as f:
-                json.dump(merged, f, indent=4)
-                f.write('\n')
-            log("Merged:", "green")
-        else:
-            shutil.copy2(sub_item, dest_file)
-            log("Copied (no existing settings.json):", "blue")
-
-    except Exception as e:
-        log(f"Warning: Could not merge, copying instead: {e}", "yellow")
-        shutil.copy2(sub_item, dest_file)
-
-def merge_json_files(existing_path: Path, new_content: dict, verbose: bool = False) -> dict:
-    """Merge new JSON content into existing JSON file.
-
-    Performs a deep merge where:
-    - New keys are added
-    - Existing keys are preserved unless overwritten by new content
-    - Nested dictionaries are merged recursively
-    - Lists and other values are replaced (not merged)
-
-    Args:
-        existing_path: Path to existing JSON file
-        new_content: New JSON content to merge in
-        verbose: Whether to print merge details
-
-    Returns:
-        Merged JSON content as dict
-    """
-    try:
-        with open(existing_path, 'r', encoding='utf-8') as f:
-            existing_content = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        # If file doesn't exist or is invalid, just use new content
-        return new_content
-
-    def deep_merge(base: dict, update: dict) -> dict:
-        """Recursively merge update dict into base dict."""
-        result = base.copy()
-        for key, value in update.items():
-            if key in result and isinstance(result[key], dict) and isinstance(value, dict):
-                # Recursively merge nested dictionaries
-                result[key] = deep_merge(result[key], value)
-            else:
-                # Add new key or replace existing value
-                result[key] = value
-        return result
-
-    merged = deep_merge(existing_content, new_content)
-
-    if verbose:
-        console.print(f"[cyan]Merged JSON file:[/cyan] {existing_path.name}")
-
-    return merged
-
-def download_template_from_github(ai_assistant: str, download_dir: Path, *, script_type: str = "sh", verbose: bool = True, show_progress: bool = True, client: Optional[httpx.Client] = None, debug: bool = False, github_token: Optional[str] = None) -> Tuple[Path, dict]:
-    repo_owner = "Nom-nom-hub"
-    repo_name = "Intended"
-    if client is None:
-        client = httpx.Client(verify=ssl_context)
-
-    if verbose:
-        console.print("[cyan]Fetching latest release information...[/cyan]")
-    api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/releases/latest"
-
-    try:
-        response = client.get(
-            api_url,
-            timeout=30,
-            follow_redirects=True,
-            headers=_github_auth_headers(github_token),
-        )
-        status = response.status_code
-        if status != 200:
-            msg = f"GitHub API returned {status} for {api_url}"
-            if debug:
-                msg += f"\nResponse headers: {response.headers}\nBody (truncated 500): {response.text[:500]}"
-            raise RuntimeError(msg)
-        try:
-            release_data = response.json()
-        except ValueError as je:
-            raise RuntimeError(f"Failed to parse release JSON: {je}\nRaw (truncated 400): {response.text[:400]}")
-    except Exception as e:
-        console.print(f"[red]Error fetching release information[/red]")
-        console.print(Panel(str(e), title="Fetch Error", border_style="red"))
-        raise typer.Exit(1)
-
-    assets = release_data.get("assets", [])
-    # Look for assets that contain the agent and script type (to handle versioned releases)
-    pattern = f"intended-template-{ai_assistant}-{script_type}-"
-    matching_assets = [
-        asset for asset in assets
-        if pattern in asset["name"] and asset["name"].endswith(".zip")
-    ]
-
-    asset = matching_assets[0] if matching_assets else None
-
-    if asset is None:
-        console.print(f"[red]No matching release asset found[/red] for [bold]{ai_assistant}[/bold] (expected pattern: [bold]intended-template-{ai_assistant}-{script_type}-v*.*.*.zip[/bold])")
-        asset_names = [a.get('name', '?') for a in assets]
-        console.print(Panel("\n".join(asset_names) or "(no assets)", title="Available Assets", border_style="yellow"))
-        raise typer.Exit(1)
-
-    download_url = asset["browser_download_url"]
-    filename = asset["name"]
-    file_size = asset["size"]
-
-    if verbose:
-        console.print(f"[cyan]Found template:[/cyan] {filename}")
-        console.print(f"[cyan]Size:[/cyan] {file_size:,} bytes")
-        console.print(f"[cyan]Release:[/cyan] {release_data['tag_name']}")
-
-    zip_path = download_dir / filename
-    if verbose:
-        console.print(f"[cyan]Downloading template...[/cyan]")
-
-    try:
-        with client.stream(
-            "GET",
-            download_url,
-            timeout=60,
-            follow_redirects=True,
-            headers=_github_auth_headers(github_token),
-        ) as response:
-            if response.status_code != 200:
-                body_sample = response.text[:400]
-                raise RuntimeError(f"Download failed with {response.status_code}\nHeaders: {response.headers}\nBody (truncated): {body_sample}")
-            total_size = int(response.headers.get('content-length', 0))
-            with open(zip_path, 'wb') as f:
-                if total_size == 0:
-                    for chunk in response.iter_bytes(chunk_size=8192):
-                        f.write(chunk)
-                else:
-                    if show_progress:
-                        with Progress(
-                            SpinnerColumn(),
-                            TextColumn("[progress.description]{task.description}"),
-                            TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
-                            console=console,
-                        ) as progress:
-                            task = progress.add_task("Downloading...", total=total_size)
-                            downloaded = 0
-                            for chunk in response.iter_bytes(chunk_size=8192):
-                                f.write(chunk)
-                                downloaded += len(chunk)
-                                progress.update(task, completed=downloaded)
-                    else:
-                        for chunk in response.iter_bytes(chunk_size=8192):
-                            f.write(chunk)
-    except Exception as e:
-        console.print(f"[red]Error downloading template[/red]")
-        detail = str(e)
-        if zip_path.exists():
-            zip_path.unlink()
-        console.print(Panel(detail, title="Download Error", border_style="red"))
-        raise typer.Exit(1)
-    if verbose:
-        console.print(f"Downloaded: {filename}")
-    metadata = {
-        "filename": filename,
-        "size": file_size,
-        "release": release_data["tag_name"],
-        "asset_url": download_url
-    }
-    return zip_path, metadata
-
-def download_and_extract_template(project_path: Path, ai_assistant: str, script_type: str, is_current_dir: bool = False, *, verbose: bool = True, tracker: StepTracker | None = None, client: Optional[httpx.Client] = None, debug: bool = False, github_token: Optional[str] = None) -> Path:
-    """Download the latest release and extract it to create a new project.
-    Returns project_path. Uses tracker if provided (with keys: fetch, download, extract, cleanup)
-    """
-    current_dir = Path.cwd()
-
-    if tracker:
-        tracker.start("fetch", "contacting GitHub API")
-    try:
-        zip_path, meta = download_template_from_github(
-            ai_assistant,
-            current_dir,
-            script_type=script_type,
-            verbose=verbose and tracker is None,
-            show_progress=(tracker is None),
-            client=client,
-            debug=debug,
-            github_token=github_token
-        )
-        if tracker:
-            tracker.complete("fetch", f"release {meta['release']} ({meta['size']:,} bytes)")
-            tracker.add("download", "Download template")
-            tracker.complete("download", meta['filename'])
-    except Exception as e:
-        if tracker:
-            tracker.error("fetch", str(e))
-        else:
-            if verbose:
-                console.print(f"[red]Error downloading template:[/red] {e}")
-        raise
-
-    if tracker:
-        tracker.add("extract", "Extract template")
-        tracker.start("extract")
-    elif verbose:
-        console.print("Extracting template...")
-
-    try:
-        if not is_current_dir:
-            project_path.mkdir(parents=True)
-
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            zip_contents = zip_ref.namelist()
-            if tracker:
-                tracker.start("zip-list")
-                tracker.complete("zip-list", f"{len(zip_contents)} entries")
-            elif verbose:
-                console.print(f"[cyan]ZIP contains {len(zip_contents)} items[/cyan]")
-
-            if is_current_dir:
-                with tempfile.TemporaryDirectory() as temp_dir:
-                    temp_path = Path(temp_dir)
-                    zip_ref.extractall(temp_path)
-
-                    extracted_items = list(temp_path.iterdir())
-                    if tracker:
-                        tracker.start("extracted-summary")
-                        tracker.complete("extracted-summary", f"temp {len(extracted_items)} items")
-                    elif verbose:
-                        console.print(f"[cyan]Extracted {len(extracted_items)} items to temp location[/cyan]")
-
-                    source_dir = temp_path
-                    if len(extracted_items) == 1 and extracted_items[0].is_dir():
-                        source_dir = extracted_items[0]
-                        if tracker:
-                            tracker.add("flatten", "Flatten nested directory")
-                            tracker.complete("flatten")
-                        elif verbose:
-                            console.print(f"[cyan]Found nested directory structure[/cyan]")
-
-                    for item in source_dir.iterdir():
-                        dest_path = project_path / item.name
-                        if item.is_dir():
-                            if dest_path.exists():
-                                if verbose and not tracker:
-                                    console.print(f"[yellow]Merging directory:[/yellow] {item.name}")
-                                for sub_item in item.rglob('*'):
-                                    if sub_item.is_file():
-                                        rel_path = sub_item.relative_to(item)
-                                        dest_file = dest_path / rel_path
-                                        dest_file.parent.mkdir(parents=True, exist_ok=True)
-                                        # Special handling for .vscode/settings.json - merge instead of overwrite
-                                        if dest_file.name == "settings.json" and dest_file.parent.name == ".vscode":
-                                            handle_vscode_settings(sub_item, dest_file, rel_path, verbose, tracker)
-                                        else:
-                                            shutil.copy2(sub_item, dest_file)
-                            else:
-                                shutil.copytree(item, dest_path)
-                        else:
-                            if dest_path.exists() and verbose and not tracker:
-                                console.print(f"[yellow]Overwriting file:[/yellow] {item.name}")
-                            shutil.copy2(item, dest_path)
-                    if verbose and not tracker:
-                        console.print(f"[cyan]Template files merged into current directory[/cyan]")
-            else:
-                zip_ref.extractall(project_path)
-
-                extracted_items = list(project_path.iterdir())
-                if tracker:
-                    tracker.start("extracted-summary")
-                    tracker.complete("extracted-summary", f"{len(extracted_items)} top-level items")
-                elif verbose:
-                    console.print(f"[cyan]Extracted {len(extracted_items)} items to {project_path}:[/cyan]")
-                    for item in extracted_items:
-                        console.print(f"  - {item.name} ({'dir' if item.is_dir() else 'file'})")
-
-                if len(extracted_items) == 1 and extracted_items[0].is_dir():
-                    nested_dir = extracted_items[0]
-                    temp_move_dir = project_path.parent / f"{project_path.name}_temp"
-
-                    shutil.move(str(nested_dir), str(temp_move_dir))
-
-                    project_path.rmdir()
-
-                    shutil.move(str(temp_move_dir), str(project_path))
-                    if tracker:
-                        tracker.add("flatten", "Flatten nested directory")
-                        tracker.complete("flatten")
-                    elif verbose:
-                        console.print(f"[cyan]Flattened nested directory structure[/cyan]")
-
-    except Exception as e:
-        if tracker:
-            tracker.error("extract", str(e))
-        else:
-            if verbose:
-                console.print(f"[red]Error extracting template:[/red] {e}")
-                if debug:
-                    console.print(Panel(str(e), title="Extraction Error", border_style="red"))
-
-        if not is_current_dir and project_path.exists():
-            shutil.rmtree(project_path)
-        raise typer.Exit(1)
-    else:
-        if tracker:
-            tracker.complete("extract")
-    finally:
-        if tracker:
-            tracker.add("cleanup", "Remove temporary archive")
-
-        if zip_path.exists():
-            zip_path.unlink()
-            if tracker:
-                tracker.complete("cleanup")
-            elif verbose:
-                console.print(f"Cleaned up: {zip_path.name}")
-
-    return project_path
-
-def ensure_executable_scripts(project_path: Path, tracker: StepTracker | None = None) -> None:
-    """Ensure POSIX .sh scripts under .intent/scripts (recursively) have execute bits (no-op on Windows)."""
-    if os.name == "nt":
-        return  # Windows: skip silently
-    scripts_root = project_path / ".intent" / "scripts"
-    if not scripts_root.is_dir():
-        return
-    failures: list[str] = []
-    updated = 0
-    for script in scripts_root.rglob("*.sh"):
-        try:
-            if script.is_symlink() or not script.is_file():
-                continue
-            try:
-                with script.open("rb") as f:
-                    if f.read(2) != b"#!":
-                        continue
-            except Exception:
-                continue
-            st = script.stat(); mode = st.st_mode
-            if mode & 0o111:
-                continue
-            new_mode = mode
-            if mode & 0o400: new_mode |= 0o100
-            if mode & 0o040: new_mode |= 0o010
-            if mode & 0o004: new_mode |= 0o001
-            if not (new_mode & 0o100):
-                new_mode |= 0o100
-            os.chmod(script, new_mode)
-            updated += 1
-        except Exception as e:
-            failures.append(f"{script.relative_to(scripts_root)}: {e}")
-    if tracker:
-        detail = f"{updated} updated" + (f", {len(failures)} failed" if failures else "")
-        tracker.add("chmod", "Set script permissions recursively")
-        (tracker.error if failures else tracker.complete)("chmod", detail)
-    else:
-        if updated:
-            console.print(f"[cyan]Updated execute permissions on {updated} script(s) recursively[/cyan]")
-        if failures:
-            console.print("[yellow]Some scripts could not be updated:[/yellow]")
-            for f in failures:
-                console.print(f"  - {f}")
-
-@app.command()
-def init(
-project_name: Optional[str] = typer.Argument(None, help="Name for your new project directory (optional if using --here, or use '.' for current directory)"),
-ai_assistant: Optional[str] = typer.Option(None, "--ai", help="AI assistant to use: claude, gemini, copilot, cursor-agent, qwen, opencode, codex, windsurf, kilocode, auggie, codebuddy, amp, or q"),
-script_type: Optional[str] = typer.Option(None, "--script", help="Script type to use: sh or ps"),
-ignore_agent_tools: bool = typer.Option(False, "--ignore-agent-tools", help="Skip checks for AI agent tools like Claude Code"),
-no_git: bool = typer.Option(False, "--no-git", help="Skip git repository initialization"),
-here: bool = typer.Option(False, "--here", help="Initialize project in the current directory instead of creating a new one"),
-force: bool = typer.Option(False, "--force", help="Force merge/overwrite when using --here (skip confirmation)"),
-skip_tls: bool = typer.Option(False, "--skip-tls", help="Skip SSL/TLS verification (not recommended)"),
-debug: bool = typer.Option(False, "--debug", help="Show verbose diagnostic output for network and extraction failures"),
-github_token: Optional[str] = typer.Option(None, "--github-token", help="GitHub token to use for API requests (or set GH_TOKEN or GITHUB_TOKEN environment variable)"),
-    enhanced_features: Optional[str] = typer.Option(None, "--enhanced", help="Enable enhanced features: version_control,codebase_validation,cicd_integration,dependency_graph,performance_optimization,artifact_expansion,task_quality (comma-separated)"),
-    all_enhanced: bool = typer.Option(False, "--all-enhanced", help="Enable all enhanced features"),
-):
-    """
-    Initialize a new Intent project from the latest template.
-
-    This command will:
-    1. Check that required tools are installed (git is optional)
-    2. Let you choose your AI assistant
-    3. Download the appropriate template from GitHub
-    4. Extract the template to a new project directory or current directory
-    5. Initialize a fresh git repository (if not --no-git and no existing repo)
-    6. Optionally set up AI assistant commands
-    7. Enable enhanced features for better development workflow
-
-    Examples:
-    intent init my-project
-    intent init my-project --ai claude
-    intent init my-project --ai copilot --no-git
-    intent init --ignore-agent-tools my-project
-    intent init . --ai claude         # Initialize in current directory
-    intent init .                     # Initialize in current directory (interactive AI selection)
-    intent init --here --ai claude    # Alternative syntax for current directory
-    intent init --here --ai codex
-    intent init --here --ai codebuddy
-    intent init --here
-        intent init --here --force  # Skip confirmation when current directory not empty
-        intent init my-project --all-enhanced  # Enable all enhanced features
-        intent init my-project --enhanced version_control,dependency_graph  # Enable specific features
-    """
-
-    show_banner()
-
-    if project_name == ".":
-        here = True
-        project_name = None  # Clear project_name to use existing validation logic
-
-    if here and project_name:
-        console.print("[red]Error:[/red] Cannot Intended both project name and --here flag")
-        raise typer.Exit(1)
-
-    if not here and not project_name:
-        console.print("[red]Error:[/red] Must Intended either a project name, use '.' for current directory, or use --here flag")
-        raise typer.Exit(1)
-
-    if here:
-        project_name = Path.cwd().name
-        project_path = Path.cwd()
-
-        existing_items = list(project_path.iterdir())
-        if existing_items:
-            console.print(f"[yellow]Warning:[/yellow] Current directory is not empty ({len(existing_items)} items)")
-            console.print("[yellow]Template files will be merged with existing content and may overwrite existing files[/yellow]")
-            if force:
-                console.print("[cyan]--force supplied: skipping confirmation and proceeding with merge[/cyan]")
-            else:
-                response = typer.confirm("Do you want to continue?")
-                if not response:
-                    console.print("[yellow]Operation cancelled[/yellow]")
-                    raise typer.Exit(0)
-    else:
-        # At this point, project_name cannot be None due to validation above
-        project_path = Path(project_name).resolve()  # type: ignore[arg-type]
-        if project_path.exists():
-            error_panel = Panel(
-                f"Directory '[cyan]{project_name}[/cyan]' already exists\n"
-                "Please choose a different project name or remove the existing directory.",
-                title="[red]Directory Conflict[/red]",
-                border_style="red",
-                padding=(1, 2)
-            )
-            console.print()
-            console.print(error_panel)
-            raise typer.Exit(1)
-
-    current_dir = Path.cwd()
-
-    setup_lines = [
-        "[cyan]Intent Project Setup[/cyan]",
-        "",
-        f"{'Project':<15} [green]{project_path.name}[/green]",
-        f"{'Working Path':<15} [dim]{current_dir}[/dim]",
-    ]
-
-    if not here:
-        setup_lines.append(f"{'Target Path':<15} [dim]{project_path}[/dim]")
-
-    console.print(Panel("\n".join(setup_lines), border_style="cyan", padding=(1, 2)))
-
-    should_init_git = False
-    if not no_git:
-        should_init_git = check_tool("git")
-        if not should_init_git:
-            console.print("[yellow]Git not found - will skip repository initialization[/yellow]")
-
-    if ai_assistant:
-        if ai_assistant not in AGENT_CONFIG:
-            console.print(f"[red]Error:[/red] Invalid AI assistant '{ai_assistant}'. Choose from: {', '.join(AGENT_CONFIG.keys())}")
-            raise typer.Exit(1)
-        selected_ai = ai_assistant
-    else:
-        # Create options dict for selection (agent_key: display_name)
-        ai_choices = {key: config["name"] for key, config in AGENT_CONFIG.items()}
-        selected_ai = select_with_arrows(
-            ai_choices,
-            "Choose your AI assistant:",
-            "copilot"
-        )
-
-    if not ignore_agent_tools:
-        agent_config = AGENT_CONFIG.get(selected_ai)
-        if agent_config and agent_config["requires_cli"]:
-            install_url = agent_config["install_url"]
-            if not check_tool(selected_ai):
-                error_panel = Panel(
-                    f"[cyan]{selected_ai}[/cyan] not found\n"
-                    f"Install from: [cyan]{install_url}[/cyan]\n"
-                    f"{agent_config['name']} is required to continue with this project type.\n\n"
-                    "Tip: Use [cyan]--ignore-agent-tools[/cyan] to skip this check",
-                    title="[red]Agent Detection Error[/red]",
-                    border_style="red",
-                    padding=(1, 2)
+        quick_actions_panel = Panel.fit(
+                    "[bold bright_green]🚀 Quick Actions[/bold bright_green]\n\n" +
+                    "[cyan]intent init my-project[/cyan] [dim]- Create new project[/dim]\n" +
+                    "[cyan]intent init --all-enhanced[/cyan] [dim]- Enable all features[/dim]\n" +
+                    "[cyan]intent check[/cyan] [dim]- Verify system requirements[/dim]\n\n" +
+                    "[bright_yellow]💡 Pro Tips:[/bright_yellow]\n" +
+                    "• Use [cyan]--enhanced[/cyan] for specific features\n" +
+                    "• Run [cyan]intent --help[/cyan] for full documentation\n" +
+                    "• Check [bright_magenta]AGENTS.md[/bright_magenta] for supported AI assistants",
+                    border_style="bright_green",
+                    padding=(1, 2),
+                    title="[bold bright_white]Welcome to Intent Kit![/bold bright_white]"
                 )
-                console.print()
-                console.print(error_panel)
-                raise typer.Exit(1)
-
-    if script_type:
-        if script_type not in SCRIPT_TYPE_CHOICES:
-            console.print(f"[red]Error:[/red] Invalid script type '{script_type}'. Choose from: {', '.join(SCRIPT_TYPE_CHOICES.keys())}")
-            raise typer.Exit(1)
-        selected_script = script_type
-    else:
-        default_script = "ps" if os.name == "nt" else "sh"
-
-        if sys.stdin.isatty():
-            selected_script = select_with_arrows(SCRIPT_TYPE_CHOICES, "Choose script type (or press Enter)", default_script)
-        else:
-            selected_script = default_script
-
-    # Parse enhanced features
-    enabled_features = {}
-    if all_enhanced:
-        enabled_features = {feature: True for feature in ENHANCED_FEATURES.keys()}
-    elif enhanced_features:
-        requested_features = [f.strip() for f in enhanced_features.split(',')]
-        for feature in requested_features:
-            if feature in ENHANCED_FEATURES:
-                enabled_features[feature] = True
-            else:
-                console.print(f"[yellow]Warning:[/yellow] Unknown enhanced feature '{feature}', ignoring")
-    else:
-        # Use defaults
-        enabled_features = {feature: config["enabled_by_default"] for feature, config in ENHANCED_FEATURES.items()}
-
-    console.print(f"[cyan]Selected AI assistant:[/cyan] {selected_ai}")
-    console.print(f"[cyan]Selected script type:[/cyan] {selected_script}")
-    console.print(f"[cyan]Enhanced features enabled:[/cyan] {', '.join([f for f, enabled in enabled_features.items() if enabled]) or 'none'}")
-
-    tracker = StepTracker("Initialize Intent Project")
-
-    sys._intent_tracker_active = True  # type: ignore[attr-defined]
-
-    tracker.add("precheck", "Check required tools")
-    tracker.complete("precheck", "ok")
-    tracker.add("ai-select", "Select AI assistant")
-    tracker.complete("ai-select", f"{selected_ai}")
-    tracker.add("script-select", "Select script type")
-    tracker.complete("script-select", selected_script)
-    for key, label in [
-        ("fetch", "Fetch latest release"),
-        ("download", "Download template"),
-        ("extract", "Extract template"),
-        ("zip-list", "Archive contents"),
-        ("extracted-summary", "Extraction summary"),
-        ("chmod", "Ensure scripts executable"),
-        ("cleanup", "Cleanup"),
-        ("git", "Initialize git repository"),
-        ("final", "Finalize")
-    ]:
-        tracker.add(key, label)
-
-    # Track git error message outside Live context so it persists
-    git_error_message = None
-
-    with Live(tracker.render(), console=console, refresh_per_second=8, transient=True) as live:
-        tracker.attach_refresh(lambda: live.update(tracker.render()))
-        try:
-            verify = not skip_tls
-            local_ssl_context = ssl_context if verify else False
-            local_client = httpx.Client(verify=local_ssl_context)
-
-            download_and_extract_template(project_path, selected_ai, selected_script, here, verbose=False, tracker=tracker, client=local_client, debug=debug, github_token=github_token)
-
-            ensure_executable_scripts(project_path, tracker=tracker)
-
-            if not no_git:
-                tracker.start("git")
-                if is_git_repo(project_path):
-                    tracker.complete("git", "existing repo detected")
-                elif should_init_git:
-                    success, error_msg = init_git_repo(project_path, quiet=True)
-                    if success:
-                        tracker.complete("git", "initialized")
-                    else:
-                        tracker.error("git", "init failed")
-                        git_error_message = error_msg
-                else:
-                    tracker.skip("git", "git not available")
-            else:
-                tracker.skip("git", "--no-git flag")
-
-            tracker.complete("final", "project ready")
-        except Exception as e:
-            tracker.error("final", str(e))
-            console.print(Panel(f"Initialization failed: {e}", title="Failure", border_style="red"))
-            if debug:
-                _env_pairs = [
-                    ("Python", sys.version.split()[0]),
-                    ("Platform", sys.platform),
-                    ("CWD", str(Path.cwd())),
-                ]
-                _label_width = max(len(k) for k, _ in _env_pairs)
-                env_lines = [f"{k.ljust(_label_width)} → [bright_black]{v}[/bright_black]" for k, v in _env_pairs]
-                console.print(Panel("\n".join(env_lines), title="Debug Environment", border_style="magenta"))
-            if not here and project_path.exists():
-                shutil.rmtree(project_path)
-            raise typer.Exit(1)
-        finally:
-            pass
-
-    console.print(tracker.render())
-    console.print("\n[bold green]Project ready.[/bold green]")
-
-    # Show git error details if initialization failed
-    if git_error_message:
-        console.print()
-        git_error_panel = Panel(
-            f"[yellow]Warning:[/yellow] Git repository initialization failed\n\n"
-            f"{git_error_message}\n\n"
-            f"[dim]You can initialize git manually later with:[/dim]\n"
-            f"[cyan]cd {project_path if not here else '.'}[/cyan]\n"
-            f"[cyan]git init[/cyan]\n"
-            f"[cyan]git add .[/cyan]\n"
-            f"[cyan]git commit -m \"Initial commit\"[/cyan]",
-            title="[red]Git Initialization Failed[/red]",
-            border_style="red",
-            padding=(1, 2)
-        )
-        console.print(git_error_panel)
-
-    # Agent folder security notice
-    agent_config = AGENT_CONFIG.get(selected_ai)
-    if agent_config:
-        agent_folder = agent_config["folder"]
-        security_notice = Panel(
-            f"Some agents may store credentials, auth tokens, or other identifying and private artifacts in the agent folder within your project.\n"
-            f"Consider adding [cyan]{agent_folder}[/cyan] (or parts of it) to [cyan].gitignore[/cyan] to prevent accidental credential leakage.",
-            title="[yellow]Agent Folder Security[/yellow]",
-            border_style="yellow",
-            padding=(1, 2)
-        )
-        console.print()
-        console.print(security_notice)
-
-    steps_lines = []
-    if not here:
-        steps_lines.append(f"1. Go to the project folder: [cyan]cd {project_name}[/cyan]")
-        step_num = 2
-    else:
-        steps_lines.append("1. You're already in the project directory!")
-        step_num = 2
-
-    # Add Codex-specific setup step if needed
-    if selected_ai == "codex":
-        codex_path = project_path / ".codex"
-        quoted_path = shlex.quote(str(codex_path))
-        if os.name == "nt":  # Windows
-            cmd = f"setx CODEX_HOME {quoted_path}"
-        else:  # Unix-like systems
-            cmd = f"export CODEX_HOME={quoted_path}"
-
-        steps_lines.append(f"{step_num}. Set [cyan]CODEX_HOME[/cyan] environment variable before running Codex: [cyan]{cmd}[/cyan]")
-        step_num += 1
-
-    steps_lines.append(f"{step_num}. Start using slash commands with your AI agent:")
-
-    steps_lines.append("   2.1 [cyan]/intentkit.constitution[/] - Define project intent, principles, and core values")
-    steps_lines.append("   2.2 [cyan]/intentkit.Intended[/] - Intended requirements with clear intent and success criteria")
-    steps_lines.append("   2.3 [cyan]/intentkit.plan[/] - Create intent-driven implementation plan")
-    steps_lines.append("   2.4 [cyan]/intentkit.tasks[/] - Generate actionable tasks aligned to your intent")
-    steps_lines.append("   2.5 [cyan]/intentkit.implement[/] - Execute with consistent intent fulfillment")
-
-    steps_panel = Panel("\n".join(steps_lines), title="Next Steps", border_style="cyan", padding=(1,2))
-    console.print()
-    console.print(steps_panel)
-
-    enhancement_lines = [
-        "Advanced intent-driven commands [bright_black](refine your development intent & ensure quality)[/bright_black]",
-        "",
-        f"○ [cyan]/intentkit.clarify[/] [bright_black](optional)[/bright_black] - Clarify ambiguous requirements to ensure clear intent before planning (run before [cyan]/intentkit.plan[/] if used)",
-        f"○ [cyan]/intentkit.analyze[/] [bright_black](optional)[/bright_black] - Analyze intent consistency across artifacts and identify alignment gaps (after [cyan]/intentkit.tasks[/], before [cyan]/intentkit.implement[/])",
-        f"○ [cyan]/intentkit.checklist[/] [bright_black](optional)[/bright_black] - Generate intent validation checklists to ensure requirements completeness and clarity (after [cyan]/intentkit.plan[/])"
-    ]
-    enhancements_panel = Panel("\n".join(enhancement_lines), title="Enhancement Commands", border_style="cyan", padding=(1,2))
-    console.print()
-    console.print(enhancements_panel)
-
-@app.command()
-def check():
-    """Check that all required tools are installed."""
-    show_banner()
-    console.print("[bold]Checking for installed tools...[/bold]\n")
-
-    tracker = StepTracker("Check Available Tools")
-
-    tracker.add("git", "Git version control")
-    git_ok = check_tool("git", tracker=tracker)
-
-    agent_results = {}
-    for agent_key, agent_config in AGENT_CONFIG.items():
-        agent_name = agent_config["name"]
-        requires_cli = agent_config["requires_cli"]
-
-        tracker.add(agent_key, agent_name)
-
-        if requires_cli:
-            agent_results[agent_key] = check_tool(agent_key, tracker=tracker)
-        else:
-            # IDE-based agent - skip CLI check and mark as optional
-            tracker.skip(agent_key, "IDE-based, no CLI check")
-            agent_results[agent_key] = False  # Don't count IDE agents as "found"
-
-    # Check VS Code variants (not in agent config)
-    tracker.add("code", "Visual Studio Code")
-    code_ok = check_tool("code", tracker=tracker)
-
-    tracker.add("code-insiders", "Visual Studio Code Insiders")
-    code_insiders_ok = check_tool("code-insiders", tracker=tracker)
-
-    console.print(tracker.render())
-
-    console.print("\n[bold green]Intent CLI is ready to use![/bold green]")
-
-    if not git_ok:
-        console.print("[dim]Tip: Install git for repository management[/dim]")
-
-    if not any(agent_results.values()):
-        console.print("[dim]Tip: Install an AI assistant for the best experience[/dim]")
-
-def main():
-    app()
-
-if __name__ == "__main__":
-    main()
+        console.print(quick_actions_panel)

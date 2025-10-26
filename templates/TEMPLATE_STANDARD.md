@@ -5,6 +5,7 @@ This document defines the standard structure and format for all Intent Kit comma
 ## Required Structure
 
 ### Front Matter (YAML)
+
 ```yaml
 ---
 description: Brief description with enhanced features mentioned
@@ -20,18 +21,18 @@ agent_scripts:  # Optional, for agent context updates
 ### Content Sections
 
 1. **User Input Section**
-   ```markdown
+
+    ```markdown
    # User Input
 
-   ```text
-   $ARGUMENTS
-   ```
+   `$ARGUMENTS`
 
    You **MUST** consider the user input before proceeding (if not empty).
    ```
 
 2. **Enhanced Features Integration** (Required)
-   ```markdown
+
+    ```markdown
    ## Enhanced Features Integration
 
    [Describe how this command integrates with enhanced features]
@@ -40,21 +41,24 @@ agent_scripts:  # Optional, for agent context updates
    ```
 
 3. **Goal Section** (Required)
-   ```markdown
+
+    ```markdown
    ## Goal
 
    [Clear statement of what this command achieves]
    ```
 
 4. **Operating Constraints** (Required)
-   ```markdown
+
+    ```markdown
    ## Operating Constraints
 
    [List prerequisites, limitations, and critical requirements]
    ```
 
 5. **Execution Steps** (Required)
-   ```markdown
+
+    ```markdown
    ## Execution Steps
 
    ### 1. Step Name
@@ -65,14 +69,16 @@ agent_scripts:  # Optional, for agent context updates
    ```
 
 6. **Error Handling** (Required)
-   ```markdown
+
+    ```markdown
    ## Error Handling
 
    [How to handle common errors and edge cases]
    ```
 
 7. **Progress Tracking** (Required)
-   ```markdown
+
+    ```markdown
    ## Progress Tracking
 
    [How progress is reported and tracked]
@@ -101,6 +107,7 @@ All templates must integrate with these enhanced features where applicable:
 ## Validation Checklist
 
 Before committing a template update, verify:
+
 - [ ] Front matter is valid YAML
 - [ ] All required sections are present
 - [ ] Enhanced features are integrated appropriately

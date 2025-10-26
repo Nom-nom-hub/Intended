@@ -44,16 +44,19 @@ parallel execution opportunities. This command transforms the detailed task brea
 ## Error Handling
 
 **IMPLEMENTATION FAILURES**:
+
 - Stop execution and report specific error with context
 - Provide actionable recovery suggestions
 - Maintain partial progress for resumable operations
 
 **DEPENDENCY VIOLATIONS**:
+
 - Detect circular dependencies and blocking tasks
 - Suggest alternative execution orders
 - Report impact analysis for failed dependencies
 
 **QUALITY GATE FAILURES**:
+
 - Validate against constitution principles
 - Report specific violations with remediation steps
 - Allow manual override with explicit justification
@@ -61,11 +64,13 @@ parallel execution opportunities. This command transforms the detailed task brea
 ## Progress Tracking
 
 **REAL-TIME STATUS**:
+
 - Report current task and completion percentage
 - Show parallel execution status across tasks
 - Display constitution compliance metrics
 
 **COMPLETION METRICS**:
+
 - Tasks completed vs total tasks
 - Test coverage and quality scores
 - Constitution compliance status

@@ -42,16 +42,19 @@ must occur in a separate, explicit constitution update outside `/intent.analyze`
 ## Error Handling
 
 **MISSING ARTIFACTS**:
+
 - Clearly identify which required files are missing
 - Provide specific commands to generate missing prerequisites
 - Suggest alternative analysis scopes if partial analysis is possible
 
 **INCONSISTENCY DETECTION**:
+
 - Flag critical vs warning inconsistencies
 - Provide specific location references for each issue
 - Suggest prioritized remediation order
 
 **VALIDATION FAILURES**:
+
 - Report schema validation errors with specific fixes
 - Handle malformed artifacts gracefully
 - Provide recovery options for corrupted files
@@ -59,11 +62,13 @@ must occur in a separate, explicit constitution update outside `/intent.analyze`
 ## Progress Tracking
 
 **ANALYSIS PHASES**:
+
 - Artifact loading progress (Intent.md, plan.md, tasks.md)
 - Cross-reference analysis completion
 - Quality scoring calculation status
 
 **RESULTS SUMMARY**:
+
 - Total issues found by severity level
 - Constitution compliance status
 - Remediation complexity assessment

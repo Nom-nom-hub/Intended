@@ -523,9 +523,34 @@ def init(
         project_name = "."
 
     # Interactive selection for AI assistant if not provided
-    if ai_assistant is None:
-        options = {k: v["name"] for k, v in AGENT_CONFIG.items()}
-        ai_assistant = select_with_arrows(options, "Select your AI assistant")
+    selected_assistant = None
+    try:
+        if ai_assistant is None:
+            # Check if we're in an interactive terminal
+            import sys
+            if not sys.stdin.isatty():
+                # If not in an interactive terminal, use a default (qwen)
+                selected_assistant = "qwen"  # Default to qwen when not interactive
+                console.print(f"[yellow]⚠️  Non-interactive terminal detected. Using default AI assistant: {AGENT_CONFIG[selected_assistant]['name']}[/yellow]")
+            else:
+                options = {k: v["name"] for k, v in AGENT_CONFIG.items()}
+                selected_assistant = select_with_arrows(options, "Select your AI assistant")
+                # Make sure we got a valid selection
+                if selected_assistant is None or selected_assistant not in AGENT_CONFIG:
+                    console.print(f"[yellow]⚠️  Interactive selection returned invalid value. Using default AI assistant: Qwen Code[/yellow]")
+                    selected_assistant = "qwen"
+        else:
+            selected_assistant = ai_assistant
+    except Exception as e:
+        console.print(f"[yellow]⚠️  AI assistant selection failed ({e}). Using default AI assistant: Qwen Code[/yellow]")
+        selected_assistant = "qwen"
+    
+    # Ensure we have a valid assistant before proceeding
+    if selected_assistant not in AGENT_CONFIG:
+        console.print(f"[red]❌ Invalid AI assistant selected: {selected_assistant}. Using default.[/red]")
+        selected_assistant = "qwen"
+    
+    ai_assistant = selected_assistant
 
     # Determine enhanced features
     if all_enhanced:

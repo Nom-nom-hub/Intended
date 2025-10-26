@@ -188,6 +188,8 @@ The `intent` command supports the following options:
 | `--skip-tls`           | Flag     | Skip SSL/TLS verification (not recommended)                                 |
 | `--debug`              | Flag     | Enable detailed debug output for troubleshooting                            |
 | `--github-token`       | Option   | GitHub token for API requests (or set GH_TOKEN/GITHUB_TOKEN env variable)  |
+| `--enhanced`           | Option   | Enable enhanced features: `version_control,codebase_validation,cicd_integration,dependency_graph,performance_optimization,artifact_expansion,task_quality` (comma-separated) |
+| `--all-enhanced`       | Flag     | Enable all enhanced features for advanced task generation and validation   |
 
 ### Examples
 
@@ -229,8 +231,14 @@ intent init my-project --ai claude --debug
 # Use GitHub token for API requests (helpful for corporate environments)
 intent init my-project --ai claude --github-token ghp_your_token_here
 
-# Check system requirements
-intent check
+# Initialize with enhanced features for advanced task generation
+intent init my-project --ai claude --all-enhanced
+
+    # Initialize with specific enhanced features
+    intent init my-project --ai claude --enhanced version_control,dependency_graph
+
+    # Check system requirements
+    intent check
 ```
 
 ### Available Slash Commands

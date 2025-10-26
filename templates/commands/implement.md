@@ -1,5 +1,5 @@
 ---
-description: Execute all tasks to build the feature according to the implementation plan.
+description: Execute all tasks to build the feature according to the implementation plan with enhanced validation, caching, and progress tracking.
 scripts:
   sh: scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks
   ps: scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks
@@ -12,6 +12,17 @@ $ARGUMENTS
 ```
 
 You **MUST** consider the user input before proceeding (if not empty).
+
+## Enhanced Features Integration
+
+If enhanced features are enabled, this command provides:
+
+- **Real-time Progress Tracking**: Visual progress indicators and completion status
+- **Automated Quality Validation**: Continuous validation against acceptance criteria
+- **Dependency-aware Execution**: Intelligent task ordering with parallel execution optimization
+- **Incremental Updates**: Only rebuild changed components using caching
+- **Error Recovery**: Intelligent retry logic and alternative implementation strategies
+- **Constitution Compliance Monitoring**: Continuous validation against project principles
 
 ## Goal
 
@@ -29,6 +40,35 @@ parallel execution opportunities. This command transforms the detailed task brea
 **ERROR RECOVERY**: Handle errors gracefully and provide clear feedback for resolution.
 
 **QUALITY ASSURANCE**: Maintain high code quality and test coverage throughout the implementation process.
+
+## Error Handling
+
+**IMPLEMENTATION FAILURES**:
+- Stop execution and report specific error with context
+- Provide actionable recovery suggestions
+- Maintain partial progress for resumable operations
+
+**DEPENDENCY VIOLATIONS**:
+- Detect circular dependencies and blocking tasks
+- Suggest alternative execution orders
+- Report impact analysis for failed dependencies
+
+**QUALITY GATE FAILURES**:
+- Validate against constitution principles
+- Report specific violations with remediation steps
+- Allow manual override with explicit justification
+
+## Progress Tracking
+
+**REAL-TIME STATUS**:
+- Report current task and completion percentage
+- Show parallel execution status across tasks
+- Display constitution compliance metrics
+
+**COMPLETION METRICS**:
+- Tasks completed vs total tasks
+- Test coverage and quality scores
+- Constitution compliance status
 
 ## Execution Steps
 

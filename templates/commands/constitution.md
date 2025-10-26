@@ -1,5 +1,5 @@
 ---
-description: Create or update project governing principles and development guidelines that will guide all subsequent development.
+description: Create or update project governing principles and development guidelines that will guide all subsequent development with enhanced validation and consistency checking.
 scripts:
   sh: scripts/bash/check-prerequisites.sh --json
   ps: scripts/powershell/check-prerequisites.ps1 -Json
@@ -12,6 +12,15 @@ $ARGUMENTS
 ```
 
 You **MUST** consider the user input before proceeding (if not empty).
+
+## Enhanced Features Integration
+
+When enhanced features are enabled, constitution creation includes:
+
+- **Automated Consistency Validation**: Cross-reference principles against discovered artifacts
+- **Quality Assessment Framework**: Generate measurable quality criteria from principles
+- **Integration with Enhanced Config**: Sync constitution principles with enhanced feature settings
+- **Version Tracking**: Track constitution changes and their impact on project artifacts
 
 ## Goal
 

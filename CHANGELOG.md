@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/Intent/v2.0
 
 ## [Unreleased]
 
+## [0.0.12] - 2025-10-25
+
+### Added
+- Enhanced features system for advanced task generation
+- Version control integration for git branch tracking
+- CI/CD pipeline integration capabilities
+- Real-time codebase validation features
+- Advanced dependency graph analysis
+- Performance optimizations for large codebases
+- Expanded artifact support (architecture diagrams, wireframes, API specs)
+- Enhanced task quality with configurable granularity and smart splitting
+- Cross-artifact dependency management with conflict resolution
+- Dynamic dependency graph updates and impact analysis
+- Artifact discovery and classification system
+- Enhanced configuration file with customizable settings
+- Artifact scanner scripts for both bash and PowerShell
+- Configurable enhanced features via CLI options (`--enhanced`, `--all-enhanced`)
+- Updated tasks.md template with comprehensive automation and validation improvements
+
+### Changed
+- Enhanced all command templates with enhanced features integration
+- Added standardized error handling and progress tracking sections
+- Updated template descriptions to reflect enhanced capabilities
+- Created template standard documentation for consistency
+- CLI init command now supports enhanced features configuration
+- Improved task generation workflow with git integration and validation
+
+## [0.0.1] - 2025-10-25
+
 ### Added
 - Initial Intent Kit framework implementation
 - Intent CLI with support for multiple AI agents

@@ -1,9 +1,18 @@
 ---
-description: Generate a custom checklist for the current feature based on user requirements.
+description: Generate a custom checklist for the current feature based on user requirements with enhanced quality metrics and automated validation.
 scripts:
   sh: scripts/bash/check-prerequisites.sh --json
   ps: scripts/powershell/check-prerequisites.ps1 -Json
 ---
+
+# Enhanced Features Integration
+
+With enhanced features enabled, checklists include:
+
+- **Automated Quality Scoring**: Generate numerical quality metrics for requirements
+- **Artifact-aware Validation**: Cross-reference checklist items against discovered artifacts
+- **Constitution Compliance**: Validate requirements against project principles
+- **Historical Analysis**: Compare checklist quality across similar features
 
 # Checklist Purpose: "Unit Tests for English"
 

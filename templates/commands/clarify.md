@@ -1,5 +1,5 @@
 ---
-description: Clarify underspecified areas in the current feature specification through structured questioning.
+description: Clarify underspecified areas in the current feature specification through structured questioning with enhanced artifact analysis and dependency discovery.
 scripts:
   sh: scripts/bash/check-prerequisites.sh --json --require-Intent
   ps: scripts/powershell/check-prerequisites.ps1 -Json -RequireSpec
@@ -12,6 +12,15 @@ $ARGUMENTS
 ```
 
 You **MUST** consider the user input before proceeding (if not empty).
+
+## Enhanced Features Integration
+
+With enhanced features enabled, clarification includes:
+
+- **Artifact-driven Questions**: Generate questions based on discovered project artifacts
+- **Dependency Analysis**: Identify clarification needs related to external dependencies
+- **Quality Assessment**: Evaluate specification clarity against quality metrics
+- **Automated Gap Detection**: Use heuristics to identify underspecified areas
 
 ## Goal
 

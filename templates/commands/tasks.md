@@ -1,5 +1,5 @@
 ---
-description: Generate an actionable, dependency-ordered tasks.md for the feature based on available design artifacts.
+description: Generate an actionable, dependency-ordered tasks.md for the feature based on available design artifacts with enhanced automation and validation.
 scripts:
   sh: scripts/bash/check-prerequisites.sh --json
   ps: scripts/powershell/check-prerequisites.ps1 -Json
@@ -13,15 +13,62 @@ $ARGUMENTS
 
 You **MUST** consider the user input before proceeding (if not empty).
 
+## Enhanced Features
+
+This tool now supports advanced automation and validation features.
+
+### Automation & Integration
+
+- **Version Control Integration**: Automatically track task status in git branches/commits
+- **CI/CD Pipeline Integration**: Validate task completion via automated tests
+- **Real-time Codebase Validation**: Cross-reference tasks against existing code
+- **Automated Dependency Resolution**: Graph-based analysis for complex relationships
+
+### Expanded Artifact Support
+
+- **Additional Document Types**: Architecture diagrams, wireframes, user flows, API specifications, data flow diagrams
+- **External Integrations**: Import from Jira, GitHub Issues, Trello, Linear, Asana, Azure DevOps
+- **Custom Artifact Schemas**: Team-defined document types and parsing rules with JSON schema validation
+- **Artifact Discovery**: Automatic scanning and classification of project documents
+- **Versioned Artifacts**: Support for artifact versioning and change tracking
+
+### Improved Task Quality
+
+- **Configurable Granularity**: Support epics, stories, tasks, subtasks with configurable size limits
+- **Smart Task Splitting**: Automatic breakdown based on complexity heuristics (LOC, dependencies, risk factors)
+- **Quality Validation**: Built-in checklists for completeness, testability, and acceptance criteria validation
+- **Task Estimation**: Automated complexity scoring and time estimation
+- **Template-driven Tasks**: Reusable task templates for common patterns
+
+### Enhanced Dependency Management
+
+- **Cross-artifact Dependencies**: Handle relationships between user stories, infrastructure, external systems
+- **Dynamic Updates**: Update dependencies as tasks progress with real-time graph recalculation
+- **Conflict Resolution**: Detect and resolve circular dependencies with automated suggestions
+- **Dependency Visualization**: Interactive dependency graphs with critical path highlighting
+- **Impact Analysis**: Assess the impact of changes on dependent tasks and artifacts
+
+### Performance & Scalability
+
+- **Large Codebase Support**: Efficient parsing for projects with thousands of files using parallel processing
+- **Incremental Updates**: Only re-analyze changed artifacts with change detection algorithms
+- **Caching**: Store intermediate results to speed up regeneration with intelligent cache invalidation
+- **Distributed Processing**: Support for processing large artifacts across multiple cores/machines
+- **Resource Optimization**: Memory-efficient parsing with streaming for large files
+
 ## Outline
 
 1. **Setup**: Run `{SCRIPT}` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute.
 For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
 
 2. **Load design documents**: Read from FEATURE_DIR:
-     - **Required**: plan.md (tech stack, libraries, structure), intent.md (user stories with priorities)
-     - **Optional**: data-model.md (entities), contracts/ (API endpoints), research.md (decisions), quickstart.md (test scenarios)
-     - Note: Not all projects have all documents. Generate tasks based on what's available.
+
+- **Required**: plan.md (tech stack, libraries, structure), intent.md (user stories with priorities)
+- **Optional**: data-model.md (entities), contracts/ (API endpoints), research.md (decisions), quickstart.md (test scenarios)
+- **ENHANCED**: architecture.md (system diagrams), wireframes/ (UI mockups), api-specs/ (API documentation)
+      - **ENHANCED**: Automatically discover and classify additional artifacts in the project (run `scripts/bash/enhanced-artifact-scanner.sh`)
+      - **ENHANCED**: Validate artifact schemas and versions for consistency
+      - Note: Not all projects have all documents. Generate tasks based on what's available.
 
 3. **Execute task generation workflow**:
      - Load plan.md and extract tech stack, libraries, project structure
@@ -33,6 +80,12 @@ For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot
      - Generate dependency graph showing user story completion order
      - Create parallel execution examples per user story
      - Validate task completeness (each user story has all needed tasks, independently testable)
+      - **ENHANCED**: Analyze artifact complexity and suggest task granularity levels
+      - **ENHANCED**: Apply smart task splitting based on complexity heuristics
+      - **ENHANCED**: Generate quality validation checklists for each task
+      - **ENHANCED**: Load existing git repository status and prepare branch tracking
+      - **ENHANCED**: Analyze existing codebase for validation and conflict detection
+      - **ENHANCED**: Generate automated test integration points for CI/CD pipelines
 
 4. **Generate tasks.md**: Use `.Intended/templates/tasks-template.md` as structure, fill with:
      - Correct feature name from plan.md
@@ -48,12 +101,17 @@ For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot
      - Implementation strategy section (MVP first, incremental delivery)
 
 5. **Report**: Output path to generated tasks.md and summary:
-     - Total task count
-     - Task count per user story
-     - Parallel opportunities identified
-     - Independent test criteria for each story
-     - Suggested MVP scope (typically just User Story 1)
-     - Format validation: Confirm ALL tasks follow the checklist format (checkbox, ID, labels, file paths)
+
+      - Total task count
+      - Task count per user story
+      - Parallel opportunities identified
+      - Independent test criteria for each story
+      - Suggested MVP scope (typically just User Story 1)
+      - Format validation: Confirm ALL tasks follow the checklist format (checkbox, ID, labels, file paths)
+      - **ENHANCED**: Git branch status and commit tracking setup
+      - **ENHANCED**: Codebase validation results and conflict warnings
+      - **ENHANCED**: CI/CD integration points generated
+      - **ENHANCED**: Performance metrics and scalability recommendations
 
 Context for task generation: {ARGS}
 
@@ -141,6 +199,9 @@ Every task MUST strictly follow this format:
 - **Traceability**: Tasks must be traceable back to user stories and requirements
 - **Independence**: User stories should remain independently implementable
 - **Verifiability**: Each task should have clear success criteria
+- **ENHANCED Granularity**: Tasks should fit within configurable size limits (configurable via settings)
+- **ENHANCED Estimation**: Each task includes automated complexity scoring and time estimates
+- **ENHANCED Validation**: Built-in acceptance criteria checklists automatically generated
 
 ### Dependency Management
 
@@ -148,3 +209,7 @@ Every task MUST strictly follow this format:
 - **Story Dependencies**: Minimize dependencies between user stories
 - **Parallel Opportunities**: Mark tasks that can be executed in parallel
 - **Critical Path**: Identify the sequence of tasks that determines project duration
+- **ENHANCED Cross-artifact Dependencies**: Track dependencies between different artifact types
+- **ENHANCED Dynamic Graph Updates**: Automatically recalculate dependencies as tasks progress
+- **ENHANCED Conflict Resolution**: Detect circular dependencies with automated resolution suggestions
+- **ENHANCED Impact Analysis**: Assess change impact on dependent tasks and artifacts

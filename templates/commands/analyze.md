@@ -1,5 +1,5 @@
 ---
-description: Perform a non-destructive cross-artifact consistency and quality analysis across Intent.md, plan.md, and tasks.md after task generation.
+description: Perform a non-destructive cross-artifact consistency and quality analysis across Intent.md, plan.md, and tasks.md after task generation with enhanced validation and dependency analysis.
 scripts:
   sh: scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks
   ps: scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks
@@ -12,6 +12,16 @@ $ARGUMENTS
 ```
 
 You **MUST** consider the user input before proceeding (if not empty).
+
+## Enhanced Features Integration
+
+With enhanced features enabled, this analysis includes:
+
+- **Artifact Discovery Validation**: Cross-reference discovered artifacts against the analysis scope
+- **Dependency Graph Analysis**: Validate task dependencies against actual artifact relationships
+- **Quality Metrics**: Automated scoring of artifact completeness and clarity
+- **Impact Analysis**: Assess the downstream effects of identified issues
+- **Automated Remediation Suggestions**: Generate specific fix recommendations with confidence levels
 
 ## Goal
 
@@ -28,6 +38,35 @@ plan (user must explicitly approve before any follow-up editing commands would b
 analysis scope. Constitution conflicts are automatically CRITICAL and require adjustment of the Intent, plan, or
 tasks—not dilution, reinterpretation, or silent ignoring of the principle. If a principle itself needs to change, that
 must occur in a separate, explicit constitution update outside `/intent.analyze`.
+
+## Error Handling
+
+**MISSING ARTIFACTS**:
+- Clearly identify which required files are missing
+- Provide specific commands to generate missing prerequisites
+- Suggest alternative analysis scopes if partial analysis is possible
+
+**INCONSISTENCY DETECTION**:
+- Flag critical vs warning inconsistencies
+- Provide specific location references for each issue
+- Suggest prioritized remediation order
+
+**VALIDATION FAILURES**:
+- Report schema validation errors with specific fixes
+- Handle malformed artifacts gracefully
+- Provide recovery options for corrupted files
+
+## Progress Tracking
+
+**ANALYSIS PHASES**:
+- Artifact loading progress (Intent.md, plan.md, tasks.md)
+- Cross-reference analysis completion
+- Quality scoring calculation status
+
+**RESULTS SUMMARY**:
+- Total issues found by severity level
+- Constitution compliance status
+- Remediation complexity assessment
 
 ## Execution Steps
 

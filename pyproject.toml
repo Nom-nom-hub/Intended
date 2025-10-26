@@ -1,6 +1,6 @@
 [project]
 name = "intent-cli"
-version = "0.0.1"
+version = "0.0.2"
 description = "Intent CLI, part of Intent Kit. A tool to bootstrap your projects for Intent-Driven Development (IDD)."
 requires-python = ">=3.11"
 dependencies = [

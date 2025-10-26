@@ -1,0 +1,114 @@
+{
+  "enhanced_features": {
+    "version_control": {
+      "enabled": true,
+      "auto_branch_creation": true,
+      "commit_message_templates": {
+        "task_complete": "feat: complete task {task_id} - {task_title}",
+        "phase_complete": "feat: complete phase {phase_name}",
+        "feature_complete": "feat: implement {feature_name}"
+      }
+    },
+    "codebase_validation": {
+      "enabled": false,
+      "scan_depth": "full",
+      "ignore_patterns": [
+        "node_modules/**",
+        ".git/**",
+        "dist/**",
+        "build/**"
+      ],
+      "max_file_size_mb": 10
+    },
+    "cicd_integration": {
+      "enabled": false,
+      "providers": ["github_actions", "gitlab_ci", "jenkins"],
+      "test_commands": {
+        "javascript": "npm test",
+        "python": "pytest",
+        "java": "mvn test",
+        "dotnet": "dotnet test"
+      },
+      "coverage_threshold": 80
+    },
+    "dependency_graph": {
+      "enabled": true,
+      "visualization": {
+        "format": "mermaid",
+        "include_external_deps": false,
+        "max_depth": 10
+      },
+      "conflict_detection": {
+        "circular_deps": true,
+        "blocking_tasks": true
+      }
+    },
+    "performance_optimization": {
+      "enabled": false,
+      "parallel_processing": true,
+      "cache_enabled": true,
+      "cache_ttl_hours": 24,
+      "memory_limit_mb": 1024
+    }
+  },
+  "task_quality": {
+    "granularity": {
+      "epic_max_tasks": 50,
+      "story_max_tasks": 20,
+      "task_max_complexity": 8,
+      "subtask_max_complexity": 3
+    },
+    "estimation": {
+      "complexity_weights": {
+        "database_operations": 3,
+        "api_integration": 4,
+        "ui_components": 2,
+        "business_logic": 5,
+        "testing": 2
+      },
+      "time_multipliers": {
+        "low_complexity": 0.5,
+        "medium_complexity": 1.0,
+        "high_complexity": 2.0,
+        "critical_complexity": 3.0
+      }
+    },
+    "validation": {
+      "require_acceptance_criteria": true,
+      "require_file_paths": true,
+      "require_test_coverage": false,
+      "auto_generate_checklists": true
+    }
+  },
+  "artifact_support": {
+    "supported_types": [
+      "plan.md",
+      "intent.md",
+      "data-model.md",
+      "contracts/",
+      "research.md",
+      "quickstart.md",
+      "architecture.md",
+      "wireframes/",
+      "api-specs/",
+      "diagrams/"
+    ],
+    "custom_schemas": {},
+    "discovery": {
+      "auto_scan": true,
+      "scan_patterns": [
+        "**/*.md",
+        "**/*.json",
+        "**/*.yaml",
+        "**/*.yml",
+        "docs/**",
+        "design/**",
+        "specs/**"
+      ]
+    },
+    "versioning": {
+      "track_changes": true,
+      "version_format": "semantic"
+    }
+  }
+}

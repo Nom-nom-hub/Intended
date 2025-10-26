@@ -1,5 +1,5 @@
 ---
-description: Execute the implementation planning workflow using the plan template to generate design artifacts.
+description: Execute the implementation planning workflow using the plan template to generate design artifacts with enhanced artifact discovery and validation.
 scripts:
   sh: scripts/bash/setup-plan.sh --json
   ps: scripts/powershell/setup-plan.ps1 -Json
@@ -15,6 +15,16 @@ $ARGUMENTS
 ```
 
 You **MUST** consider the user input before proceeding (if not empty).
+
+## Enhanced Features Integration
+
+If enhanced features are enabled (`artifact_expansion`, `task_quality`, `dependency_graph`), this command will:
+
+- **Automatically discover existing artifacts** using the artifact scanner
+- **Validate artifact schemas** and check for version consistency
+- **Analyze dependencies** between artifacts and external systems
+- **Generate quality checklists** for the planning phase
+- **Cache intermediate results** for improved performance
 
 ## Outline
 

@@ -58,6 +58,38 @@ def _github_auth_headers(cli_token: str | None = None) -> dict:
     return {"Authorization": f"Bearer {token}"} if token else {}
 
 # Agent configuration with name, folder, install URL, and CLI tool requirement
+# Enhanced features configuration
+ENHANCED_FEATURES = {
+    "version_control": {
+        "description": "Git branch tracking and commit integration",
+        "enabled_by_default": True,
+    },
+    "codebase_validation": {
+"description": "Real-time validation against existing code",
+"enabled_by_default": False,
+},
+"cicd_integration": {
+"description": "Automated CI/CD pipeline validation",
+"enabled_by_default": False,
+},
+"dependency_graph": {
+"description": "Advanced dependency resolution and conflict detection",
+"enabled_by_default": True,
+},
+"performance_optimization": {
+"description": "Large codebase support and caching",
+"enabled_by_default": False,
+},
+    "artifact_expansion": {
+        "description": "Extended support for additional document types and external integrations",
+        "enabled_by_default": True,
+    },
+    "task_quality": {
+        "description": "Enhanced task granularity, estimation, and validation",
+        "enabled_by_default": True,
+    },
+}
+
 AGENT_CONFIG = {
     "copilot": {
         "name": "GitHub Copilot",
@@ -845,16 +877,18 @@ def ensure_executable_scripts(project_path: Path, tracker: StepTracker | None = 
 
 @app.command()
 def init(
-    project_name: Optional[str] = typer.Argument(None, help="Name for your new project directory (optional if using --here, or use '.' for current directory)"),
-    ai_assistant: Optional[str] = typer.Option(None, "--ai", help="AI assistant to use: claude, gemini, copilot, cursor-agent, qwen, opencode, codex, windsurf, kilocode, auggie, codebuddy, amp, or q"),
-    script_type: Optional[str] = typer.Option(None, "--script", help="Script type to use: sh or ps"),
-    ignore_agent_tools: bool = typer.Option(False, "--ignore-agent-tools", help="Skip checks for AI agent tools like Claude Code"),
-    no_git: bool = typer.Option(False, "--no-git", help="Skip git repository initialization"),
-    here: bool = typer.Option(False, "--here", help="Initialize project in the current directory instead of creating a new one"),
-    force: bool = typer.Option(False, "--force", help="Force merge/overwrite when using --here (skip confirmation)"),
-    skip_tls: bool = typer.Option(False, "--skip-tls", help="Skip SSL/TLS verification (not recommended)"),
-    debug: bool = typer.Option(False, "--debug", help="Show verbose diagnostic output for network and extraction failures"),
-    github_token: Optional[str] = typer.Option(None, "--github-token", help="GitHub token to use for API requests (or set GH_TOKEN or GITHUB_TOKEN environment variable)"),
+project_name: Optional[str] = typer.Argument(None, help="Name for your new project directory (optional if using --here, or use '.' for current directory)"),
+ai_assistant: Optional[str] = typer.Option(None, "--ai", help="AI assistant to use: claude, gemini, copilot, cursor-agent, qwen, opencode, codex, windsurf, kilocode, auggie, codebuddy, amp, or q"),
+script_type: Optional[str] = typer.Option(None, "--script", help="Script type to use: sh or ps"),
+ignore_agent_tools: bool = typer.Option(False, "--ignore-agent-tools", help="Skip checks for AI agent tools like Claude Code"),
+no_git: bool = typer.Option(False, "--no-git", help="Skip git repository initialization"),
+here: bool = typer.Option(False, "--here", help="Initialize project in the current directory instead of creating a new one"),
+force: bool = typer.Option(False, "--force", help="Force merge/overwrite when using --here (skip confirmation)"),
+skip_tls: bool = typer.Option(False, "--skip-tls", help="Skip SSL/TLS verification (not recommended)"),
+debug: bool = typer.Option(False, "--debug", help="Show verbose diagnostic output for network and extraction failures"),
+github_token: Optional[str] = typer.Option(None, "--github-token", help="GitHub token to use for API requests (or set GH_TOKEN or GITHUB_TOKEN environment variable)"),
+    enhanced_features: Optional[str] = typer.Option(None, "--enhanced", help="Enable enhanced features: version_control,codebase_validation,cicd_integration,dependency_graph,performance_optimization,artifact_expansion,task_quality (comma-separated)"),
+    all_enhanced: bool = typer.Option(False, "--all-enhanced", help="Enable all enhanced features"),
 ):
     """
     Initialize a new Intent project from the latest template.
@@ -866,19 +900,22 @@ def init(
     4. Extract the template to a new project directory or current directory
     5. Initialize a fresh git repository (if not --no-git and no existing repo)
     6. Optionally set up AI assistant commands
+    7. Enable enhanced features for better development workflow
 
     Examples:
-        intent init my-project
-        intent init my-project --ai claude
-        intent init my-project --ai copilot --no-git
-        intent init --ignore-agent-tools my-project
-        intent init . --ai claude         # Initialize in current directory
-        intent init .                     # Initialize in current directory (interactive AI selection)
-        intent init --here --ai claude    # Alternative syntax for current directory
-        intent init --here --ai codex
-        intent init --here --ai codebuddy
-        intent init --here
+    intent init my-project
+    intent init my-project --ai claude
+    intent init my-project --ai copilot --no-git
+    intent init --ignore-agent-tools my-project
+    intent init . --ai claude         # Initialize in current directory
+    intent init .                     # Initialize in current directory (interactive AI selection)
+    intent init --here --ai claude    # Alternative syntax for current directory
+    intent init --here --ai codex
+    intent init --here --ai codebuddy
+    intent init --here
         intent init --here --force  # Skip confirmation when current directory not empty
+        intent init my-project --all-enhanced  # Enable all enhanced features
+        intent init my-project --enhanced version_control,dependency_graph  # Enable specific features
     """
 
     show_banner()
@@ -990,8 +1027,24 @@ def init(
         else:
             selected_script = default_script
 
+    # Parse enhanced features
+    enabled_features = {}
+    if all_enhanced:
+        enabled_features = {feature: True for feature in ENHANCED_FEATURES.keys()}
+    elif enhanced_features:
+        requested_features = [f.strip() for f in enhanced_features.split(',')]
+        for feature in requested_features:
+            if feature in ENHANCED_FEATURES:
+                enabled_features[feature] = True
+            else:
+                console.print(f"[yellow]Warning:[/yellow] Unknown enhanced feature '{feature}', ignoring")
+    else:
+        # Use defaults
+        enabled_features = {feature: config["enabled_by_default"] for feature, config in ENHANCED_FEATURES.items()}
+
     console.print(f"[cyan]Selected AI assistant:[/cyan] {selected_ai}")
     console.print(f"[cyan]Selected script type:[/cyan] {selected_script}")
+    console.print(f"[cyan]Enhanced features enabled:[/cyan] {', '.join([f for f, enabled in enabled_features.items() if enabled]) or 'none'}")
 
     tracker = StepTracker("Initialize Intent Project")
 

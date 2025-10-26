@@ -1,8 +1,8 @@
 ---
-description: Create or update the feature specification from a natural language feature description.
+description: Create or update the feature specification from a natural language feature description with enhanced artifact discovery and quality validation.
 scripts:
-  sh: scripts/bash/create-new-feature.sh --json "{ARGS}"
-  ps: scripts/powershell/create-new-feature.ps1 -Json "{ARGS}"
+sh: scripts/bash/create-new-feature.sh --json "{ARGS}"
+ps: scripts/powershell/create-new-feature.ps1 -Json "{ARGS}"
 ---
 
 # User Input
@@ -12,6 +12,15 @@ $ARGUMENTS
 ```
 
 You **MUST** consider the user input before proceeding (if not empty).
+
+## Enhanced Features Integration
+
+With enhanced features enabled, intent creation includes:
+
+- **Artifact Context Awareness**: Reference existing project artifacts during intent specification
+- **Quality-driven Intent**: Apply quality standards from the constitution during specification
+- **Dependency Discovery**: Identify potential external dependencies and integrations
+- **Validation Checklists**: Generate acceptance criteria checklists automatically
 
 ## Outline
 

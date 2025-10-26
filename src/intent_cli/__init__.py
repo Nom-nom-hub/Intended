@@ -509,3 +509,29 @@ def callback(ctx: typer.Context):
                     title="[bold bright_white]Welcome to Intent Kit![/bold bright_white]"
                 )
         console.print(quick_actions_panel)
+
+
+@app.command()
+def init(
+    project_name: str = typer.Argument(None, help="Name of the project to initialize"),
+    ai_assistant: str = typer.Option(None, "--ai", help="AI assistant to use: " + ", ".join(AGENT_CONFIG.keys())),
+    enhanced: list[str] = typer.Option([], "--enhanced", help="Enhanced features to enable"),
+    all_enhanced: bool = typer.Option(False, "--all-enhanced", help="Enable all enhanced features"),
+):
+    """Initialize a new Intent-Driven Development project with AI agent integration."""
+    console.print(f"Initializing project: {project_name}")
+    console.print(f"AI Assistant: {ai_assistant}")
+    console.print(f"Enhanced features: {enhanced}")
+    console.print(f"All enhanced: {all_enhanced}")
+    # TODO: Implement full init logic
+
+
+@app.command()
+def check():
+    """Check system requirements and AI assistant availability."""
+    console.print("Checking system requirements...")
+    # TODO: Implement check logic
+
+
+def main():
+    app()

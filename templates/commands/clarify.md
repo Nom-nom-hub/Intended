@@ -35,7 +35,8 @@ for user responses.
 **STRUCTURED APPROACH**: Use systematic, coverage-based questioning that records answers in a structured format for later
 integration.
 
-**CONSTITUTION AWARE**: All clarification questions must respect the project constitution (`.intent/memory/constitution.md`) and
+**CONSTITUTION AWARE**: All clarification questions must respect the project constitution (`.intent/memory/constitution.md`)
+and
 not propose solutions that violate established principles.
 
 ## Execution Steps

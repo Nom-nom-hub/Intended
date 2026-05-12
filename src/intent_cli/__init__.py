@@ -596,7 +596,7 @@ def init(
         format_ext = "md"
 
     # Copy command templates
-    templates_dir = Path(__file__).parent.parent / "templates" / "commands"
+    templates_dir = Path(__file__).parent.parent.parent / "templates" / "commands"
     if templates_dir.exists():
         copied = 0
         for template_file in templates_dir.glob(f"*.{format_ext}"):
@@ -624,15 +624,78 @@ def init(
         constitution_path.write_text("# Project Constitution\n\nDefine your project principles here.\n")
         tracker.complete("Constitution", "Created default constitution.md")
 
+    # Copy supporting templates to .intent/templates/
+    templates_src = Path(__file__).parent.parent.parent / "templates"
+    intent_templates_dir = intent_dir / "templates"
+    intent_templates_dir.mkdir(exist_ok=True)
+    template_files = [
+        "intent-template.md",
+        "plan-template.md",
+        "tasks-template.md",
+        "research-template.md",
+        "checklist-template.md",
+    ]
+    template_copied = 0
+    for tf in template_files:
+        src = templates_src / tf
+        if src.exists():
+            shutil.copy(src, intent_templates_dir / tf)
+            template_copied += 1
+    if template_copied > 0:
+        tracker.complete("Supporting templates", f"Copied {template_copied} templates to .intent/templates/")
+
+    # Copy scripts to .intent/scripts/
+    scripts_src_dir = Path(__file__).parent.parent.parent / "scripts"
+    intent_scripts_dir = intent_dir / "scripts"
+    intent_scripts_dir.mkdir(exist_ok=True)
+
+    # Try bash scripts first (default), fall back to powershell
+    script_src_dir = scripts_src_dir / "bash"
+    if not script_src_dir.exists():
+        script_src_dir = scripts_src_dir / "powershell"
+    script_copied = 0
+    if script_src_dir.exists():
+        for script_file in script_src_dir.glob("*"):
+            if script_file.is_file():
+                shutil.copy(script_file, intent_scripts_dir / script_file.name)
+                script_copied += 1
+        # Make scripts executable on Unix-like systems
+        if os.name != "nt":
+            for f in intent_scripts_dir.iterdir():
+                if f.suffix in (".sh", ".ps1"):
+                    f.chmod(f.stat().st_mode | 0o111)
+    if script_copied > 0:
+        tracker.complete("Setup scripts", f"Copied {script_copied} scripts to .intent/scripts/")
+
+    # Create enhanced-config.json
+    enhanced_config_src = templates_src / ".intent" / "enhanced-config.json"
+    if enhanced_config_src.exists():
+        shutil.copy(enhanced_config_src, intent_dir / "enhanced-config.json")
+        tracker.complete("Enhanced config", "Created enhanced-config.json")
+
+    # Create agent context file in .intent/
+    agent_context_src = templates_src / "agent-file-template.md"
+    if agent_context_src.exists():
+        shutil.copy(agent_context_src, intent_dir / "AGENTS.md")
+        tracker.complete("Agent context", "Created AGENTS.md in .intent/")
+
+    # Write .intent/.gitignore
+    gitignore_path = intent_dir / ".gitignore"
+    if not gitignore_path.exists():
+        gitignore_path.write_text("# Intent-generated files\n# Add overrides below:\n")
+
     tracker.complete("Project initialization", f"Complete - ready for Intent-Driven Development with {agent_config['name']}")
 
     console.print(f"\n[green]✅ Project '{project_name}' initialized successfully![/green]")
     console.print(f"📁 Location: {project_path}")
     console.print(f"🤖 AI Assistant: {agent_config['name']}")
+    console.print(f"📋 Enhanced features: {', '.join(enabled_features) if enabled_features else 'default'}")
     console.print(f"📋 Next steps:")
-    console.print(f"  1. Edit Intent.md to define your feature requirements")
-    console.print(f"  2. Run 'intent plan' (when implemented) to create the technical plan")
-    console.print(f"  3. Start development with your chosen AI assistant!")
+    console.print(f"  1. Run /intent.constitution to establish project principles")
+    console.print(f"  2. Run /intent.intend to define feature requirements")
+    console.print(f"  3. Run /intent.plan with your tech stack choices")
+    console.print(f"  4. Run /intent.tasks to break down the plan")
+    console.print(f"  5. Run /intent.implement to execute the tasks")
 
 
 def check_tool(tool_name: str) -> bool:

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/Intent/v2.0
 
 ## [Unreleased]
 
+## [0.0.13] - 2025-05-12
+
+### Added
+- **📋 Self-contained `.intent/` directory** — `intent init` now copies templates, scripts, enhanced config, and agent context into `.intent/` for fully offline agent operation
+- **🔬 Research command** — New `/intent.research` command with structured research workflow, comparison tables, dependency analysis, and risk assessment
+- **📝 Research template** — New `templates/research-template.md` with full research document structure
+- **🛠️ Research scripts** — New `create-research.sh` and `create-research.ps1` for setting up research environments
+- **🚀 Enhanced init experience** — `intent init` now creates `.intent/templates/`, `.intent/scripts/`, `.intent/enhanced-config.json`, `.intent/AGENTS.md`, and `.intent/.gitignore`
+- **🔧 Expanded init output** — Shows enabled enhanced features on initialization success
+
+### Fixed
+- **🐛 Path resolution in init** — Fixed `Path(__file__).parent.parent` to `.parent.parent.parent` to correctly find templates and scripts directory when running from development source tree
+
 ## [0.0.12] - 2025-10-25
 
 ### Added
